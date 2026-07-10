@@ -1,0 +1,278 @@
+classDiagram
+    %% ===================== Base =====================
+    class SyncEntity {
+        <<mixin>>
+        +String id
+        +DateTime createdAt
+        +DateTime updatedAt
+        +int version
+        +DateTime? deletedAt
+        +bool get isDeleted()
+    }
+
+    %% ===================== Enums =====================
+    class CategoryKind { <<enum>> food medicine daily other }
+    class OutboundReason { <<enum>> consume discard other }
+    class MedicationType { <<enum>> medicine supplement }
+    class Frequency { <<enum>> dailyN specific }
+    class DoseStatus { <<enum>> pending done skipped }
+    class ChannelType { <<enum>> wxpusher groupBot oa miniProgram localLog }
+    class ReminderType { <<enum>> expiry lowstock medication dailyRecipe custom }
+    class MealType { <<enum>> breakfast lunch dinner snack }
+    class TravelItemType { <<enum>> luggage budget }
+    class MemberRole { <<enum>> admin member }
+
+    %% ===================== Entities =====================
+    class Member {
+        +String name
+        +String? avatar
+        +MemberRole role
+        +String? wxUid
+        +int color
+    }
+    Member --|> SyncEntity
+
+    class Category {
+        +String name
+        +CategoryKind kind
+    }
+    Category --|> SyncEntity
+
+    class Product {
+        +String name
+        +String categoryId
+        +String unit
+        +String? barcode
+        +String? location
+        +int lowStockThreshold
+    }
+    Product --|> SyncEntity
+    Product ..> Category : categoryId
+
+    class StockBatch {
+        +String productId
+        +num quantity
+        +DateTime? expireDate
+        +String? batchNo
+        +DateTime inboundAt
+    }
+    StockBatch --|> SyncEntity
+    StockBatch ..> Product : productId
+
+    class InboundOrder {
+        +String productId
+        +num qty
+        +String operatorId
+        +DateTime at
+        +String? note
+    }
+    InboundOrder --|> SyncEntity
+    InboundOrder ..> Product : productId
+
+    class OutboundOrder {
+        +String productId
+        +num qty
+        +OutboundReason? reason
+        +String operatorId
+        +DateTime at
+        +String? note
+    }
+    OutboundOrder --|> SyncEntity
+    OutboundOrder ..> Product : productId
+
+    class Medication {
+        +String memberId
+        +String name
+        +MedicationType type
+        +String dosage
+        +Frequency frequency
+        +List~TimeOfDay~ times
+        +DateTime? startDate
+        +DateTime? endDate
+        +bool active
+    }
+    Medication --|> SyncEntity
+    Medication ..> Member : memberId
+
+    class DoseSchedule {
+        +String medicationId
+        +String memberId
+        +DateTime scheduledTime
+    }
+    DoseSchedule --|> SyncEntity
+    DoseSchedule ..> Medication : medicationId
+
+    class DoseLog {
+        +String medicationId
+        +String memberId
+        +DateTime scheduledTime
+        +DoseStatus status
+        +DateTime? takenAt
+        +String? note
+    }
+    DoseLog --|> SyncEntity
+    DoseLog ..> Medication : medicationId
+
+    class Recipe {
+        +String name
+        +String steps
+        +int servings
+        +List~String~ tags
+        +String authorId
+    }
+    Recipe --|> SyncEntity
+    Recipe "1" *-- "*" RecipeIngredient : ingredients
+    Recipe ..> Member : authorId
+
+    class RecipeIngredient {
+        +String productId
+        +num amount
+        +String? unit
+    }
+    RecipeIngredient ..> Product : productId
+
+    class RecipeCookableBy {
+        +String recipeId
+        +String memberId
+    }
+    RecipeCookableBy ..> Recipe : recipeId
+    RecipeCookableBy ..> Member : memberId
+
+    class DailyMeal {
+        +DateTime date
+        +MealType mealType
+        +String recipeId
+    }
+    DailyMeal ..> Recipe : recipeId
+
+    class Memo {
+        +String title
+        +String body
+        +String authorId
+        +bool pinned
+        +bool done
+        +DateTime? dueAt
+    }
+    Memo --|> SyncEntity
+    Memo ..> Member : authorId
+
+    class TravelPlan {
+        +String title
+        +DateTime start
+        +DateTime end
+        +List~String~ memberIds
+    }
+    TravelPlan --|> SyncEntity
+
+    class TravelDay {
+        +String planId
+        +int dayIndex
+        +DateTime date
+        +String agenda
+    }
+    TravelDay ..> TravelPlan : planId
+
+    class TravelItem {
+        +String planId
+        +TravelItemType type
+        +String name
+        +num? qty
+        +num? amount
+        +bool done
+        +String? assignedTo
+    }
+    TravelItem ..> TravelPlan : planId
+
+    class ReminderRule {
+        +ReminderType type
+        +String sourceRef
+        +ChannelType channel
+        +Map config
+        +String? memberId
+        +bool enabled
+    }
+    ReminderRule --|> SyncEntity
+
+    class ReminderLog {
+        +String ruleId
+        +DateTime firedAt
+        +ChannelType channel
+        +String status
+        +String? payload
+    }
+    ReminderLog ..> ReminderRule : ruleId
+
+    %% ===================== Repositories (interfaces) =====================
+    class InventoryRepository {
+        <<interface>>
+        +Future~void~ recordInbound(...)
+        +Future~void~ recordOutbound(...)
+        +Future~num~ currentStock(productId)
+        +Future~List~StockView~~ expiringSoon(days)
+        +Future~List~StockView~~ lowStock()
+    }
+    class MedicationRepository {
+        <<interface>>
+        +Future~void~ checkIn(doseLogId, status)
+        +Future~List~DoseLog~ todayDoses(memberId)
+    }
+    class MemberRepository { <<interface>> +Future~List~Member~~ watchAll() }
+    class RecipeRepository { <<interface>> +Future~List~Recipe~~ watchAll() }
+    class MemoRepository { <<interface>> +Future~void~ saveMemo(Memo) }
+    class TravelRepository { <<interface>> +Future~void~ saveTravelPlan(TravelPlan) }
+    class ReminderRepository { <<interface>> +Future~void~ insertLog(ReminderLog) }
+
+    %% ===================== Notify / Reminder / Sync =====================
+    class SendResult {
+        +bool success
+        +String? message
+        +String? failureReason
+    }
+    class NotificationChannel {
+        <<abstract>>
+        +ChannelType get type
+        +Future~SendResult~ send(targets, title, body, payload)
+    }
+    class LoggingNotificationChannel
+    class WxPusherChannel
+    class GroupBotChannel
+    NotificationChannel <|-- LoggingNotificationChannel
+    NotificationChannel <|-- WxPusherChannel
+    NotificationChannel <|-- GroupBotChannel
+
+    class ReminderDispatcher {
+        -Map~ChannelType, NotificationChannel~ registry
+        +Future~ReminderLog~ dispatch(ReminderRule rule)
+    }
+    ReminderDispatcher ..> NotificationChannel : uses
+    ReminderDispatcher ..> ReminderRepository : writes log
+
+    class ReminderEngine {
+        <<abstract>>
+        +Future~void~ init()
+        +Future~void~ scheduleDoseReminders(memberId)
+        +Future~void~ scanAndFireRules()
+    }
+    class LocalReminderEngine
+    ReminderEngine <|-- LocalReminderEngine
+    LocalReminderEngine ..> ReminderDispatcher : dispatch
+    LocalReminderEngine ..> flutter_local_notifications : zonedSchedule
+
+    class SyncEngine {
+        <<abstract>>
+        +Future~SyncResult~ push(changes)
+        +Future~List~SyncEntity~~ pull(since)
+    }
+    class LocalStubSyncEngine
+    SyncEngine <|-- LocalStubSyncEngine
+
+    %% ===================== AppDatabase =====================
+    class AppDatabase {
+        +MemberDao memberDao
+        +InventoryDao inventoryDao
+        +MedicationDao medicationDao
+        +RecipeDao recipeDao
+        +MemoDao memoDao
+        +TravelDao travelDao
+        +ReminderDao reminderDao
+    }
