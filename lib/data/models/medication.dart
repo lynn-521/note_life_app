@@ -1,0 +1,34 @@
+/// 用药计划实体（class-diagram.mermaid · Medication）。
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/material.dart';
+
+import 'base/sync_entity.dart';
+import 'enums.dart';
+import '../../core/utils/json_converters.dart';
+
+part 'medication.freezed.dart';
+
+/// 用药计划：按成员绑定，含频次与每日服药时间点。
+@freezed
+class Medication with _$Medication, SyncEntity {
+  const factory Medication({
+    required String id,
+    required String memberId,
+    required String name,
+    @Default(MedicationType.medicine) MedicationType type,
+    required String dosage,
+    @Default(Frequency.dailyN) Frequency frequency,
+    @TimeOfDayListConverter()
+    required List<TimeOfDay> times,
+    DateTime? startDate,
+    DateTime? endDate,
+    @Default(true) bool active,
+    required DateTime createdAt,
+    required DateTime updatedAt,
+    @Default(1) int version,
+    DateTime? deletedAt,
+  }) = _Medication;
+
+  factory Medication.fromJson(Map<String, dynamic> json) =>
+      _$MedicationFromJson(json);
+}
