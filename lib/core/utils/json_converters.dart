@@ -1,0 +1,33 @@
+/// JSON 转换器：TimeOfDay 列表 ↔ 字符串列表（供 freezed 模型序列化）。
+///
+/// 用法（模型字段上方）：
+/// ```dart
+/// @TimeOfDayListConverter()
+/// required List<TimeOfDay> times,
+/// ```
+import 'package:json_annotation/json_annotation.dart';
+import 'package:flutter/material.dart';
+
+/// TimeOfDay → "HH:mm" 字符串。
+String timeOfDayToJson(TimeOfDay time) => '${time.hour}:${time.minute}';
+
+/// "HH:mm" 字符串 → TimeOfDay。
+TimeOfDay timeOfDayFromJson(String json) {
+  final parts = json.split(':');
+  return TimeOfDay(hour: int.parse(parts[0]), minute: int.parse(parts[1]));
+}
+
+/// [List<TimeOfDay>] 的 JSON 转换器（序列化为 `List<String>`，每个元素 "HH:mm"）。
+class TimeOfDayListConverter
+    implements JsonConverter<List<TimeOfDay>, List<String>> {
+  /// 默认构造。
+  const TimeOfDayListConverter();
+
+  @override
+  List<TimeOfDay> fromJson(List<String> json) =>
+      json.map(timeOfDayFromJson).toList(growable: false);
+
+  @override
+  List<String> toJson(List<TimeOfDay> times) =>
+      times.map(timeOfDayToJson).toList(growable: false);
+}
