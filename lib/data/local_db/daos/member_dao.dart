@@ -5,7 +5,7 @@ import '../../models/member.dart';
 import '../tables/member_table.dart';
 import 'base_dao.dart';
 import '../app_database.dart' show AppDatabase;
-part 'member_dao.drift.dart';
+part 'member_dao.g.dart';
 
 /// 家庭成员数据访问。
 @DriftAccessor(tables: [Members])

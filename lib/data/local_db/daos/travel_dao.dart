@@ -9,7 +9,7 @@ import '../tables/travel_item_table.dart';
 import '../tables/travel_plan_table.dart';
 import 'base_dao.dart';
 import '../app_database.dart' show AppDatabase;
-part 'travel_dao.drift.dart';
+part 'travel_dao.g.dart';
 
 /// 旅游计划书数据访问。
 @DriftAccessor(tables: [TravelPlans, TravelDays, TravelItems])

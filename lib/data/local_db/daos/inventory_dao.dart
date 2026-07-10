@@ -19,7 +19,7 @@ import '../tables/product_table.dart';
 import '../tables/stock_batch_table.dart';
 import 'base_dao.dart';
 import '../app_database.dart' show AppDatabase;
-part 'inventory_dao.drift.dart';
+part 'inventory_dao.g.dart';
 
 /// 库存数据访问。
 @DriftAccessor(tables: [

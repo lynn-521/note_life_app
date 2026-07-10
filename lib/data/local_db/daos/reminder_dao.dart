@@ -7,7 +7,7 @@ import '../tables/reminder_log_table.dart';
 import '../tables/reminder_rule_table.dart';
 import 'base_dao.dart';
 import '../app_database.dart' show AppDatabase;
-part 'reminder_dao.drift.dart';
+part 'reminder_dao.g.dart';
 
 /// 提醒规则 / 日志数据访问。
 @DriftAccessor(tables: [ReminderRules, ReminderLogs])

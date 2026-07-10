@@ -11,7 +11,7 @@ import '../../providers/app_providers.dart';
 import '../shared/confetti.dart';
 import '../shared/empty_state.dart';
 import '../shared/screen_header.dart';
-import 'providers/health_providers.dart';
+import 'package:family_butler/providers/health_providers.dart';
 import 'widgets/dose_list_item.dart';
 import 'widgets/medication_progress_ring.dart';
 import 'widgets/member_switch.dart';

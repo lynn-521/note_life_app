@@ -5,7 +5,7 @@ import '../../models/memo.dart';
 import '../tables/memo_table.dart';
 import 'base_dao.dart';
 import '../app_database.dart' show AppDatabase;
-part 'memo_dao.drift.dart';
+part 'memo_dao.g.dart';
 
 /// 备忘录数据访问。
 @DriftAccessor(tables: [Memos])

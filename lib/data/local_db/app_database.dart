@@ -30,7 +30,7 @@ import 'tables/travel_day_table.dart';
 import 'tables/travel_item_table.dart';
 import 'tables/travel_plan_table.dart';
 import 'daos/member_dao.dart';
-part 'app_database.drift.dart';
+part 'app_database.g.dart';
 
 /// 家庭管家本地数据库。
 @DriftDatabase(

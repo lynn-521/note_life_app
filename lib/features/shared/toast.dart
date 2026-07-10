@@ -33,7 +33,7 @@ class _ToastWidgetState extends State<_ToastWidget> {
   @override
   void initState() {
     super.initState();
-    final reduce = MediaQuery.of(context).disabledAnimations;
+    final reduce = MediaQuery.of(context).disableAnimations;
     if (reduce) {
       _visible = true;
     } else {
@@ -52,7 +52,7 @@ class _ToastWidgetState extends State<_ToastWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
-    final reduce = MediaQuery.of(context).disabledAnimations;
+    final reduce = MediaQuery.of(context).disableAnimations;
     return Positioned(
       left: 0,
       right: 0,

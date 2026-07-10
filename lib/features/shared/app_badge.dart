@@ -31,7 +31,7 @@ class AppBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
     final colors = theme.badge(kind);
-    final reduce = MediaQuery.of(context).disabledAnimations;
+    final reduce = MediaQuery.of(context).disableAnimations;
 
     final badge = Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),

@@ -5,19 +5,19 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'core/constants/app_constants.dart';
-import 'data/local_db/app_database.dart';
-import 'data/models/member.dart';
-import 'data/notify/group_bot_channel.dart';
-import 'data/notify/logging_notification_channel.dart';
-import 'data/notify/notification_channel.dart';
-import 'data/notify/reminder_dispatcher.dart';
-import 'data/notify/wxpusher_channel.dart';
-import 'data/reminder/local_reminder_engine.dart';
-import 'data/repositories/repository.dart';
-import 'data/sync/http_sync_engine.dart';
-import 'core/network/api_client.dart';
-import 'data/models/family_server_config.dart';
+import 'package:family_butler/core/constants/app_constants.dart';
+import 'package:family_butler/data/local_db/app_database.dart';
+import 'package:family_butler/data/models/member.dart';
+import 'package:family_butler/data/notify/group_bot_channel.dart';
+import 'package:family_butler/data/notify/logging_notification_channel.dart';
+import 'package:family_butler/data/notify/notification_channel.dart';
+import 'package:family_butler/data/notify/reminder_dispatcher.dart';
+import 'package:family_butler/data/notify/wxpusher_channel.dart';
+import 'package:family_butler/data/reminder/local_reminder_engine.dart';
+import 'package:family_butler/data/repositories/repository.dart';
+import 'package:family_butler/data/sync/http_sync_engine.dart';
+import 'package:family_butler/core/network/api_client.dart';
+import 'package:family_butler/data/models/family_server_config.dart';
 
 /// 数据库单例（lazy，dispose 时关闭）。
 final appDatabaseProvider = Provider<AppDatabase>((ref) {

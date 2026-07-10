@@ -14,7 +14,7 @@ import '../tables/recipe_ingredient_table.dart';
 import '../tables/recipe_table.dart';
 import 'base_dao.dart';
 import '../app_database.dart' show AppDatabase;
-part 'recipe_dao.drift.dart';
+part 'recipe_dao.g.dart';
 
 /// 菜谱数据访问。
 @DriftAccessor(tables: [

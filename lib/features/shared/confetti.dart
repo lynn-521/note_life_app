@@ -7,7 +7,7 @@ import '../../core/theme/app_theme_extension.dart';
 
 /// 触发一次撒花（仅在用药成功时调用）。reduce-motion 下静默跳过。
 void fireConfetti(BuildContext context) {
-  final reduce = MediaQuery.of(context).disabledAnimations;
+  final reduce = MediaQuery.of(context).disableAnimations;
   if (reduce) return;
   final overlay = Overlay.of(context);
   if (overlay == null) return;

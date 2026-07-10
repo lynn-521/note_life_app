@@ -52,7 +52,7 @@ class _AppCardState extends State<AppCard> {
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
-    final reduce = MediaQuery.of(context).disabledAnimations;
+    final reduce = MediaQuery.of(context).disableAnimations;
 
     final box = Container(
       padding: widget.padding ?? EdgeInsets.all(theme.cardPadding),

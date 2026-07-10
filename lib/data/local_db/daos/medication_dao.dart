@@ -11,7 +11,7 @@ import '../tables/dose_schedule_table.dart';
 import '../tables/medication_table.dart';
 import 'base_dao.dart';
 import '../app_database.dart' show AppDatabase;
-part 'medication_dao.drift.dart';
+part 'medication_dao.g.dart';
 
 /// 用药数据访问。
 @DriftAccessor(tables: [Medications, DoseSchedules, DoseLogs])

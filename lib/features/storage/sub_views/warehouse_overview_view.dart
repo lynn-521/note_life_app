@@ -9,7 +9,7 @@ import '../../../features/shared/empty_state.dart';
 import '../providers/inventory_providers.dart';
 import '../widgets/expiring_suggestion_item.dart';
 import '../widgets/stock_list_item.dart';
-import 'summary_grid.dart';
+import '../widgets/summary_grid.dart';
 
 /// 仓库总览视图。
 class WarehouseOverviewView extends ConsumerStatefulWidget {
