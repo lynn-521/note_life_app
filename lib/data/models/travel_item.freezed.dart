@@ -28,9 +28,12 @@ mixin _$TravelItemModel {
   num? get amount => throw _privateConstructorUsedError;
   bool get done => throw _privateConstructorUsedError;
   String? get assignedTo => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
   /// Serializes this TravelItemModel to a JSON map.
@@ -58,10 +61,10 @@ abstract class $TravelItemModelCopyWith<$Res> {
       num? amount,
       bool done,
       String? assignedTo,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -162,10 +165,10 @@ abstract class _$$TravelItemImplCopyWith<$Res>
       num? amount,
       bool done,
       String? assignedTo,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -259,10 +262,10 @@ class _$TravelItemImpl implements _TravelItem {
       this.amount,
       this.done = false,
       this.assignedTo,
-      required this.createdAt,
-      required this.updatedAt,
+      @UtcDateTimeConverter() required this.createdAt,
+      @UtcDateTimeConverter() required this.updatedAt,
       this.version = 1,
-      this.deletedAt});
+      @UtcDateTimeConverter() this.deletedAt});
 
   factory _$TravelItemImpl.fromJson(Map<String, dynamic> json) =>
       _$$TravelItemImplFromJson(json);
@@ -286,13 +289,16 @@ class _$TravelItemImpl implements _TravelItem {
   @override
   final String? assignedTo;
   @override
+  @UtcDateTimeConverter()
   final DateTime createdAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime updatedAt;
   @override
   @JsonKey()
   final int version;
   @override
+  @UtcDateTimeConverter()
   final DateTime? deletedAt;
 
   @override
@@ -354,10 +360,10 @@ abstract class _TravelItem implements TravelItemModel {
       final num? amount,
       final bool done,
       final String? assignedTo,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      @UtcDateTimeConverter() required final DateTime createdAt,
+      @UtcDateTimeConverter() required final DateTime updatedAt,
       final int version,
-      final DateTime? deletedAt}) = _$TravelItemImpl;
+      @UtcDateTimeConverter() final DateTime? deletedAt}) = _$TravelItemImpl;
 
   factory _TravelItem.fromJson(Map<String, dynamic> json) =
       _$TravelItemImpl.fromJson;
@@ -379,12 +385,15 @@ abstract class _TravelItem implements TravelItemModel {
   @override
   String? get assignedTo;
   @override
+  @UtcDateTimeConverter()
   DateTime get createdAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get updatedAt;
   @override
   int get version;
   @override
+  @UtcDateTimeConverter()
   DateTime? get deletedAt;
 
   /// Create a copy of TravelItemModel

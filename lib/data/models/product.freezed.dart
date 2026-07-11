@@ -27,9 +27,12 @@ mixin _$ProductModel {
   String? get barcode => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
   int get lowStockThreshold => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
   /// Serializes this ProductModel to a JSON map.
@@ -56,10 +59,10 @@ abstract class $ProductModelCopyWith<$Res> {
       String? barcode,
       String? location,
       int lowStockThreshold,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -154,10 +157,10 @@ abstract class _$$ProductImplCopyWith<$Res>
       String? barcode,
       String? location,
       int lowStockThreshold,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -245,10 +248,10 @@ class _$ProductImpl implements _Product {
       this.barcode,
       this.location,
       this.lowStockThreshold = 1,
-      required this.createdAt,
-      required this.updatedAt,
+      @UtcDateTimeConverter() required this.createdAt,
+      @UtcDateTimeConverter() required this.updatedAt,
       this.version = 1,
-      this.deletedAt});
+      @UtcDateTimeConverter() this.deletedAt});
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductImplFromJson(json);
@@ -269,13 +272,16 @@ class _$ProductImpl implements _Product {
   @JsonKey()
   final int lowStockThreshold;
   @override
+  @UtcDateTimeConverter()
   final DateTime createdAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime updatedAt;
   @override
   @JsonKey()
   final int version;
   @override
+  @UtcDateTimeConverter()
   final DateTime? deletedAt;
 
   @override
@@ -348,10 +354,10 @@ abstract class _Product implements ProductModel {
       final String? barcode,
       final String? location,
       final int lowStockThreshold,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      @UtcDateTimeConverter() required final DateTime createdAt,
+      @UtcDateTimeConverter() required final DateTime updatedAt,
       final int version,
-      final DateTime? deletedAt}) = _$ProductImpl;
+      @UtcDateTimeConverter() final DateTime? deletedAt}) = _$ProductImpl;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 
@@ -370,12 +376,15 @@ abstract class _Product implements ProductModel {
   @override
   int get lowStockThreshold;
   @override
+  @UtcDateTimeConverter()
   DateTime get createdAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get updatedAt;
   @override
   int get version;
   @override
+  @UtcDateTimeConverter()
   DateTime? get deletedAt;
 
   /// Create a copy of ProductModel

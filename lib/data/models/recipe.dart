@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
 import 'recipe_ingredient.dart';
+import '../../core/utils/json_converters.dart';
 
 part 'recipe.freezed.dart';
 part 'recipe.g.dart';
@@ -20,10 +21,10 @@ class RecipeModel with _$RecipeModel, SyncEntity {
     required String authorId,
     @Default(<RecipeIngredientModel>[]) List<RecipeIngredientModel> ingredients,
     @Default(<String>[]) List<String> cookableBy,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @UtcDateTimeConverter() required DateTime createdAt,
+    @UtcDateTimeConverter() required DateTime updatedAt,
     @Default(1) int version,
-    DateTime? deletedAt,
+    @UtcDateTimeConverter() DateTime? deletedAt,
   }) = _Recipe;
 
   factory RecipeModel.fromJson(Map<String, dynamic> json) =>

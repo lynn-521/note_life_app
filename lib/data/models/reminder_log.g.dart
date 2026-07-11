@@ -10,31 +10,33 @@ _$ReminderLogImpl _$$ReminderLogImplFromJson(Map<String, dynamic> json) =>
     _$ReminderLogImpl(
       id: json['id'] as String,
       ruleId: json['ruleId'] as String,
-      firedAt: DateTime.parse(json['firedAt'] as String),
+      firedAt: const UtcDateTimeConverter().fromJson(json['firedAt'] as String),
       channel: $enumDecodeNullable(_$ChannelTypeEnumMap, json['channel']) ??
           ChannelType.localLog,
       status: json['status'] as String? ?? 'pending',
       payload: json['payload'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdAt:
+          const UtcDateTimeConverter().fromJson(json['createdAt'] as String),
+      updatedAt:
+          const UtcDateTimeConverter().fromJson(json['updatedAt'] as String),
       version: (json['version'] as num?)?.toInt() ?? 1,
-      deletedAt: json['deletedAt'] == null
-          ? null
-          : DateTime.parse(json['deletedAt'] as String),
+      deletedAt: _$JsonConverterFromJson<String, DateTime>(
+          json['deletedAt'], const UtcDateTimeConverter().fromJson),
     );
 
 Map<String, dynamic> _$$ReminderLogImplToJson(_$ReminderLogImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'ruleId': instance.ruleId,
-      'firedAt': instance.firedAt.toIso8601String(),
+      'firedAt': const UtcDateTimeConverter().toJson(instance.firedAt),
       'channel': _$ChannelTypeEnumMap[instance.channel]!,
       'status': instance.status,
       'payload': instance.payload,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdAt': const UtcDateTimeConverter().toJson(instance.createdAt),
+      'updatedAt': const UtcDateTimeConverter().toJson(instance.updatedAt),
       'version': instance.version,
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'deletedAt': _$JsonConverterToJson<String, DateTime>(
+          instance.deletedAt, const UtcDateTimeConverter().toJson),
     };
 
 const _$ChannelTypeEnumMap = {
@@ -44,3 +46,15 @@ const _$ChannelTypeEnumMap = {
   ChannelType.miniProgram: 'miniProgram',
   ChannelType.localLog: 'localLog',
 };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);

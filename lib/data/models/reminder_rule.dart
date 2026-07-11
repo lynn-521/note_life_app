@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
 import 'enums.dart';
+import '../../core/utils/json_converters.dart';
 
 part 'reminder_rule.freezed.dart';
 part 'reminder_rule.g.dart';
@@ -19,10 +20,10 @@ class ReminderRuleModel with _$ReminderRuleModel, SyncEntity {
     @Default(<String, dynamic>{}) Map<String, dynamic> config,
     String? memberId,
     @Default(true) bool enabled,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @UtcDateTimeConverter() required DateTime createdAt,
+    @UtcDateTimeConverter() required DateTime updatedAt,
     @Default(1) int version,
-    DateTime? deletedAt,
+    @UtcDateTimeConverter() DateTime? deletedAt,
   }) = _ReminderRule;
 
   factory ReminderRuleModel.fromJson(Map<String, dynamic> json) =>

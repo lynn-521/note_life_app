@@ -26,10 +26,14 @@ mixin _$MemoModel {
   String get authorId => throw _privateConstructorUsedError;
   bool get pinned => throw _privateConstructorUsedError;
   bool get done => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get dueAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
   /// Serializes this MemoModel to a JSON map.
@@ -54,11 +58,11 @@ abstract class $MemoModelCopyWith<$Res> {
       String authorId,
       bool pinned,
       bool done,
-      DateTime? dueAt,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime? dueAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -151,11 +155,11 @@ abstract class _$$MemoImplCopyWith<$Res> implements $MemoModelCopyWith<$Res> {
       String authorId,
       bool pinned,
       bool done,
-      DateTime? dueAt,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime? dueAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -241,11 +245,11 @@ class _$MemoImpl implements _Memo {
       required this.authorId,
       this.pinned = false,
       this.done = false,
-      this.dueAt,
-      required this.createdAt,
-      required this.updatedAt,
+      @UtcDateTimeConverter() this.dueAt,
+      @UtcDateTimeConverter() required this.createdAt,
+      @UtcDateTimeConverter() required this.updatedAt,
       this.version = 1,
-      this.deletedAt});
+      @UtcDateTimeConverter() this.deletedAt});
 
   factory _$MemoImpl.fromJson(Map<String, dynamic> json) =>
       _$$MemoImplFromJson(json);
@@ -266,15 +270,19 @@ class _$MemoImpl implements _Memo {
   @JsonKey()
   final bool done;
   @override
+  @UtcDateTimeConverter()
   final DateTime? dueAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime createdAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime updatedAt;
   @override
   @JsonKey()
   final int version;
   @override
+  @UtcDateTimeConverter()
   final DateTime? deletedAt;
 
   @override
@@ -333,11 +341,11 @@ abstract class _Memo implements MemoModel {
       required final String authorId,
       final bool pinned,
       final bool done,
-      final DateTime? dueAt,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      @UtcDateTimeConverter() final DateTime? dueAt,
+      @UtcDateTimeConverter() required final DateTime createdAt,
+      @UtcDateTimeConverter() required final DateTime updatedAt,
       final int version,
-      final DateTime? deletedAt}) = _$MemoImpl;
+      @UtcDateTimeConverter() final DateTime? deletedAt}) = _$MemoImpl;
 
   factory _Memo.fromJson(Map<String, dynamic> json) = _$MemoImpl.fromJson;
 
@@ -354,14 +362,18 @@ abstract class _Memo implements MemoModel {
   @override
   bool get done;
   @override
+  @UtcDateTimeConverter()
   DateTime? get dueAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get createdAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get updatedAt;
   @override
   int get version;
   @override
+  @UtcDateTimeConverter()
   DateTime? get deletedAt;
 
   /// Create a copy of MemoModel

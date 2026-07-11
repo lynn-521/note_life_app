@@ -29,9 +29,12 @@ mixin _$RecipeModel {
   List<RecipeIngredientModel> get ingredients =>
       throw _privateConstructorUsedError;
   List<String> get cookableBy => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
   /// Serializes this RecipeModel to a JSON map.
@@ -59,10 +62,10 @@ abstract class $RecipeModelCopyWith<$Res> {
       String authorId,
       List<RecipeIngredientModel> ingredients,
       List<String> cookableBy,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -163,10 +166,10 @@ abstract class _$$RecipeImplCopyWith<$Res>
       String authorId,
       List<RecipeIngredientModel> ingredients,
       List<String> cookableBy,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -261,10 +264,10 @@ class _$RecipeImpl implements _Recipe {
       final List<RecipeIngredientModel> ingredients =
           const <RecipeIngredientModel>[],
       final List<String> cookableBy = const <String>[],
-      required this.createdAt,
-      required this.updatedAt,
+      @UtcDateTimeConverter() required this.createdAt,
+      @UtcDateTimeConverter() required this.updatedAt,
       this.version = 1,
-      this.deletedAt})
+      @UtcDateTimeConverter() this.deletedAt})
       : _tags = tags,
         _ingredients = ingredients,
         _cookableBy = cookableBy;
@@ -311,13 +314,16 @@ class _$RecipeImpl implements _Recipe {
   }
 
   @override
+  @UtcDateTimeConverter()
   final DateTime createdAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime updatedAt;
   @override
   @JsonKey()
   final int version;
   @override
+  @UtcDateTimeConverter()
   final DateTime? deletedAt;
 
   @override
@@ -394,10 +400,10 @@ abstract class _Recipe implements RecipeModel {
       required final String authorId,
       final List<RecipeIngredientModel> ingredients,
       final List<String> cookableBy,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      @UtcDateTimeConverter() required final DateTime createdAt,
+      @UtcDateTimeConverter() required final DateTime updatedAt,
       final int version,
-      final DateTime? deletedAt}) = _$RecipeImpl;
+      @UtcDateTimeConverter() final DateTime? deletedAt}) = _$RecipeImpl;
 
   factory _Recipe.fromJson(Map<String, dynamic> json) = _$RecipeImpl.fromJson;
 
@@ -418,12 +424,15 @@ abstract class _Recipe implements RecipeModel {
   @override
   List<String> get cookableBy;
   @override
+  @UtcDateTimeConverter()
   DateTime get createdAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get updatedAt;
   @override
   int get version;
   @override
+  @UtcDateTimeConverter()
   DateTime? get deletedAt;
 
   /// Create a copy of RecipeModel

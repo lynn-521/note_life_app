@@ -23,12 +23,17 @@ mixin _$StockBatchModel {
   String get id => throw _privateConstructorUsedError;
   String get productId => throw _privateConstructorUsedError;
   num get quantity => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get expireDate => throw _privateConstructorUsedError;
   String? get batchNo => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get inboundAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
   /// Serializes this StockBatchModel to a JSON map.
@@ -51,13 +56,13 @@ abstract class $StockBatchModelCopyWith<$Res> {
       {String id,
       String productId,
       num quantity,
-      DateTime? expireDate,
+      @UtcDateTimeConverter() DateTime? expireDate,
       String? batchNo,
-      DateTime inboundAt,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime inboundAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -143,13 +148,13 @@ abstract class _$$StockBatchImplCopyWith<$Res>
       {String id,
       String productId,
       num quantity,
-      DateTime? expireDate,
+      @UtcDateTimeConverter() DateTime? expireDate,
       String? batchNo,
-      DateTime inboundAt,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime inboundAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -228,13 +233,13 @@ class _$StockBatchImpl implements _StockBatch {
       {required this.id,
       required this.productId,
       required this.quantity,
-      this.expireDate,
+      @UtcDateTimeConverter() this.expireDate,
       this.batchNo,
-      required this.inboundAt,
-      required this.createdAt,
-      required this.updatedAt,
+      @UtcDateTimeConverter() required this.inboundAt,
+      @UtcDateTimeConverter() required this.createdAt,
+      @UtcDateTimeConverter() required this.updatedAt,
       this.version = 1,
-      this.deletedAt});
+      @UtcDateTimeConverter() this.deletedAt});
 
   factory _$StockBatchImpl.fromJson(Map<String, dynamic> json) =>
       _$$StockBatchImplFromJson(json);
@@ -246,19 +251,24 @@ class _$StockBatchImpl implements _StockBatch {
   @override
   final num quantity;
   @override
+  @UtcDateTimeConverter()
   final DateTime? expireDate;
   @override
   final String? batchNo;
   @override
+  @UtcDateTimeConverter()
   final DateTime inboundAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime createdAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime updatedAt;
   @override
   @JsonKey()
   final int version;
   @override
+  @UtcDateTimeConverter()
   final DateTime? deletedAt;
 
   @override
@@ -316,13 +326,13 @@ abstract class _StockBatch implements StockBatchModel {
       {required final String id,
       required final String productId,
       required final num quantity,
-      final DateTime? expireDate,
+      @UtcDateTimeConverter() final DateTime? expireDate,
       final String? batchNo,
-      required final DateTime inboundAt,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      @UtcDateTimeConverter() required final DateTime inboundAt,
+      @UtcDateTimeConverter() required final DateTime createdAt,
+      @UtcDateTimeConverter() required final DateTime updatedAt,
       final int version,
-      final DateTime? deletedAt}) = _$StockBatchImpl;
+      @UtcDateTimeConverter() final DateTime? deletedAt}) = _$StockBatchImpl;
 
   factory _StockBatch.fromJson(Map<String, dynamic> json) =
       _$StockBatchImpl.fromJson;
@@ -334,18 +344,23 @@ abstract class _StockBatch implements StockBatchModel {
   @override
   num get quantity;
   @override
+  @UtcDateTimeConverter()
   DateTime? get expireDate;
   @override
   String? get batchNo;
   @override
+  @UtcDateTimeConverter()
   DateTime get inboundAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get createdAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get updatedAt;
   @override
   int get version;
   @override
+  @UtcDateTimeConverter()
   DateTime? get deletedAt;
 
   /// Create a copy of StockBatchModel

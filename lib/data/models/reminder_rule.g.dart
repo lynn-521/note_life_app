@@ -17,12 +17,13 @@ _$ReminderRuleImpl _$$ReminderRuleImplFromJson(Map<String, dynamic> json) =>
           json['config'] as Map<String, dynamic>? ?? const <String, dynamic>{},
       memberId: json['memberId'] as String?,
       enabled: json['enabled'] as bool? ?? true,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdAt:
+          const UtcDateTimeConverter().fromJson(json['createdAt'] as String),
+      updatedAt:
+          const UtcDateTimeConverter().fromJson(json['updatedAt'] as String),
       version: (json['version'] as num?)?.toInt() ?? 1,
-      deletedAt: json['deletedAt'] == null
-          ? null
-          : DateTime.parse(json['deletedAt'] as String),
+      deletedAt: _$JsonConverterFromJson<String, DateTime>(
+          json['deletedAt'], const UtcDateTimeConverter().fromJson),
     );
 
 Map<String, dynamic> _$$ReminderRuleImplToJson(_$ReminderRuleImpl instance) =>
@@ -34,10 +35,11 @@ Map<String, dynamic> _$$ReminderRuleImplToJson(_$ReminderRuleImpl instance) =>
       'config': instance.config,
       'memberId': instance.memberId,
       'enabled': instance.enabled,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdAt': const UtcDateTimeConverter().toJson(instance.createdAt),
+      'updatedAt': const UtcDateTimeConverter().toJson(instance.updatedAt),
       'version': instance.version,
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'deletedAt': _$JsonConverterToJson<String, DateTime>(
+          instance.deletedAt, const UtcDateTimeConverter().toJson),
     };
 
 const _$ReminderTypeEnumMap = {
@@ -55,3 +57,15 @@ const _$ChannelTypeEnumMap = {
   ChannelType.miniProgram: 'miniProgram',
   ChannelType.localLog: 'localLog',
 };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);

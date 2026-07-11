@@ -22,13 +22,13 @@ class MedicationModel with _$MedicationModel, SyncEntity {
     @Default(Frequency.dailyN) Frequency frequency,
     @TimeOfDayListConverter()
     required List<TimeOfDay> times,
-    DateTime? startDate,
-    DateTime? endDate,
+    @UtcDateTimeConverter() DateTime? startDate,
+    @UtcDateTimeConverter() DateTime? endDate,
     @Default(true) bool active,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @UtcDateTimeConverter() required DateTime createdAt,
+    @UtcDateTimeConverter() required DateTime updatedAt,
     @Default(1) int version,
-    DateTime? deletedAt,
+    @UtcDateTimeConverter() DateTime? deletedAt,
   }) = _Medication;
 
   factory MedicationModel.fromJson(Map<String, dynamic> json) =>

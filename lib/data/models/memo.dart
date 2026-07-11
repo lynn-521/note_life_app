@@ -3,6 +3,7 @@ library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
+import '../../core/utils/json_converters.dart';
 
 part 'memo.freezed.dart';
 part 'memo.g.dart';
@@ -17,11 +18,11 @@ class MemoModel with _$MemoModel, SyncEntity {
     required String authorId,
     @Default(false) bool pinned,
     @Default(false) bool done,
-    DateTime? dueAt,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @UtcDateTimeConverter() DateTime? dueAt,
+    @UtcDateTimeConverter() required DateTime createdAt,
+    @UtcDateTimeConverter() required DateTime updatedAt,
     @Default(1) int version,
-    DateTime? deletedAt,
+    @UtcDateTimeConverter() DateTime? deletedAt,
   }) = _Memo;
 
   factory MemoModel.fromJson(Map<String, dynamic> json) => _$MemoModelFromJson(json);

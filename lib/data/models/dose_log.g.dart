@@ -11,19 +11,20 @@ _$DoseLogImpl _$$DoseLogImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       medicationId: json['medicationId'] as String,
       memberId: json['memberId'] as String,
-      scheduledTime: DateTime.parse(json['scheduledTime'] as String),
+      scheduledTime: const UtcDateTimeConverter()
+          .fromJson(json['scheduledTime'] as String),
       status: $enumDecodeNullable(_$DoseStatusEnumMap, json['status']) ??
           DoseStatus.pending,
-      takenAt: json['takenAt'] == null
-          ? null
-          : DateTime.parse(json['takenAt'] as String),
+      takenAt: _$JsonConverterFromJson<String, DateTime>(
+          json['takenAt'], const UtcDateTimeConverter().fromJson),
       note: json['note'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdAt:
+          const UtcDateTimeConverter().fromJson(json['createdAt'] as String),
+      updatedAt:
+          const UtcDateTimeConverter().fromJson(json['updatedAt'] as String),
       version: (json['version'] as num?)?.toInt() ?? 1,
-      deletedAt: json['deletedAt'] == null
-          ? null
-          : DateTime.parse(json['deletedAt'] as String),
+      deletedAt: _$JsonConverterFromJson<String, DateTime>(
+          json['deletedAt'], const UtcDateTimeConverter().fromJson),
     );
 
 Map<String, dynamic> _$$DoseLogImplToJson(_$DoseLogImpl instance) =>
@@ -31,14 +32,17 @@ Map<String, dynamic> _$$DoseLogImplToJson(_$DoseLogImpl instance) =>
       'id': instance.id,
       'medicationId': instance.medicationId,
       'memberId': instance.memberId,
-      'scheduledTime': instance.scheduledTime.toIso8601String(),
+      'scheduledTime':
+          const UtcDateTimeConverter().toJson(instance.scheduledTime),
       'status': _$DoseStatusEnumMap[instance.status]!,
-      'takenAt': instance.takenAt?.toIso8601String(),
+      'takenAt': _$JsonConverterToJson<String, DateTime>(
+          instance.takenAt, const UtcDateTimeConverter().toJson),
       'note': instance.note,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdAt': const UtcDateTimeConverter().toJson(instance.createdAt),
+      'updatedAt': const UtcDateTimeConverter().toJson(instance.updatedAt),
       'version': instance.version,
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'deletedAt': _$JsonConverterToJson<String, DateTime>(
+          instance.deletedAt, const UtcDateTimeConverter().toJson),
     };
 
 const _$DoseStatusEnumMap = {
@@ -46,3 +50,15 @@ const _$DoseStatusEnumMap = {
   DoseStatus.done: 'done',
   DoseStatus.skipped: 'skipped',
 };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);

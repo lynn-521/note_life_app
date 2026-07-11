@@ -3,6 +3,7 @@ library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
+import '../../core/utils/json_converters.dart';
 
 part 'product.freezed.dart';
 part 'product.g.dart';
@@ -20,10 +21,10 @@ class ProductModel with _$ProductModel, SyncEntity {
     String? barcode,
     String? location,
     @Default(1) int lowStockThreshold,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @UtcDateTimeConverter() required DateTime createdAt,
+    @UtcDateTimeConverter() required DateTime updatedAt,
     @Default(1) int version,
-    DateTime? deletedAt,
+    @UtcDateTimeConverter() DateTime? deletedAt,
   }) = _Product;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>

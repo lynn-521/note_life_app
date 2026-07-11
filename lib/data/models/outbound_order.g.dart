@@ -14,14 +14,15 @@ _$OutboundOrderImpl _$$OutboundOrderImplFromJson(Map<String, dynamic> json) =>
       reason: $enumDecodeNullable(_$OutboundReasonEnumMap, json['reason']) ??
           OutboundReason.consume,
       operatorId: json['operatorId'] as String,
-      at: DateTime.parse(json['at'] as String),
+      at: const UtcDateTimeConverter().fromJson(json['at'] as String),
       note: json['note'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdAt:
+          const UtcDateTimeConverter().fromJson(json['createdAt'] as String),
+      updatedAt:
+          const UtcDateTimeConverter().fromJson(json['updatedAt'] as String),
       version: (json['version'] as num?)?.toInt() ?? 1,
-      deletedAt: json['deletedAt'] == null
-          ? null
-          : DateTime.parse(json['deletedAt'] as String),
+      deletedAt: _$JsonConverterFromJson<String, DateTime>(
+          json['deletedAt'], const UtcDateTimeConverter().fromJson),
     );
 
 Map<String, dynamic> _$$OutboundOrderImplToJson(_$OutboundOrderImpl instance) =>
@@ -31,12 +32,13 @@ Map<String, dynamic> _$$OutboundOrderImplToJson(_$OutboundOrderImpl instance) =>
       'qty': instance.qty,
       'reason': _$OutboundReasonEnumMap[instance.reason]!,
       'operatorId': instance.operatorId,
-      'at': instance.at.toIso8601String(),
+      'at': const UtcDateTimeConverter().toJson(instance.at),
       'note': instance.note,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdAt': const UtcDateTimeConverter().toJson(instance.createdAt),
+      'updatedAt': const UtcDateTimeConverter().toJson(instance.updatedAt),
       'version': instance.version,
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'deletedAt': _$JsonConverterToJson<String, DateTime>(
+          instance.deletedAt, const UtcDateTimeConverter().toJson),
     };
 
 const _$OutboundReasonEnumMap = {
@@ -44,3 +46,15 @@ const _$OutboundReasonEnumMap = {
   OutboundReason.discard: 'discard',
   OutboundReason.other: 'other',
 };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);

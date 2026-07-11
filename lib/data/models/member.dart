@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
 import 'enums.dart';
+import '../../core/utils/json_converters.dart';
 
 part 'member.freezed.dart';
 part 'member.g.dart';
@@ -20,10 +21,10 @@ class MemberModel with _$MemberModel, SyncEntity {
     @Default(MemberRole.member) MemberRole role,
     String? wxUid,
     required int color,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @UtcDateTimeConverter() required DateTime createdAt,
+    @UtcDateTimeConverter() required DateTime updatedAt,
     @Default(1) int version,
-    DateTime? deletedAt,
+    @UtcDateTimeConverter() DateTime? deletedAt,
   }) = _Member;
 
   factory MemberModel.fromJson(Map<String, dynamic> json) =>

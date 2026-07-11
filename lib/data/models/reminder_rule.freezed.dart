@@ -27,9 +27,12 @@ mixin _$ReminderRuleModel {
   Map<String, dynamic> get config => throw _privateConstructorUsedError;
   String? get memberId => throw _privateConstructorUsedError;
   bool get enabled => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
   /// Serializes this ReminderRuleModel to a JSON map.
@@ -56,10 +59,10 @@ abstract class $ReminderRuleModelCopyWith<$Res> {
       Map<String, dynamic> config,
       String? memberId,
       bool enabled,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -154,10 +157,10 @@ abstract class _$$ReminderRuleImplCopyWith<$Res>
       Map<String, dynamic> config,
       String? memberId,
       bool enabled,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -245,10 +248,10 @@ class _$ReminderRuleImpl implements _ReminderRule {
       final Map<String, dynamic> config = const <String, dynamic>{},
       this.memberId,
       this.enabled = true,
-      required this.createdAt,
-      required this.updatedAt,
+      @UtcDateTimeConverter() required this.createdAt,
+      @UtcDateTimeConverter() required this.updatedAt,
       this.version = 1,
-      this.deletedAt})
+      @UtcDateTimeConverter() this.deletedAt})
       : _config = config;
 
   factory _$ReminderRuleImpl.fromJson(Map<String, dynamic> json) =>
@@ -278,13 +281,16 @@ class _$ReminderRuleImpl implements _ReminderRule {
   @JsonKey()
   final bool enabled;
   @override
+  @UtcDateTimeConverter()
   final DateTime createdAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime updatedAt;
   @override
   @JsonKey()
   final int version;
   @override
+  @UtcDateTimeConverter()
   final DateTime? deletedAt;
 
   @override
@@ -356,10 +362,10 @@ abstract class _ReminderRule implements ReminderRuleModel {
       final Map<String, dynamic> config,
       final String? memberId,
       final bool enabled,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      @UtcDateTimeConverter() required final DateTime createdAt,
+      @UtcDateTimeConverter() required final DateTime updatedAt,
       final int version,
-      final DateTime? deletedAt}) = _$ReminderRuleImpl;
+      @UtcDateTimeConverter() final DateTime? deletedAt}) = _$ReminderRuleImpl;
 
   factory _ReminderRule.fromJson(Map<String, dynamic> json) =
       _$ReminderRuleImpl.fromJson;
@@ -379,12 +385,15 @@ abstract class _ReminderRule implements ReminderRuleModel {
   @override
   bool get enabled;
   @override
+  @UtcDateTimeConverter()
   DateTime get createdAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get updatedAt;
   @override
   int get version;
   @override
+  @UtcDateTimeConverter()
   DateTime? get deletedAt;
 
   /// Create a copy of ReminderRuleModel

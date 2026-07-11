@@ -21,12 +21,16 @@ DailyMealModel _$DailyMealModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$DailyMealModel {
   String get id => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get date => throw _privateConstructorUsedError;
   MealType get mealType => throw _privateConstructorUsedError;
   String get recipeId => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
   /// Serializes this DailyMealModel to a JSON map.
@@ -47,13 +51,13 @@ abstract class $DailyMealModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      DateTime date,
+      @UtcDateTimeConverter() DateTime date,
       MealType mealType,
       String recipeId,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -127,13 +131,13 @@ abstract class _$$DailyMealImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      DateTime date,
+      @UtcDateTimeConverter() DateTime date,
       MealType mealType,
       String recipeId,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -200,13 +204,13 @@ class __$$DailyMealImplCopyWithImpl<$Res>
 class _$DailyMealImpl implements _DailyMeal {
   const _$DailyMealImpl(
       {required this.id,
-      required this.date,
+      @UtcDateTimeConverter() required this.date,
       required this.mealType,
       required this.recipeId,
-      required this.createdAt,
-      required this.updatedAt,
+      @UtcDateTimeConverter() required this.createdAt,
+      @UtcDateTimeConverter() required this.updatedAt,
       this.version = 1,
-      this.deletedAt});
+      @UtcDateTimeConverter() this.deletedAt});
 
   factory _$DailyMealImpl.fromJson(Map<String, dynamic> json) =>
       _$$DailyMealImplFromJson(json);
@@ -214,19 +218,23 @@ class _$DailyMealImpl implements _DailyMeal {
   @override
   final String id;
   @override
+  @UtcDateTimeConverter()
   final DateTime date;
   @override
   final MealType mealType;
   @override
   final String recipeId;
   @override
+  @UtcDateTimeConverter()
   final DateTime createdAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime updatedAt;
   @override
   @JsonKey()
   final int version;
   @override
+  @UtcDateTimeConverter()
   final DateTime? deletedAt;
 
   @override
@@ -278,13 +286,13 @@ class _$DailyMealImpl implements _DailyMeal {
 abstract class _DailyMeal implements DailyMealModel {
   const factory _DailyMeal(
       {required final String id,
-      required final DateTime date,
+      @UtcDateTimeConverter() required final DateTime date,
       required final MealType mealType,
       required final String recipeId,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      @UtcDateTimeConverter() required final DateTime createdAt,
+      @UtcDateTimeConverter() required final DateTime updatedAt,
       final int version,
-      final DateTime? deletedAt}) = _$DailyMealImpl;
+      @UtcDateTimeConverter() final DateTime? deletedAt}) = _$DailyMealImpl;
 
   factory _DailyMeal.fromJson(Map<String, dynamic> json) =
       _$DailyMealImpl.fromJson;
@@ -292,18 +300,22 @@ abstract class _DailyMeal implements DailyMealModel {
   @override
   String get id;
   @override
+  @UtcDateTimeConverter()
   DateTime get date;
   @override
   MealType get mealType;
   @override
   String get recipeId;
   @override
+  @UtcDateTimeConverter()
   DateTime get createdAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get updatedAt;
   @override
   int get version;
   @override
+  @UtcDateTimeConverter()
   DateTime? get deletedAt;
 
   /// Create a copy of DailyMealModel

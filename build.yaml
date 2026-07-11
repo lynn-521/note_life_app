@@ -1,0 +1,19 @@
+# build_runner 构建配置：json_serializable 选项（cross-repo-conventions §1）。
+#
+# 字段命名 / 时间格式等通用约束：
+# - explicit_to_json: true —— 让 freezed/json_serializable 生成的 toJson 对嵌套
+#   freezed 模型显式调用 .toJson()，避免嵌套对象被序列化为实例标识。
+# - field_rename: **不**开启 snake（默认 camelCase）——跨端 wire 协议约定
+#   camelCase（cross-repo-conventions §1），开启会把 `createdAt` 改成
+#   `created_at`，与后端 / 旧 App 数据不兼容。
+#
+# 时间统一由 [UtcDateTimeConverter] 在每个模型字段上显式注解（见
+# lib/core/utils/json_converters.dart），不在 build.yaml 里绑全局 converter，
+# 是因为 freezed 工厂参数化的多态场景下 @JsonKey(genericArgumentFactories)
+# 强绑会失配——逐字段注解最稳。
+targets:
+  $default:
+    builders:
+      json_serializable:
+        options:
+          explicit_to_json: true
