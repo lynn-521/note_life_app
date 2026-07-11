@@ -22,16 +22,39 @@ class App extends ConsumerStatefulWidget {
 }
 
 class _AppState extends ConsumerState<App> {
-  bool _initialized = false;
+  /// 启动初始化状态机（三态）。
+  ///
+  /// 策略（防 false-positive 自锁）：
+  /// - 旧实现用 `bool _initialized`，一旦置 true 就再也不会重试；
+  ///   若第一次 `await` 中途抛错（DB 锁、SharedPreferences 损坏等），后续
+  ///   build 的 addPostFrameCallback 会直接 early-return，本地数据**永远**
+  ///   得不到提醒引擎 / 种子数据 / 首次同步。
+  /// - 新实现三态：
+  ///   * [idle] —— 等待下次 build 触发；
+  ///   * [running] —— 正在执行，所有 addPostFrameCallback 重入会被忽略；
+  ///   * [done] —— 全部 await 成功完成，不再重试。
+  /// - 失败时回到 [idle]：下次 build 触发 addPostFrameCallback 时自然重试，
+  ///   不需要全局 setState 触发。
+  _InitState _initState = _InitState.idle;
 
   Future<void> _init() async {
-    if (_initialized) return;
-    _initialized = true;
-    await ref.read(reminderEngineProvider).init();
-    await ensureSeeded(ref);
-    await ref.read(reminderEngineProvider).scanAndFireRules();
-    // 启动后尝试一次同步（未配置服务器 / 离线时自动忽略，保留本地数据）。
-    await ref.read(syncEngineProvider).syncAll();
+    if (_initState == _InitState.done || _initState == _InitState.running) {
+      return;
+    }
+    _initState = _InitState.running;
+    try {
+      await ref.read(reminderEngineProvider).init();
+      await ensureSeeded(ref);
+      await ref.read(reminderEngineProvider).scanAndFireRules();
+      // 启动后尝试一次同步（未配置服务器 / 离线时自动忽略，保留本地数据）。
+      await ref.read(syncEngineProvider).syncAll();
+      _initState = _InitState.done;
+    } catch (e, st) {
+      // 任意一步失败：回到 idle，下次 build 触发 addPostFrameCallback 时重试。
+      // debugPrint 而非 print（与 http_sync_engine 一致）。
+      debugPrint('[App] 启动初始化失败，下次 build 重试: $e\n$st');
+      _initState = _InitState.idle;
+    }
   }
 
   @override
@@ -114,4 +137,16 @@ class _AppState extends ConsumerState<App> {
       supportedLocales: const [Locale('zh', 'CN'), Locale('en')],
     );
   }
+}
+
+/// 启动初始化状态机（见 [_AppState._init] 注释）。
+enum _InitState {
+  /// 待初始化：等待下次 build 触发 addPostFrameCallback。
+  idle,
+
+  /// 初始化进行中：所有重入会被忽略，防止并发 await 抢资源。
+  running,
+
+  /// 初始化完成且全部 await 成功。
+  done,
 }
