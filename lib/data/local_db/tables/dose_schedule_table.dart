@@ -1,9 +1,9 @@
-/// DoseSchedules 表（class-diagram.mermaid · DoseSchedule）。
+/// DoseSchedules 表（class-diagram.mermaid · DoseScheduleModel）。
+library;
 import 'package:drift/drift.dart';
 
 /// 服药排程表。
 class DoseSchedules extends Table {
-  @override
   String get dataClassName => 'DoseScheduleRow';
 
   TextColumn get id => text()();

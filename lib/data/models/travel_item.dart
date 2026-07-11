@@ -1,6 +1,7 @@
-/// 旅游清单项实体（class-diagram.mermaid · TravelItem）。
+/// 旅游清单项实体（class-diagram.mermaid · TravelItemModel）。
 ///
 /// 已补 [SyncEntity]（与 App 端其它同步实体一致，对齐 backend_design §2.3 / §四.2）。
+library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
@@ -10,8 +11,8 @@ part 'travel_item.freezed.dart';
 
 /// 旅游清单项：行李（数量）或预算（金额），可指派成员认领。
 @freezed
-class TravelItem with _$TravelItem, SyncEntity {
-  const factory TravelItem({
+class TravelItemModel with _$TravelItemModel, SyncEntity {
+  const factory TravelItemModel({
     required String id,
     required String planId,
     @Default(TravelItemType.luggage) TravelItemType type,
@@ -26,6 +27,6 @@ class TravelItem with _$TravelItem, SyncEntity {
     DateTime? deletedAt,
   }) = _TravelItem;
 
-  factory TravelItem.fromJson(Map<String, dynamic> json) =>
-      _$TravelItemFromJson(json);
+  factory TravelItemModel.fromJson(Map<String, dynamic> json) =>
+      _$TravelItemModelFromJson(json);
 }

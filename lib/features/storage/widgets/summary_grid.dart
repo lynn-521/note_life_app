@@ -1,4 +1,5 @@
 /// 库存总览三卡（件数 / 临期 / 补货）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,12 +1,10 @@
 /// 备忘录列表（置顶 / 完成 / 到期徽标）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/theme/app_theme_extension.dart';
-import '../../../core/theme/text_styles.dart';
 import '../../../features/shared/empty_state.dart';
 import '../providers/life_providers.dart';
-import 'memo_form_sheet.dart';
 import 'memo_list_item.dart';
 
 /// 备忘录列表视图。

@@ -1,4 +1,5 @@
 /// 进度环组件（DESIGN.md §4 Progress Ring）。服药打卡 / 临期倒计时。
+library;
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_theme_extension.dart';

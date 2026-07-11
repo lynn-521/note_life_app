@@ -1,4 +1,5 @@
 /// 底部 5 Tab（DESIGN.md §4 Tab Bar）。选中态：图标主色 + 深珊瑚字 + 浅珊瑚 pill 底。
+library;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class AppTabBar extends StatelessWidget {
       height: theme.tabBarHeight + safeBottom,
       padding: EdgeInsets.only(bottom: safeBottom),
       decoration: BoxDecoration(
-        color: theme.surface.withOpacity(0.92),
+        color: theme.surface.withValues(alpha: 0.92),
         border: Border(top: BorderSide(color: theme.border)),
       ),
       child: ClipRRect(

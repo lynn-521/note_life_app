@@ -1,6 +1,7 @@
 /// InventoryDao（class-diagram.mermaid · InventoryDao）。
 ///
 /// 商品 / 分类 / 批次 / 入库 / 出库 + 库存聚合（Σ入库 − Σ出库）。
+library;
 import 'package:drift/drift.dart';
 
 import '../../../core/utils/datetime_ext.dart';
@@ -18,7 +19,7 @@ import '../tables/outbound_order_table.dart';
 import '../tables/product_table.dart';
 import '../tables/stock_batch_table.dart';
 import 'base_dao.dart';
-import '../app_database.dart' show AppDatabase;
+import '../app_database.dart';
 part 'inventory_dao.g.dart';
 
 /// 库存数据访问。
@@ -35,23 +36,23 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
   InventoryDao(super.db);
 
   // —— 商品 ——
-  Stream<List<Product>> watchProducts() =>
+  Stream<List<ProductModel>> watchProducts() =>
       (select(products)..where((t) => t.deletedAt.isNull()))
           .watch()
           .map((rows) => rows.map(_toProduct).toList());
 
-  Future<List<Product>> getAllProducts() async =>
+  Future<List<ProductModel>> getAllProducts() async =>
       (await (select(products)..where((t) => t.deletedAt.isNull())).get())
           .map(_toProduct)
           .toList();
 
-  Future<Product?> getProduct(String id) async {
+  Future<ProductModel?> getProduct(String id) async {
     final row = await (select(products)..where((t) => t.id.equals(id)))
         .getSingleOrNull();
     return row == null ? null : _toProduct(row);
   }
 
-  Future<void> saveProduct(Product p) =>
+  Future<void> saveProduct(ProductModel p) =>
       into(products).insertOnConflictUpdate(_toProductCompanion(p));
 
   Future<void> softDeleteProduct(String id) =>
@@ -59,41 +60,41 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
           .write(ProductsCompanion(deletedAt: Value(now)));
 
   // —— 分类 ——
-  Stream<List<Category>> watchCategories() =>
+  Stream<List<CategoryModel>> watchCategories() =>
       (select(categories)..where((t) => t.deletedAt.isNull()))
           .watch()
           .map((rows) => rows.map(_toCategory).toList());
 
-  Future<List<Category>> getAllCategories() async =>
+  Future<List<CategoryModel>> getAllCategories() async =>
       (await (select(categories)..where((t) => t.deletedAt.isNull())).get())
           .map(_toCategory)
           .toList();
 
-  Future<void> saveCategory(Category c) =>
+  Future<void> saveCategory(CategoryModel c) =>
       into(categories).insertOnConflictUpdate(_toCategoryCompanion(c));
 
   /// 获取全部商品（含软删，供同步推送使用，确保删除能传播到远端）。
-  Future<List<Product>> getAllProductsForSync() async =>
+  Future<List<ProductModel>> getAllProductsForSync() async =>
       (await select(products).get()).map(_toProduct).toList();
 
   /// 获取全部分类（含软删，供同步推送使用）。
-  Future<List<Category>> getAllCategoriesForSync() async =>
+  Future<List<CategoryModel>> getAllCategoriesForSync() async =>
       (await select(categories).get()).map(_toCategory).toList();
 
   /// 获取全部批次（供同步推送使用）。
-  Future<List<StockBatch>> getAllStockBatchesForSync() async =>
+  Future<List<StockBatchModel>> getAllStockBatchesForSync() async =>
       (await select(stockBatches).get()).map(_toStockBatch).toList();
 
   /// 获取全部入库流水（供同步推送使用）。
-  Future<List<InboundOrder>> getAllInboundForSync() async =>
+  Future<List<InboundOrderModel>> getAllInboundForSync() async =>
       (await select(inboundOrders).get()).map(_toInbound).toList();
 
   /// 获取全部出库流水（供同步推送使用）。
-  Future<List<OutboundOrder>> getAllOutboundForSync() async =>
+  Future<List<OutboundOrderModel>> getAllOutboundForSync() async =>
       (await select(outboundOrders).get()).map(_toOutbound).toList();
 
   // —— 批次 ——
-  Stream<List<StockBatch>> watchStockBatches(String productId) =>
+  Stream<List<StockBatchModel>> watchStockBatches(String productId) =>
       (select(stockBatches)
             ..where((t) => t.productId.equals(productId))
             ..orderBy([(t) => OrderingTerm.desc(t.inboundAt)]))
@@ -110,7 +111,7 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
     String? note,
   }) async {
     final at = DateTime.now();
-    final batch = StockBatch(
+    final batch = StockBatchModel(
       id: IdGenerator.newId(IdPrefix.batch),
       productId: productId,
       quantity: qty,
@@ -121,7 +122,7 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
       updatedAt: at,
       version: 1,
     );
-    final inbound = InboundOrder(
+    final inbound = InboundOrderModel(
       id: IdGenerator.newId(IdPrefix.inbound),
       productId: productId,
       qty: qty,
@@ -146,7 +147,7 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
     String? note,
   }) async {
     final at = DateTime.now();
-    final outbound = OutboundOrder(
+    final outbound = OutboundOrderModel(
       id: IdGenerator.newId(IdPrefix.outbound),
       productId: productId,
       qty: qty,
@@ -162,15 +163,15 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
   }
 
   /// 批次 upsert（供远端变更合并）。
-  Future<void> upsertStockBatch(StockBatch b) =>
+  Future<void> upsertStockBatch(StockBatchModel b) =>
       into(stockBatches).insertOnConflictUpdate(_toStockBatchCompanion(b));
 
   /// 入库流水 upsert（供远端变更合并）。
-  Future<void> upsertInbound(InboundOrder o) =>
+  Future<void> upsertInbound(InboundOrderModel o) =>
       into(inboundOrders).insertOnConflictUpdate(_toInboundCompanion(o));
 
   /// 出库流水 upsert（供远端变更合并）。
-  Future<void> upsertOutbound(OutboundOrder o) =>
+  Future<void> upsertOutbound(OutboundOrderModel o) =>
       into(outboundOrders).insertOnConflictUpdate(_toOutboundCompanion(o));
 
   // —— 聚合查询 ——
@@ -194,8 +195,8 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
     final rows = await (select(stockBatches)
           ..where((t) =>
               t.expireDate.isNotNull() &
-              t.expireDate.isSmallerOrEqual(limit) &
-              t.expireDate.isBiggerOrEqual(today))
+              t.expireDate.isSmallerOrEqualValue(limit) &
+              t.expireDate.isBiggerOrEqualValue(today))
           ..orderBy([(t) => OrderingTerm.asc(t.expireDate)]))
         .get();
     final result = <StockView>[];
@@ -234,7 +235,7 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
   }
 
   // —— 映射 ——
-  Product _toProduct(ProductRow r) => Product(
+  ProductModel _toProduct(Product r) => ProductModel(
         id: r.id,
         name: r.name,
         categoryId: r.categoryId,
@@ -248,7 +249,7 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  Category _toCategory(CategoryRow r) => Category(
+  CategoryModel _toCategory(Category r) => CategoryModel(
         id: r.id,
         name: r.name,
         kind: r.kind,
@@ -258,7 +259,7 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  StockBatch _toStockBatch(StockBatchRow r) => StockBatch(
+  StockBatchModel _toStockBatch(StockBatche r) => StockBatchModel(
         id: r.id,
         productId: r.productId,
         quantity: r.quantity,
@@ -271,7 +272,7 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  InboundOrder _toInbound(InboundOrderRow r) => InboundOrder(
+  InboundOrderModel _toInbound(InboundOrder r) => InboundOrderModel(
         id: r.id,
         productId: r.productId,
         qty: r.qty,
@@ -284,7 +285,7 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  OutboundOrder _toOutbound(OutboundOrderRow r) => OutboundOrder(
+  OutboundOrderModel _toOutbound(OutboundOrder r) => OutboundOrderModel(
         id: r.id,
         productId: r.productId,
         qty: r.qty,
@@ -298,7 +299,7 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  ProductsCompanion _toProductCompanion(Product m) => ProductsCompanion.insert(
+  ProductsCompanion _toProductCompanion(ProductModel m) => ProductsCompanion(
         id: Value(m.id),
         name: Value(m.name),
         categoryId: Value(m.categoryId),
@@ -312,8 +313,8 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
         deletedAt: Value(m.deletedAt),
       );
 
-  CategoriesCompanion _toCategoryCompanion(Category c) =>
-      CategoriesCompanion.insert(
+  CategoriesCompanion _toCategoryCompanion(CategoryModel c) =>
+      CategoriesCompanion(
         id: Value(c.id),
         name: Value(c.name),
         kind: Value(c.kind),
@@ -323,8 +324,8 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
         deletedAt: Value(c.deletedAt),
       );
 
-  StockBatchesCompanion _toStockBatchCompanion(StockBatch b) =>
-      StockBatchesCompanion.insert(
+  StockBatchesCompanion _toStockBatchCompanion(StockBatchModel b) =>
+      StockBatchesCompanion(
         id: Value(b.id),
         productId: Value(b.productId),
         quantity: Value(b.quantity.toDouble()),
@@ -337,8 +338,8 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
         deletedAt: Value(b.deletedAt),
       );
 
-  InboundOrdersCompanion _toInboundCompanion(InboundOrder o) =>
-      InboundOrdersCompanion.insert(
+  InboundOrdersCompanion _toInboundCompanion(InboundOrderModel o) =>
+      InboundOrdersCompanion(
         id: Value(o.id),
         productId: Value(o.productId),
         qty: Value(o.qty.toDouble()),
@@ -351,8 +352,8 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
         deletedAt: Value(o.deletedAt),
       );
 
-  OutboundOrdersCompanion _toOutboundCompanion(OutboundOrder o) =>
-      OutboundOrdersCompanion.insert(
+  OutboundOrdersCompanion _toOutboundCompanion(OutboundOrderModel o) =>
+      OutboundOrdersCompanion(
         id: Value(o.id),
         productId: Value(o.productId),
         qty: Value(o.qty.toDouble()),

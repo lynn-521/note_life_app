@@ -1,4 +1,5 @@
 /// 旅游清单项编辑弹层（行李 / 预算）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -31,7 +32,7 @@ class TravelItemSheet extends ConsumerStatefulWidget {
   final TravelItemType type;
 
   /// 编辑对象（null 新建）。
-  final TravelItem? item;
+  final TravelItemModel? item;
 
   @override
   ConsumerState<TravelItemSheet> createState() => _TravelItemSheetState();
@@ -64,7 +65,7 @@ class _TravelItemSheetState extends ConsumerState<TravelItemSheet> {
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
-    final members = ref.watch(membersProvider).valueOrNull ?? const <Member>[];
+    final members = ref.watch(membersProvider).valueOrNull ?? const <MemberModel>[];
     final isBudget = widget.type == TravelItemType.budget;
     final isEdit = widget.item != null;
     return Container(
@@ -166,7 +167,7 @@ class _TravelItemSheetState extends ConsumerState<TravelItemSheet> {
   }
 
   Widget _memberChip(AppTheme theme, String? id, String name,
-      List<Member> members) {
+      List<MemberModel> members) {
     final selected = _assignedTo == id;
     final color = id == null
         ? theme.textTertiary
@@ -214,7 +215,7 @@ class _TravelItemSheetState extends ConsumerState<TravelItemSheet> {
     final isBudget = widget.type == TravelItemType.budget;
     final qty = isBudget ? null : num.tryParse(_qty.text);
     final amount = isBudget ? num.tryParse(_amount.text) : null;
-    final item = TravelItem(
+    final item = TravelItemModel(
       id: widget.item?.id ?? IdGenerator.newId(IdPrefix.item),
       planId: widget.planId,
       type: widget.type,

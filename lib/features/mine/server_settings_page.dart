@@ -3,6 +3,7 @@
 /// 填写内网 / 外网地址与共享密钥（FAMILY_TOKEN），持久化到 [FamilyServerConfig]；
 /// 用 [ApiClient.isReachable] 探测「当前可达地址」（内网 / 外网 / 不可达）；
 /// 支持「立即同步」触发一次 HttpSyncEngine.syncAll。视觉严格走设计令牌。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -98,7 +99,7 @@ class _SettingsFormState extends State<_SettingsForm> {
 
   Future<void> _save(WidgetRef ref) async {
     final cfg = _buildConfig();
-    await ref.read(familyServerConfigNotifier.notifier).save(cfg);
+    await ref.read(familyServerConfigProvider.notifier).save(cfg);
     if (mounted) showAppToast(context, '已保存服务器设置 ✅');
   }
 
@@ -288,7 +289,7 @@ class _ReachabilityRow extends StatelessWidget {
 
 /// 带返回的头部。
 class ScreenHeaderBack extends StatelessWidget {
-  const ScreenHeaderBack({required this.title});
+  const ScreenHeaderBack({super.key, required this.title});
 
   final String title;
 

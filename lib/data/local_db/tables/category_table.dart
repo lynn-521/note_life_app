@@ -1,4 +1,5 @@
-/// Categories 表（class-diagram.mermaid · Category）。
+/// Categories 表（class-diagram.mermaid · CategoryModel）。
+library;
 import 'package:drift/drift.dart';
 
 import '../../models/enums.dart';
@@ -6,7 +7,6 @@ import '../converters/drift_converters.dart';
 
 /// 商品分类表。
 class Categories extends Table {
-  @override
   String get dataClassName => 'CategoryRow';
 
   TextColumn get id => text()();

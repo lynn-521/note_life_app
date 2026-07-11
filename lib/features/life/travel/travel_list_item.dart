@@ -1,4 +1,5 @@
 /// 旅游计划书列表项。
+library;
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme_extension.dart';
@@ -20,10 +21,10 @@ class TravelListItem extends StatelessWidget {
   });
 
   /// 计划书。
-  final TravelPlan plan;
+  final TravelPlanModel plan;
 
   /// 成员映射。
-  final Map<String, Member> membersById;
+  final Map<String, MemberModel> membersById;
 
   /// 点击进入详情。
   final VoidCallback onTap;

@@ -2,6 +2,7 @@
 ///
 /// 本地优先：flutter_local_notifications 负责「到点」系统通知，WorkManager 作兜底；
 /// 扫描下发走 [ReminderDispatcher] + [LoggingNotificationChannel]（MVP 不抛异常）。
+library;
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
@@ -10,6 +11,7 @@ import 'package:timezone/timezone.dart' as tz;
 
 import '../models/enums.dart';
 import '../models/memo.dart';
+import '../models/reminder_rule.dart';
 import '../notify/reminder_dispatcher.dart';
 import '../repositories/repository.dart';
 import '../../core/constants/app_constants.dart';
@@ -80,7 +82,7 @@ class LocalReminderEngine implements ReminderEngine {
   }
 
   @override
-  Future<void> scheduleMemoReminder(Memo memo) async {
+  Future<void> scheduleMemoReminder(MemoModel memo) async {
     if (memo.dueAt == null) return;
     try {
       await _zoneSchedule(
@@ -111,7 +113,7 @@ class LocalReminderEngine implements ReminderEngine {
   }
 
   /// 规则命中评估。
-  Future<bool> _evaluate(ReminderRule rule) async {
+  Future<bool> _evaluate(ReminderRuleModel rule) async {
     switch (rule.type) {
       case ReminderType.expiry:
         return (await repositories.inventory

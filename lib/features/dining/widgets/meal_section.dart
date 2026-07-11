@@ -1,4 +1,5 @@
 /// 今日菜单某餐别分区。
+library;
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme_extension.dart';
@@ -27,13 +28,13 @@ class MealSection extends StatelessWidget {
   final MealType mealType;
 
   /// 该餐别已排的菜。
-  final List<DailyMeal> meals;
+  final List<DailyMealModel> meals;
 
-  /// 菜谱映射（recipeId → Recipe）。
-  final Map<String, Recipe> recipeMap;
+  /// 菜谱映射（recipeId → RecipeModel）。
+  final Map<String, RecipeModel> recipeMap;
 
   /// 成员映射。
-  final Map<String, Member> membersById;
+  final Map<String, MemberModel> membersById;
 
   /// 移除排菜。
   final ValueChanged<String> onRemove;
@@ -124,7 +125,7 @@ class MealSection extends StatelessWidget {
                               child: Wrap(
                                 spacing: 6,
                                 children: cooks
-                                    .map((id) {
+                                    .map<Widget>((id) {
                                       final mem = membersById[id]!;
                                       return AvatarDot(
                                         color: Color(mem.color),

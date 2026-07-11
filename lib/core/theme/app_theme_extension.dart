@@ -5,6 +5,7 @@
 /// final theme = AppTheme.of(context);
 /// Container(decoration: BoxDecoration(color: theme.primarySoft, borderRadius: theme.radiusCard));
 /// ```
+library;
 import 'package:flutter/material.dart';
 
 import 'design_tokens.dart';

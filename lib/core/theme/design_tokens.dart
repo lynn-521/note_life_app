@@ -2,6 +2,7 @@
 ///
 /// 所有颜色 / 圆角 / 间距 / 阴影常量集中在此文件，Widget 禁止硬编码 hex。
 /// 运行时通过 [AppTheme]（ThemeExtension）注入，Widget 用 `AppTheme.of(context)` 取用。
+library;
 import 'package:flutter/material.dart';
 
 /// 颜色令牌（集中定义，供 [AppTheme] 与渐变构造使用）。

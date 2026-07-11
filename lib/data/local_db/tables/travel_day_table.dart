@@ -1,11 +1,11 @@
-/// TravelDays 表（class-diagram.mermaid · TravelDay）。
+/// TravelDays 表（class-diagram.mermaid · TravelDayModel）。
 ///
 /// 已补同步列 createdAt/updatedAt/version/deletedAt（对齐 backend_design §2.3）。
+library;
 import 'package:drift/drift.dart';
 
 /// 旅游行程日表。
 class TravelDays extends Table {
-  @override
   String get dataClassName => 'TravelDayRow';
 
   TextColumn get id => text()();

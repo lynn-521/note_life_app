@@ -1,4 +1,5 @@
-/// 商品分类实体（class-diagram.mermaid · Category）。
+/// 商品分类实体（class-diagram.mermaid · CategoryModel）。
+library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
@@ -8,8 +9,8 @@ part 'category.freezed.dart';
 
 /// 商品分类：食品 / 药品 / 日用品 / 其他。
 @freezed
-class Category with _$Category, SyncEntity {
-  const factory Category({
+class CategoryModel with _$CategoryModel, SyncEntity {
+  const factory CategoryModel({
     required String id,
     required String name,
     @Default(CategoryKind.other) CategoryKind kind,
@@ -19,6 +20,6 @@ class Category with _$Category, SyncEntity {
     DateTime? deletedAt,
   }) = _Category;
 
-  factory Category.fromJson(Map<String, dynamic> json) =>
-      _$CategoryFromJson(json);
+  factory CategoryModel.fromJson(Map<String, dynamic> json) =>
+      _$CategoryModelFromJson(json);
 }

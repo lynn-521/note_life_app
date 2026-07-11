@@ -1,4 +1,5 @@
 /// 餐桌模块 Provider（system_design §T07）。
+library;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/utils/datetime_ext.dart';
@@ -7,17 +8,16 @@ import '../../../data/models/daily_meal.dart';
 import '../../../data/models/enums.dart';
 import '../../../data/models/product.dart';
 import '../../../data/models/recipe.dart';
-import '../../../data/models/recipe_ingredient.dart';
 import '../../../providers/app_providers.dart';
 
 /// 菜谱库（含食材 / 谁会做）。
-final recipesProvider = StreamProvider<List<Recipe>>((ref) {
+final recipesProvider = StreamProvider<List<RecipeModel>>((ref) {
   return ref.watch(repositoriesProvider).recipe.watchAll();
 });
 
 /// 全部菜谱标签（去重排序）。
 final allRecipeTagsProvider = Provider<List<String>>((ref) {
-  final recipes = ref.watch(recipesProvider).valueOrNull ?? const <Recipe>[];
+  final recipes = ref.watch(recipesProvider).valueOrNull ?? const <RecipeModel>[];
   final tags = <String>{};
   for (final r in recipes) {
     tags.addAll(r.tags);
@@ -28,7 +28,7 @@ final allRecipeTagsProvider = Provider<List<String>>((ref) {
 
 /// 某日菜单（按餐别）。
 final todayMealsProvider =
-    StreamProvider.family<List<DailyMeal>, DateTime>((ref, date) {
+    StreamProvider.family<List<DailyMealModel>, DateTime>((ref, date) {
   return ref.watch(repositoriesProvider).recipe.watchDailyMeals(date);
 });
 
@@ -75,7 +75,7 @@ String mealTypeLabel(MealType type) {
   }
 }
 
-/// 排菜 Notifier：写 DailyMeal + 计算缺料。
+/// 排菜 Notifier：写 DailyMealModel + 计算缺料。
 final scheduleMealNotifier =
     NotifierProvider<ScheduleMealNotifier, bool>(ScheduleMealNotifier.new);
 
@@ -95,7 +95,7 @@ class ScheduleMealNotifier extends Notifier<bool> {
       final recipe = await repo.recipe.getById(recipeId);
       if (recipe == null) return const [];
 
-      final meal = DailyMeal(
+      final meal = DailyMealModel(
         id: IdGenerator.newId(IdPrefix.meal),
         date: date.dateOnly,
         mealType: mealType,
@@ -108,7 +108,7 @@ class ScheduleMealNotifier extends Notifier<bool> {
       await repo.recipe.addDailyMeal(meal);
 
       final products = await repo.product.getProducts();
-      final productMap = <String, Product>{
+      final productMap = <String, ProductModel>{
         for (final p in products) p.id: p
       };
       final missing = <MissingIngredient>[];

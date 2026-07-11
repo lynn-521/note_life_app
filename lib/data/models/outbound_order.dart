@@ -1,4 +1,5 @@
-/// 出库单实体（class-diagram.mermaid · OutboundOrder）。
+/// 出库单实体（class-diagram.mermaid · OutboundOrderModel）。
+library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
@@ -8,8 +9,8 @@ part 'outbound_order.freezed.dart';
 
 /// 出库事件（append-only）：消耗 / 丢弃等扣减库存。
 @freezed
-class OutboundOrder with _$OutboundOrder, SyncEntity {
-  const factory OutboundOrder({
+class OutboundOrderModel with _$OutboundOrderModel, SyncEntity {
+  const factory OutboundOrderModel({
     required String id,
     required String productId,
     required num qty,
@@ -23,6 +24,6 @@ class OutboundOrder with _$OutboundOrder, SyncEntity {
     DateTime? deletedAt,
   }) = _OutboundOrder;
 
-  factory OutboundOrder.fromJson(Map<String, dynamic> json) =>
-      _$OutboundOrderFromJson(json);
+  factory OutboundOrderModel.fromJson(Map<String, dynamic> json) =>
+      _$OutboundOrderModelFromJson(json);
 }

@@ -1,4 +1,5 @@
 /// 日期/时间工具扩展（system_design §7.3）。
+library;
 import 'package:intl/intl.dart';
 
 extension DateTimeX on DateTime {

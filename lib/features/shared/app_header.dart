@@ -1,4 +1,5 @@
 /// 屏内浮层标题（DESIGN.md §3 App Header）。粘性半透明 + 返回/操作按钮。
+library;
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_theme_extension.dart';
@@ -29,7 +30,7 @@ class AppHeader extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: theme.bg.withOpacity(0.88),
+        color: theme.bg.withValues(alpha: 0.88),
         border: Border(bottom: BorderSide(color: theme.border)),
       ),
       child: SafeArea(

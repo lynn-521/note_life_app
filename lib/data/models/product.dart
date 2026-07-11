@@ -1,4 +1,5 @@
-/// 商品实体（class-diagram.mermaid · Product）。
+/// 商品实体（class-diagram.mermaid · ProductModel）。
+library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
@@ -9,8 +10,8 @@ part 'product.freezed.dart';
 ///
 /// 库存 = Σ入库 − Σ出库（事件溯源，见 [InventoryRepository]）。
 @freezed
-class Product with _$Product, SyncEntity {
-  const factory Product({
+class ProductModel with _$ProductModel, SyncEntity {
+  const factory ProductModel({
     required String id,
     required String name,
     required String categoryId,
@@ -24,6 +25,6 @@ class Product with _$Product, SyncEntity {
     DateTime? deletedAt,
   }) = _Product;
 
-  factory Product.fromJson(Map<String, dynamic> json) =>
-      _$ProductFromJson(json);
+  factory ProductModel.fromJson(Map<String, dynamic> json) =>
+      _$ProductModelFromJson(json);
 }

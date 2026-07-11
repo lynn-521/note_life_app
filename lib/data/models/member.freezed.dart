@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Member _$MemberFromJson(Map<String, dynamic> json) {
+MemberModel _$MemberModelFromJson(Map<String, dynamic> json) {
   return _Member.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Member {
+mixin _$MemberModel {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
@@ -31,19 +31,21 @@ mixin _$Member {
   int get version => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
-  /// Serializes this Member to a JSON map.
+  /// Serializes this MemberModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Member
+  /// Create a copy of MemberModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $MemberCopyWith<Member> get copyWith => throw _privateConstructorUsedError;
+  $MemberModelCopyWith<MemberModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MemberCopyWith<$Res> {
-  factory $MemberCopyWith(Member value, $Res Function(Member) then) =
-      _$MemberCopyWithImpl<$Res, Member>;
+abstract class $MemberModelCopyWith<$Res> {
+  factory $MemberModelCopyWith(
+          MemberModel value, $Res Function(MemberModel) then) =
+      _$MemberModelCopyWithImpl<$Res, MemberModel>;
   @useResult
   $Res call(
       {String id,
@@ -59,16 +61,16 @@ abstract class $MemberCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MemberCopyWithImpl<$Res, $Val extends Member>
-    implements $MemberCopyWith<$Res> {
-  _$MemberCopyWithImpl(this._value, this._then);
+class _$MemberModelCopyWithImpl<$Res, $Val extends MemberModel>
+    implements $MemberModelCopyWith<$Res> {
+  _$MemberModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Member
+  /// Create a copy of MemberModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -130,7 +132,8 @@ class _$MemberCopyWithImpl<$Res, $Val extends Member>
 }
 
 /// @nodoc
-abstract class _$$MemberImplCopyWith<$Res> implements $MemberCopyWith<$Res> {
+abstract class _$$MemberImplCopyWith<$Res>
+    implements $MemberModelCopyWith<$Res> {
   factory _$$MemberImplCopyWith(
           _$MemberImpl value, $Res Function(_$MemberImpl) then) =
       __$$MemberImplCopyWithImpl<$Res>;
@@ -151,13 +154,13 @@ abstract class _$$MemberImplCopyWith<$Res> implements $MemberCopyWith<$Res> {
 
 /// @nodoc
 class __$$MemberImplCopyWithImpl<$Res>
-    extends _$MemberCopyWithImpl<$Res, _$MemberImpl>
+    extends _$MemberModelCopyWithImpl<$Res, _$MemberImpl>
     implements _$$MemberImplCopyWith<$Res> {
   __$$MemberImplCopyWithImpl(
       _$MemberImpl _value, $Res Function(_$MemberImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Member
+  /// Create a copy of MemberModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -261,7 +264,7 @@ class _$MemberImpl implements _Member {
 
   @override
   String toString() {
-    return 'Member(id: $id, name: $name, avatar: $avatar, role: $role, wxUid: $wxUid, color: $color, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
+    return 'MemberModel(id: $id, name: $name, avatar: $avatar, role: $role, wxUid: $wxUid, color: $color, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
   }
 
   @override
@@ -289,7 +292,7 @@ class _$MemberImpl implements _Member {
   int get hashCode => Object.hash(runtimeType, id, name, avatar, role, wxUid,
       color, createdAt, updatedAt, version, deletedAt);
 
-  /// Create a copy of Member
+  /// Create a copy of MemberModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -305,7 +308,7 @@ class _$MemberImpl implements _Member {
   }
 }
 
-abstract class _Member implements Member {
+abstract class _Member implements MemberModel {
   const factory _Member(
       {required final String id,
       required final String name,
@@ -341,7 +344,7 @@ abstract class _Member implements Member {
   @override
   DateTime? get deletedAt;
 
-  /// Create a copy of Member
+  /// Create a copy of MemberModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

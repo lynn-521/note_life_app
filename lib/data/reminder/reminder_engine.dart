@@ -1,4 +1,5 @@
 /// ReminderEngine 抽象（system_design §1.6 / class-diagram.mermaid）。
+library;
 import '../models/memo.dart';
 
 /// 提醒引擎抽象：本地定时扫描 + 用药到点调度。
@@ -13,5 +14,5 @@ abstract class ReminderEngine {
   Future<void> scanAndFireRules();
 
   /// 为带到期时间的备忘录排程本地提醒。
-  Future<void> scheduleMemoReminder(Memo memo);
+  Future<void> scheduleMemoReminder(MemoModel memo);
 }

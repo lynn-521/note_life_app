@@ -1,4 +1,5 @@
 /// 库存列表项（商品 + 当前库存 + 低库存徽标）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,7 +16,7 @@ class StockListItem extends ConsumerWidget {
   const StockListItem({super.key, required this.product});
 
   /// 商品。
-  final Product product;
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

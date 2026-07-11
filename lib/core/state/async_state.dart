@@ -1,6 +1,7 @@
 /// 统一异步状态 [AsyncState<T>]（system_design §7.5）。
 ///
 /// 复杂联合态（idle/loading/data/error）统一在此，避免各页面重复写三态。
+library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'async_state.freezed.dart';

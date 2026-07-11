@@ -1,6 +1,7 @@
-/// ReminderLogs 表（class-diagram.mermaid · ReminderLog）。
+/// ReminderLogs 表（class-diagram.mermaid · ReminderLogModel）。
 ///
 /// 已补同步列 createdAt/updatedAt/version/deletedAt（对齐 backend_design §2.3）。
+library;
 import 'package:drift/drift.dart';
 
 import '../../models/enums.dart';
@@ -8,7 +9,6 @@ import '../converters/drift_converters.dart';
 
 /// 提醒下发日志表。
 class ReminderLogs extends Table {
-  @override
   String get dataClassName => 'ReminderLogRow';
 
   TextColumn get id => text()();

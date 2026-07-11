@@ -1,4 +1,5 @@
-/// 旅游计划书实体（class-diagram.mermaid · TravelPlan）。
+/// 旅游计划书实体（class-diagram.mermaid · TravelPlanModel）。
+library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
@@ -7,8 +8,8 @@ part 'travel_plan.freezed.dart';
 
 /// 旅游计划书：起止日期 + 参与成员。
 @freezed
-class TravelPlan with _$TravelPlan, SyncEntity {
-  const factory TravelPlan({
+class TravelPlanModel with _$TravelPlanModel, SyncEntity {
+  const factory TravelPlanModel({
     required String id,
     required String title,
     required DateTime start,
@@ -20,6 +21,6 @@ class TravelPlan with _$TravelPlan, SyncEntity {
     DateTime? deletedAt,
   }) = _TravelPlan;
 
-  factory TravelPlan.fromJson(Map<String, dynamic> json) =>
-      _$TravelPlanFromJson(json);
+  factory TravelPlanModel.fromJson(Map<String, dynamic> json) =>
+      _$TravelPlanModelFromJson(json);
 }

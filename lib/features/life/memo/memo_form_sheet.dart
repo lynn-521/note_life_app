@@ -1,4 +1,5 @@
 /// 备忘录编辑弹层（增 / 改 / 删 / 置顶 / 完成 / 到期）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,7 +9,6 @@ import '../../../core/utils/datetime_ext.dart';
 import '../../../core/utils/id_generator.dart';
 import '../../../data/models/memo.dart';
 import '../../../features/shared/app_button.dart';
-import '../../../features/shared/app_card.dart';
 import '../../../features/shared/app_switch.dart';
 import '../../../features/shared/toast.dart';
 import '../../../providers/app_providers.dart';
@@ -20,7 +20,7 @@ class MemoFormSheet extends ConsumerStatefulWidget {
   const MemoFormSheet({super.key, this.memo});
 
   /// 编辑对象（null 表示新建）。
-  final Memo? memo;
+  final MemoModel? memo;
 
   @override
   ConsumerState<MemoFormSheet> createState() => _MemoFormSheetState();
@@ -201,7 +201,7 @@ class _MemoFormSheetState extends ConsumerState<MemoFormSheet> {
     final members = await ref.read(repositoriesProvider).member.getAll();
     final authorId = widget.memo?.authorId ??
         (members.isNotEmpty ? members.first.id : 'unknown');
-    final memo = Memo(
+    final memo = MemoModel(
       id: widget.memo?.id ?? IdGenerator.newId(IdPrefix.memo),
       title: title,
       body: _body.text.trim(),

@@ -1,4 +1,5 @@
 /// 应用根组件：装配主题、路由、Provider，并在首帧后初始化提醒引擎与种子数据。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -43,7 +44,7 @@ class _AppState extends ConsumerState<App> {
     final theme = ThemeData(
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.bg,
-      colorScheme: ColorScheme.light(
+      colorScheme: const ColorScheme.light(
         surface: AppColors.surface,
         primary: AppColors.primary,
         onPrimary: AppColors.textPrimary, // 主色亮面用深字（DESIGN §7 Never Do）
@@ -67,14 +68,14 @@ class _AppState extends ConsumerState<App> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        shadowColor: AppColors.textPrimary.withOpacity(0.06),
+        shadowColor: AppColors.textPrimary.withValues(alpha: 0.06),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
           foregroundColor: AppColors.textPrimary,
           elevation: 0,
-          shadowColor: AppColors.primary.withOpacity(0.28),
+          shadowColor: AppColors.primary.withValues(alpha: 0.28),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(999),
           ),

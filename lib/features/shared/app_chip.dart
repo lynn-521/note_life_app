@@ -1,4 +1,5 @@
 /// 芯片组件（DESIGN.md §4 Chips）。可单选分组，选中态浅珊瑚底深字。
+library;
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_theme_extension.dart';

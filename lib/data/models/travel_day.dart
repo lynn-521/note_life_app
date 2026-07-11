@@ -1,17 +1,17 @@
-/// 旅游行程日实体（class-diagram.mermaid · TravelDay）。
+/// 旅游行程日实体（class-diagram.mermaid · TravelDayModel）。
 ///
 /// 已补 [SyncEntity]（与 App 端其它同步实体一致，对齐 backend_design §2.3 / §四.2）。
+library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
-import 'enums.dart';
 
 part 'travel_day.freezed.dart';
 
 /// 旅游行程中的某一天（行程安排）。
 @freezed
-class TravelDay with _$TravelDay, SyncEntity {
-  const factory TravelDay({
+class TravelDayModel with _$TravelDayModel, SyncEntity {
+  const factory TravelDayModel({
     required String id,
     required String planId,
     required int dayIndex,
@@ -23,6 +23,6 @@ class TravelDay with _$TravelDay, SyncEntity {
     DateTime? deletedAt,
   }) = _TravelDay;
 
-  factory TravelDay.fromJson(Map<String, dynamic> json) =>
-      _$TravelDayFromJson(json);
+  factory TravelDayModel.fromJson(Map<String, dynamic> json) =>
+      _$TravelDayModelFromJson(json);
 }

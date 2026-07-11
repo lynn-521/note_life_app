@@ -2,6 +2,7 @@
 ///
 /// go_router + StatefulShellRoute：5 个底部 Tab 各自独立 Navigator；
 /// 仓库子视图（入库 / 临期）作为嵌套路由。
+library;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 

@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-TravelDay _$TravelDayFromJson(Map<String, dynamic> json) {
+TravelDayModel _$TravelDayModelFromJson(Map<String, dynamic> json) {
   return _TravelDay.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TravelDay {
+mixin _$TravelDayModel {
   String get id => throw _privateConstructorUsedError;
   String get planId => throw _privateConstructorUsedError;
   int get dayIndex => throw _privateConstructorUsedError;
@@ -30,20 +30,21 @@ mixin _$TravelDay {
   int get version => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
-  /// Serializes this TravelDay to a JSON map.
+  /// Serializes this TravelDayModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of TravelDay
+  /// Create a copy of TravelDayModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $TravelDayCopyWith<TravelDay> get copyWith =>
+  $TravelDayModelCopyWith<TravelDayModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TravelDayCopyWith<$Res> {
-  factory $TravelDayCopyWith(TravelDay value, $Res Function(TravelDay) then) =
-      _$TravelDayCopyWithImpl<$Res, TravelDay>;
+abstract class $TravelDayModelCopyWith<$Res> {
+  factory $TravelDayModelCopyWith(
+          TravelDayModel value, $Res Function(TravelDayModel) then) =
+      _$TravelDayModelCopyWithImpl<$Res, TravelDayModel>;
   @useResult
   $Res call(
       {String id,
@@ -58,16 +59,16 @@ abstract class $TravelDayCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TravelDayCopyWithImpl<$Res, $Val extends TravelDay>
-    implements $TravelDayCopyWith<$Res> {
-  _$TravelDayCopyWithImpl(this._value, this._then);
+class _$TravelDayModelCopyWithImpl<$Res, $Val extends TravelDayModel>
+    implements $TravelDayModelCopyWith<$Res> {
+  _$TravelDayModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TravelDay
+  /// Create a copy of TravelDayModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -125,7 +126,7 @@ class _$TravelDayCopyWithImpl<$Res, $Val extends TravelDay>
 
 /// @nodoc
 abstract class _$$TravelDayImplCopyWith<$Res>
-    implements $TravelDayCopyWith<$Res> {
+    implements $TravelDayModelCopyWith<$Res> {
   factory _$$TravelDayImplCopyWith(
           _$TravelDayImpl value, $Res Function(_$TravelDayImpl) then) =
       __$$TravelDayImplCopyWithImpl<$Res>;
@@ -145,13 +146,13 @@ abstract class _$$TravelDayImplCopyWith<$Res>
 
 /// @nodoc
 class __$$TravelDayImplCopyWithImpl<$Res>
-    extends _$TravelDayCopyWithImpl<$Res, _$TravelDayImpl>
+    extends _$TravelDayModelCopyWithImpl<$Res, _$TravelDayImpl>
     implements _$$TravelDayImplCopyWith<$Res> {
   __$$TravelDayImplCopyWithImpl(
       _$TravelDayImpl _value, $Res Function(_$TravelDayImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TravelDay
+  /// Create a copy of TravelDayModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -247,7 +248,7 @@ class _$TravelDayImpl implements _TravelDay {
 
   @override
   String toString() {
-    return 'TravelDay(id: $id, planId: $planId, dayIndex: $dayIndex, date: $date, agenda: $agenda, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
+    return 'TravelDayModel(id: $id, planId: $planId, dayIndex: $dayIndex, date: $date, agenda: $agenda, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
   }
 
   @override
@@ -275,7 +276,7 @@ class _$TravelDayImpl implements _TravelDay {
   int get hashCode => Object.hash(runtimeType, id, planId, dayIndex, date,
       agenda, createdAt, updatedAt, version, deletedAt);
 
-  /// Create a copy of TravelDay
+  /// Create a copy of TravelDayModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -291,7 +292,7 @@ class _$TravelDayImpl implements _TravelDay {
   }
 }
 
-abstract class _TravelDay implements TravelDay {
+abstract class _TravelDay implements TravelDayModel {
   const factory _TravelDay(
       {required final String id,
       required final String planId,
@@ -325,7 +326,7 @@ abstract class _TravelDay implements TravelDay {
   @override
   DateTime? get deletedAt;
 
-  /// Create a copy of TravelDay
+  /// Create a copy of TravelDayModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

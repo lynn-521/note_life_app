@@ -1,9 +1,9 @@
-/// StockBatches 表（class-diagram.mermaid · StockBatch）。
+/// StockBatches 表（class-diagram.mermaid · StockBatchModel）。
+library;
 import 'package:drift/drift.dart';
 
 /// 库存批次表（入库即写入）。
 class StockBatches extends Table {
-  @override
   String get dataClassName => 'StockBatchRow';
 
   TextColumn get id => text()();

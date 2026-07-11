@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Medication _$MedicationFromJson(Map<String, dynamic> json) {
+MedicationModel _$MedicationModelFromJson(Map<String, dynamic> json) {
   return _Medication.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Medication {
+mixin _$MedicationModel {
   String get id => throw _privateConstructorUsedError;
   String get memberId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -36,21 +36,21 @@ mixin _$Medication {
   int get version => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
-  /// Serializes this Medication to a JSON map.
+  /// Serializes this MedicationModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Medication
+  /// Create a copy of MedicationModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $MedicationCopyWith<Medication> get copyWith =>
+  $MedicationModelCopyWith<MedicationModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MedicationCopyWith<$Res> {
-  factory $MedicationCopyWith(
-          Medication value, $Res Function(Medication) then) =
-      _$MedicationCopyWithImpl<$Res, Medication>;
+abstract class $MedicationModelCopyWith<$Res> {
+  factory $MedicationModelCopyWith(
+          MedicationModel value, $Res Function(MedicationModel) then) =
+      _$MedicationModelCopyWithImpl<$Res, MedicationModel>;
   @useResult
   $Res call(
       {String id,
@@ -70,16 +70,16 @@ abstract class $MedicationCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MedicationCopyWithImpl<$Res, $Val extends Medication>
-    implements $MedicationCopyWith<$Res> {
-  _$MedicationCopyWithImpl(this._value, this._then);
+class _$MedicationModelCopyWithImpl<$Res, $Val extends MedicationModel>
+    implements $MedicationModelCopyWith<$Res> {
+  _$MedicationModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Medication
+  /// Create a copy of MedicationModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -162,7 +162,7 @@ class _$MedicationCopyWithImpl<$Res, $Val extends Medication>
 
 /// @nodoc
 abstract class _$$MedicationImplCopyWith<$Res>
-    implements $MedicationCopyWith<$Res> {
+    implements $MedicationModelCopyWith<$Res> {
   factory _$$MedicationImplCopyWith(
           _$MedicationImpl value, $Res Function(_$MedicationImpl) then) =
       __$$MedicationImplCopyWithImpl<$Res>;
@@ -187,13 +187,13 @@ abstract class _$$MedicationImplCopyWith<$Res>
 
 /// @nodoc
 class __$$MedicationImplCopyWithImpl<$Res>
-    extends _$MedicationCopyWithImpl<$Res, _$MedicationImpl>
+    extends _$MedicationModelCopyWithImpl<$Res, _$MedicationImpl>
     implements _$$MedicationImplCopyWith<$Res> {
   __$$MedicationImplCopyWithImpl(
       _$MedicationImpl _value, $Res Function(_$MedicationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Medication
+  /// Create a copy of MedicationModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -339,7 +339,7 @@ class _$MedicationImpl implements _Medication {
 
   @override
   String toString() {
-    return 'Medication(id: $id, memberId: $memberId, name: $name, type: $type, dosage: $dosage, frequency: $frequency, times: $times, startDate: $startDate, endDate: $endDate, active: $active, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
+    return 'MedicationModel(id: $id, memberId: $memberId, name: $name, type: $type, dosage: $dosage, frequency: $frequency, times: $times, startDate: $startDate, endDate: $endDate, active: $active, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
   }
 
   @override
@@ -388,7 +388,7 @@ class _$MedicationImpl implements _Medication {
       version,
       deletedAt);
 
-  /// Create a copy of Medication
+  /// Create a copy of MedicationModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -404,7 +404,7 @@ class _$MedicationImpl implements _Medication {
   }
 }
 
-abstract class _Medication implements Medication {
+abstract class _Medication implements MedicationModel {
   const factory _Medication(
       {required final String id,
       required final String memberId,
@@ -454,7 +454,7 @@ abstract class _Medication implements Medication {
   @override
   DateTime? get deletedAt;
 
-  /// Create a copy of Medication
+  /// Create a copy of MedicationModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

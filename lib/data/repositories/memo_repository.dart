@@ -1,20 +1,21 @@
 /// MemoRepository（class-diagram.mermaid · MemoRepository）。
-import '../../models/memo.dart';
+library;
+import '../models/memo.dart';
 import '../local_db/app_database.dart';
 
 /// 备忘录仓储接口。
 abstract class MemoRepository {
   /// 监听全部备忘录。
-  Stream<List<Memo>> watchAll();
+  Stream<List<MemoModel>> watchAll();
 
   /// 获取全部备忘录。
-  Future<List<Memo>> getAll();
+  Future<List<MemoModel>> getAll();
 
   /// 按 id 获取。
-  Future<Memo?> getById(String id);
+  Future<MemoModel?> getById(String id);
 
   /// 保存（upsert）。
-  Future<void> saveMemo(Memo memo);
+  Future<void> saveMemo(MemoModel memo);
 
   /// 软删。
   Future<void> deleteMemo(String id);
@@ -29,16 +30,16 @@ class MemoRepositoryImpl implements MemoRepository {
   final AppDatabase db;
 
   @override
-  Stream<List<Memo>> watchAll() => db.memoDao.watchAll();
+  Stream<List<MemoModel>> watchAll() => db.memoDao.watchAll();
 
   @override
-  Future<List<Memo>> getAll() => db.memoDao.getAll();
+  Future<List<MemoModel>> getAll() => db.memoDao.getAll();
 
   @override
-  Future<Memo?> getById(String id) => db.memoDao.getById(id);
+  Future<MemoModel?> getById(String id) => db.memoDao.getById(id);
 
   @override
-  Future<void> saveMemo(Memo memo) => db.memoDao.saveMemo(memo);
+  Future<void> saveMemo(MemoModel memo) => db.memoDao.saveMemo(memo);
 
   @override
   Future<void> deleteMemo(String id) => db.memoDao.softDeleteMemo(id);

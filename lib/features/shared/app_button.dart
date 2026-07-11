@@ -1,4 +1,5 @@
 /// 按钮组件（DESIGN.md §4 Button）。胶囊形；主按钮亮珊瑚底 + 深字；按下回弹(spring)。
+library;
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_theme_extension.dart';
@@ -92,7 +93,7 @@ class _AppButtonState extends State<AppButton> {
       decoration: BoxDecoration(
         color: enabled ? bg : theme.disabledBg,
         borderRadius: BorderRadius.circular(999),
-        border: border,
+        border: Border.fromBorderSide(border),
         boxShadow: enabled && shadow != null ? [shadow] : null,
       ),
       child: Center(

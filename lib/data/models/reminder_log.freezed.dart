@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-ReminderLog _$ReminderLogFromJson(Map<String, dynamic> json) {
+ReminderLogModel _$ReminderLogModelFromJson(Map<String, dynamic> json) {
   return _ReminderLog.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ReminderLog {
+mixin _$ReminderLogModel {
   String get id => throw _privateConstructorUsedError;
   String get ruleId => throw _privateConstructorUsedError;
   DateTime get firedAt => throw _privateConstructorUsedError;
@@ -31,21 +31,21 @@ mixin _$ReminderLog {
   int get version => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
-  /// Serializes this ReminderLog to a JSON map.
+  /// Serializes this ReminderLogModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ReminderLog
+  /// Create a copy of ReminderLogModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ReminderLogCopyWith<ReminderLog> get copyWith =>
+  $ReminderLogModelCopyWith<ReminderLogModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ReminderLogCopyWith<$Res> {
-  factory $ReminderLogCopyWith(
-          ReminderLog value, $Res Function(ReminderLog) then) =
-      _$ReminderLogCopyWithImpl<$Res, ReminderLog>;
+abstract class $ReminderLogModelCopyWith<$Res> {
+  factory $ReminderLogModelCopyWith(
+          ReminderLogModel value, $Res Function(ReminderLogModel) then) =
+      _$ReminderLogModelCopyWithImpl<$Res, ReminderLogModel>;
   @useResult
   $Res call(
       {String id,
@@ -61,16 +61,16 @@ abstract class $ReminderLogCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ReminderLogCopyWithImpl<$Res, $Val extends ReminderLog>
-    implements $ReminderLogCopyWith<$Res> {
-  _$ReminderLogCopyWithImpl(this._value, this._then);
+class _$ReminderLogModelCopyWithImpl<$Res, $Val extends ReminderLogModel>
+    implements $ReminderLogModelCopyWith<$Res> {
+  _$ReminderLogModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ReminderLog
+  /// Create a copy of ReminderLogModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -133,7 +133,7 @@ class _$ReminderLogCopyWithImpl<$Res, $Val extends ReminderLog>
 
 /// @nodoc
 abstract class _$$ReminderLogImplCopyWith<$Res>
-    implements $ReminderLogCopyWith<$Res> {
+    implements $ReminderLogModelCopyWith<$Res> {
   factory _$$ReminderLogImplCopyWith(
           _$ReminderLogImpl value, $Res Function(_$ReminderLogImpl) then) =
       __$$ReminderLogImplCopyWithImpl<$Res>;
@@ -154,13 +154,13 @@ abstract class _$$ReminderLogImplCopyWith<$Res>
 
 /// @nodoc
 class __$$ReminderLogImplCopyWithImpl<$Res>
-    extends _$ReminderLogCopyWithImpl<$Res, _$ReminderLogImpl>
+    extends _$ReminderLogModelCopyWithImpl<$Res, _$ReminderLogImpl>
     implements _$$ReminderLogImplCopyWith<$Res> {
   __$$ReminderLogImplCopyWithImpl(
       _$ReminderLogImpl _value, $Res Function(_$ReminderLogImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ReminderLog
+  /// Create a copy of ReminderLogModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -265,7 +265,7 @@ class _$ReminderLogImpl implements _ReminderLog {
 
   @override
   String toString() {
-    return 'ReminderLog(id: $id, ruleId: $ruleId, firedAt: $firedAt, channel: $channel, status: $status, payload: $payload, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
+    return 'ReminderLogModel(id: $id, ruleId: $ruleId, firedAt: $firedAt, channel: $channel, status: $status, payload: $payload, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
   }
 
   @override
@@ -293,7 +293,7 @@ class _$ReminderLogImpl implements _ReminderLog {
   int get hashCode => Object.hash(runtimeType, id, ruleId, firedAt, channel,
       status, payload, createdAt, updatedAt, version, deletedAt);
 
-  /// Create a copy of ReminderLog
+  /// Create a copy of ReminderLogModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -309,7 +309,7 @@ class _$ReminderLogImpl implements _ReminderLog {
   }
 }
 
-abstract class _ReminderLog implements ReminderLog {
+abstract class _ReminderLog implements ReminderLogModel {
   const factory _ReminderLog(
       {required final String id,
       required final String ruleId,
@@ -346,7 +346,7 @@ abstract class _ReminderLog implements ReminderLog {
   @override
   DateTime? get deletedAt;
 
-  /// Create a copy of ReminderLog
+  /// Create a copy of ReminderLogModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

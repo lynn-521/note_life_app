@@ -1,12 +1,13 @@
 /// 成员颜色映射：member-1..6 令牌 → 颜色（DESIGN.md §4 Avatar Dot）。
 ///
 /// 与 [AppTheme.memberColors] 顺序一致：爸 / 妈 / 宝 / 奶 / 爷 / 其他。
+library;
 import 'package:flutter/material.dart';
 
 class MemberColors {
   MemberColors._();
 
-  /// 调色板（int 值，可直接存入 Member.color）。
+  /// 调色板（int 值，可直接存入 MemberModel.color）。
   static const List<int> palette = <int>[
     0xFFFF7A59, // member-1 爸爸
     0xFF4DA3FF, // member-2 妈妈
@@ -20,6 +21,6 @@ class MemberColors {
   static Color ofIndex(int index) =>
       Color(palette[index.clamp(0, palette.length - 1)]);
 
-  /// 取颜色值对应的 Color（Member.color 即 int 值）。
+  /// 取颜色值对应的 Color（MemberModel.color 即 int 值）。
   static Color ofValue(int value) => Color(value);
 }

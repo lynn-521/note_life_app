@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Category _$CategoryFromJson(Map<String, dynamic> json) {
+CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) {
   return _Category.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Category {
+mixin _$CategoryModel {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   CategoryKind get kind => throw _privateConstructorUsedError;
@@ -28,20 +28,21 @@ mixin _$Category {
   int get version => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
-  /// Serializes this Category to a JSON map.
+  /// Serializes this CategoryModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Category
+  /// Create a copy of CategoryModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CategoryCopyWith<Category> get copyWith =>
+  $CategoryModelCopyWith<CategoryModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CategoryCopyWith<$Res> {
-  factory $CategoryCopyWith(Category value, $Res Function(Category) then) =
-      _$CategoryCopyWithImpl<$Res, Category>;
+abstract class $CategoryModelCopyWith<$Res> {
+  factory $CategoryModelCopyWith(
+          CategoryModel value, $Res Function(CategoryModel) then) =
+      _$CategoryModelCopyWithImpl<$Res, CategoryModel>;
   @useResult
   $Res call(
       {String id,
@@ -54,16 +55,16 @@ abstract class $CategoryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CategoryCopyWithImpl<$Res, $Val extends Category>
-    implements $CategoryCopyWith<$Res> {
-  _$CategoryCopyWithImpl(this._value, this._then);
+class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
+    implements $CategoryModelCopyWith<$Res> {
+  _$CategoryModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Category
+  /// Create a copy of CategoryModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -111,7 +112,7 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
 
 /// @nodoc
 abstract class _$$CategoryImplCopyWith<$Res>
-    implements $CategoryCopyWith<$Res> {
+    implements $CategoryModelCopyWith<$Res> {
   factory _$$CategoryImplCopyWith(
           _$CategoryImpl value, $Res Function(_$CategoryImpl) then) =
       __$$CategoryImplCopyWithImpl<$Res>;
@@ -129,13 +130,13 @@ abstract class _$$CategoryImplCopyWith<$Res>
 
 /// @nodoc
 class __$$CategoryImplCopyWithImpl<$Res>
-    extends _$CategoryCopyWithImpl<$Res, _$CategoryImpl>
+    extends _$CategoryModelCopyWithImpl<$Res, _$CategoryImpl>
     implements _$$CategoryImplCopyWith<$Res> {
   __$$CategoryImplCopyWithImpl(
       _$CategoryImpl _value, $Res Function(_$CategoryImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Category
+  /// Create a copy of CategoryModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -215,7 +216,7 @@ class _$CategoryImpl implements _Category {
 
   @override
   String toString() {
-    return 'Category(id: $id, name: $name, kind: $kind, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
+    return 'CategoryModel(id: $id, name: $name, kind: $kind, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
   }
 
   @override
@@ -240,7 +241,7 @@ class _$CategoryImpl implements _Category {
   int get hashCode => Object.hash(
       runtimeType, id, name, kind, createdAt, updatedAt, version, deletedAt);
 
-  /// Create a copy of Category
+  /// Create a copy of CategoryModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -256,7 +257,7 @@ class _$CategoryImpl implements _Category {
   }
 }
 
-abstract class _Category implements Category {
+abstract class _Category implements CategoryModel {
   const factory _Category(
       {required final String id,
       required final String name,
@@ -284,7 +285,7 @@ abstract class _Category implements Category {
   @override
   DateTime? get deletedAt;
 
-  /// Create a copy of Category
+  /// Create a copy of CategoryModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

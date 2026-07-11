@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-OutboundOrder _$OutboundOrderFromJson(Map<String, dynamic> json) {
+OutboundOrderModel _$OutboundOrderModelFromJson(Map<String, dynamic> json) {
   return _OutboundOrder.fromJson(json);
 }
 
 /// @nodoc
-mixin _$OutboundOrder {
+mixin _$OutboundOrderModel {
   String get id => throw _privateConstructorUsedError;
   String get productId => throw _privateConstructorUsedError;
   num get qty => throw _privateConstructorUsedError;
@@ -32,21 +32,21 @@ mixin _$OutboundOrder {
   int get version => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
-  /// Serializes this OutboundOrder to a JSON map.
+  /// Serializes this OutboundOrderModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of OutboundOrder
+  /// Create a copy of OutboundOrderModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $OutboundOrderCopyWith<OutboundOrder> get copyWith =>
+  $OutboundOrderModelCopyWith<OutboundOrderModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OutboundOrderCopyWith<$Res> {
-  factory $OutboundOrderCopyWith(
-          OutboundOrder value, $Res Function(OutboundOrder) then) =
-      _$OutboundOrderCopyWithImpl<$Res, OutboundOrder>;
+abstract class $OutboundOrderModelCopyWith<$Res> {
+  factory $OutboundOrderModelCopyWith(
+          OutboundOrderModel value, $Res Function(OutboundOrderModel) then) =
+      _$OutboundOrderModelCopyWithImpl<$Res, OutboundOrderModel>;
   @useResult
   $Res call(
       {String id,
@@ -63,16 +63,16 @@ abstract class $OutboundOrderCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OutboundOrderCopyWithImpl<$Res, $Val extends OutboundOrder>
-    implements $OutboundOrderCopyWith<$Res> {
-  _$OutboundOrderCopyWithImpl(this._value, this._then);
+class _$OutboundOrderModelCopyWithImpl<$Res, $Val extends OutboundOrderModel>
+    implements $OutboundOrderModelCopyWith<$Res> {
+  _$OutboundOrderModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OutboundOrder
+  /// Create a copy of OutboundOrderModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -140,7 +140,7 @@ class _$OutboundOrderCopyWithImpl<$Res, $Val extends OutboundOrder>
 
 /// @nodoc
 abstract class _$$OutboundOrderImplCopyWith<$Res>
-    implements $OutboundOrderCopyWith<$Res> {
+    implements $OutboundOrderModelCopyWith<$Res> {
   factory _$$OutboundOrderImplCopyWith(
           _$OutboundOrderImpl value, $Res Function(_$OutboundOrderImpl) then) =
       __$$OutboundOrderImplCopyWithImpl<$Res>;
@@ -162,13 +162,13 @@ abstract class _$$OutboundOrderImplCopyWith<$Res>
 
 /// @nodoc
 class __$$OutboundOrderImplCopyWithImpl<$Res>
-    extends _$OutboundOrderCopyWithImpl<$Res, _$OutboundOrderImpl>
+    extends _$OutboundOrderModelCopyWithImpl<$Res, _$OutboundOrderImpl>
     implements _$$OutboundOrderImplCopyWith<$Res> {
   __$$OutboundOrderImplCopyWithImpl(
       _$OutboundOrderImpl _value, $Res Function(_$OutboundOrderImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OutboundOrder
+  /// Create a copy of OutboundOrderModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -280,7 +280,7 @@ class _$OutboundOrderImpl implements _OutboundOrder {
 
   @override
   String toString() {
-    return 'OutboundOrder(id: $id, productId: $productId, qty: $qty, reason: $reason, operatorId: $operatorId, at: $at, note: $note, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
+    return 'OutboundOrderModel(id: $id, productId: $productId, qty: $qty, reason: $reason, operatorId: $operatorId, at: $at, note: $note, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
   }
 
   @override
@@ -311,7 +311,7 @@ class _$OutboundOrderImpl implements _OutboundOrder {
   int get hashCode => Object.hash(runtimeType, id, productId, qty, reason,
       operatorId, at, note, createdAt, updatedAt, version, deletedAt);
 
-  /// Create a copy of OutboundOrder
+  /// Create a copy of OutboundOrderModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -327,7 +327,7 @@ class _$OutboundOrderImpl implements _OutboundOrder {
   }
 }
 
-abstract class _OutboundOrder implements OutboundOrder {
+abstract class _OutboundOrder implements OutboundOrderModel {
   const factory _OutboundOrder(
       {required final String id,
       required final String productId,
@@ -367,7 +367,7 @@ abstract class _OutboundOrder implements OutboundOrder {
   @override
   DateTime? get deletedAt;
 
-  /// Create a copy of OutboundOrder
+  /// Create a copy of OutboundOrderModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

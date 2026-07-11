@@ -1,4 +1,5 @@
 /// SyncEngine 抽象（system_design §1.7 / class-diagram.mermaid）。
+library;
 import '../models/base/sync_entity.dart';
 
 /// 同步结果。

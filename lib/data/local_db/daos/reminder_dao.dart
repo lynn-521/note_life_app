@@ -1,4 +1,5 @@
 /// ReminderDao（class-diagram.mermaid · ReminderDao）。
+library;
 import 'package:drift/drift.dart';
 
 import '../../models/reminder_log.dart';
@@ -6,7 +7,7 @@ import '../../models/reminder_rule.dart';
 import '../tables/reminder_log_table.dart';
 import '../tables/reminder_rule_table.dart';
 import 'base_dao.dart';
-import '../app_database.dart' show AppDatabase;
+import '../app_database.dart';
 part 'reminder_dao.g.dart';
 
 /// 提醒规则 / 日志数据访问。
@@ -17,7 +18,7 @@ class ReminderDao extends DatabaseAccessor<AppDatabase>
   ReminderDao(super.db);
 
   /// 获取全部启用中的规则。
-  Future<List<ReminderRule>> getEnabledRules() async =>
+  Future<List<ReminderRuleModel>> getEnabledRules() async =>
       (await (select(reminderRules)
             ..where((t) => t.enabled.equals(true) & t.deletedAt.isNull()))
           .get())
@@ -25,38 +26,38 @@ class ReminderDao extends DatabaseAccessor<AppDatabase>
           .toList();
 
   /// 获取全部规则。
-  Future<List<ReminderRule>> getAllRules() async =>
+  Future<List<ReminderRuleModel>> getAllRules() async =>
       (await (select(reminderRules)..where((t) => t.deletedAt.isNull())).get())
           .map(_toRule)
           .toList();
 
   /// 保存规则（upsert）。
-  Future<void> saveRule(ReminderRule r) =>
+  Future<void> saveRule(ReminderRuleModel r) =>
       into(reminderRules).insertOnConflictUpdate(_toRuleCompanion(r));
 
   /// 写入下发日志（upsert，供同步合并幂等）。
-  Future<void> insertLog(ReminderLog log) =>
+  Future<void> insertLog(ReminderLogModel log) =>
       into(reminderLogs).insertOnConflictUpdate(_toLogCompanion(log));
 
   /// 全部规则（含软删，供同步推送使用）。
-  Future<List<ReminderRule>> getAllRulesForSync() async =>
+  Future<List<ReminderRuleModel>> getAllRulesForSync() async =>
       (await select(reminderRules).get()).map(_toRule).toList();
 
   /// 全部下发日志（含软删，供同步推送使用）。
-  Future<List<ReminderLog>> getAllLogsForSync() async =>
+  Future<List<ReminderLogModel>> getAllLogsForSync() async =>
       (await select(reminderLogs).get()).map(_toLog).toList();
 
   /// 下发日志 upsert（供远端变更合并幂等）。
-  Future<void> upsertLog(ReminderLog log) =>
+  Future<void> upsertLog(ReminderLogModel log) =>
       into(reminderLogs).insertOnConflictUpdate(_toLogCompanion(log));
 
   /// 监听下发日志（新近优先）。
-  Stream<List<ReminderLog>> watchLogs() =>
+  Stream<List<ReminderLogModel>> watchLogs() =>
       (select(reminderLogs)..orderBy([(t) => OrderingTerm.desc(t.firedAt)]))
           .watch()
           .map((rows) => rows.map(_toLog).toList());
 
-  ReminderRule _toRule(ReminderRuleRow r) => ReminderRule(
+  ReminderRuleModel _toRule(ReminderRule r) => ReminderRuleModel(
         id: r.id,
         type: r.type,
         sourceRef: r.sourceRef,
@@ -70,7 +71,7 @@ class ReminderDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  ReminderLog _toLog(ReminderLogRow r) => ReminderLog(
+  ReminderLogModel _toLog(ReminderLog r) => ReminderLogModel(
         id: r.id,
         ruleId: r.ruleId,
         firedAt: r.firedAt,
@@ -83,8 +84,8 @@ class ReminderDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  ReminderRulesCompanion _toRuleCompanion(ReminderRule r) =>
-      ReminderRulesCompanion.insert(
+  ReminderRulesCompanion _toRuleCompanion(ReminderRuleModel r) =>
+      ReminderRulesCompanion(
         id: Value(r.id),
         type: Value(r.type),
         sourceRef: Value(r.sourceRef),
@@ -98,8 +99,8 @@ class ReminderDao extends DatabaseAccessor<AppDatabase>
         deletedAt: Value(r.deletedAt),
       );
 
-  ReminderLogsCompanion _toLogCompanion(ReminderLog l) =>
-      ReminderLogsCompanion.insert(
+  ReminderLogsCompanion _toLogCompanion(ReminderLogModel l) =>
+      ReminderLogsCompanion(
         id: Value(l.id),
         ruleId: Value(l.ruleId),
         firedAt: Value(l.firedAt),

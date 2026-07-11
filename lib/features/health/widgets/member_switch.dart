@@ -1,10 +1,10 @@
 /// 成员切换（头像胶囊）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_theme_extension.dart';
 import '../../../core/theme/text_styles.dart';
-import '../../../data/models/member.dart';
 import '../../../providers/app_providers.dart';
 import '../../shared/avatar_dot.dart';
 

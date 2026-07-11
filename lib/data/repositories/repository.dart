@@ -1,6 +1,7 @@
 /// AppRepositories 容器（system_design §3.3 · 各 Repository 汇总）。
 ///
 /// 集中持有全部仓储实现，供 [app_providers.dart] 一次性装配。
+library;
 import '../local_db/app_database.dart';
 import 'inventory_repository.dart';
 import 'member_repository.dart';

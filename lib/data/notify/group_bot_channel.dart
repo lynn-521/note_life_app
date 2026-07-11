@@ -1,4 +1,5 @@
 /// GroupBotChannel（占位 · 未配置优雅降级，不抛异常）。
+library;
 import 'notification_channel.dart';
 import '../models/enums.dart';
 

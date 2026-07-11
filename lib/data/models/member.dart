@@ -1,4 +1,5 @@
-/// 家庭成员实体（class-diagram.mermaid · Member）。
+/// 家庭成员实体（class-diagram.mermaid · MemberModel）。
+library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
@@ -10,8 +11,8 @@ part 'member.freezed.dart';
 ///
 /// [color] 存 int（来自 [core/constants/member_colors.dart] 调色板）。
 @freezed
-class Member with _$Member, SyncEntity {
-  const factory Member({
+class MemberModel with _$MemberModel, SyncEntity {
+  const factory MemberModel({
     required String id,
     required String name,
     String? avatar,
@@ -24,6 +25,6 @@ class Member with _$Member, SyncEntity {
     DateTime? deletedAt,
   }) = _Member;
 
-  factory Member.fromJson(Map<String, dynamic> json) =>
-      _$MemberFromJson(json);
+  factory MemberModel.fromJson(Map<String, dynamic> json) =>
+      _$MemberModelFromJson(json);
 }

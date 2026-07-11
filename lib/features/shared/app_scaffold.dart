@@ -1,4 +1,5 @@
 /// 底部导航外壳（AppTabBar + 内容分支）。
+library;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,7 +11,7 @@ class AppScaffold extends StatelessWidget {
   const AppScaffold({super.key, required this.shell});
 
   /// 状态化外壳（含各分支 Navigator）。
-  final StatefulShell shell;
+  final StatefulNavigationShell shell;
 
   static const List<AppTabItem> _items = [
     AppTabItem(icon: '📦', label: '仓库'),

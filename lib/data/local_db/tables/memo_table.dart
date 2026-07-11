@@ -1,9 +1,9 @@
-/// Memos 表（class-diagram.mermaid · Memo）。
+/// Memos 表（class-diagram.mermaid · MemoModel）。
+library;
 import 'package:drift/drift.dart';
 
 /// 备忘录表。
 class Memos extends Table {
-  @override
   String get dataClassName => 'MemoRow';
 
   TextColumn get id => text()();

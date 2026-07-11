@@ -1,6 +1,7 @@
 /// 全局 Provider 装配（system_design §1.4 / app.dart 引用）。
 ///
 /// 集中装配：数据库、渠道、调度器、提醒引擎、同步引擎、当前成员、仓储集合。
+library;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:family_butler/core/constants/app_constants.dart';
 import 'package:family_butler/data/local_db/app_database.dart';
 import 'package:family_butler/data/models/member.dart';
+import 'package:family_butler/data/models/enums.dart';
 import 'package:family_butler/data/notify/group_bot_channel.dart';
 import 'package:family_butler/data/notify/logging_notification_channel.dart';
 import 'package:family_butler/data/notify/notification_channel.dart';
@@ -157,7 +159,7 @@ final membersProvider =
     StreamProvider((ref) => ref.watch(repositoriesProvider).member.watchAll());
 
 /// 当前家庭成员（解析 currentMemberIdProvider，缺省取首位）。
-final currentMemberProvider = FutureProvider<Member?>((ref) async {
+final currentMemberProvider = FutureProvider<MemberModel?>((ref) async {
   final members = await ref.watch(repositoriesProvider).member.getAll();
   if (members.isEmpty) return null;
   final id = ref.watch(currentMemberIdProvider);

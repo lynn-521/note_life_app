@@ -1,11 +1,11 @@
-/// Recipes 表（class-diagram.mermaid · Recipe）。
+/// Recipes 表（class-diagram.mermaid · RecipeModel）。
+library;
 import 'package:drift/drift.dart';
 
 import '../converters/drift_converters.dart';
 
 /// 菜谱表（食材与「谁会做」存于独立关联表）。
 class Recipes extends Table {
-  @override
   String get dataClassName => 'RecipeRow';
 
   TextColumn get id => text()();

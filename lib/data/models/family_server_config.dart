@@ -2,6 +2,7 @@
 ///
 /// 「我的 → 服务器设置」可编辑并持久化到 [SharedPreferences]。
 /// 含内网 / 外网双地址、健康检查路径、内网短超时与共享密钥（FAMILY_TOKEN）。
+library;
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';

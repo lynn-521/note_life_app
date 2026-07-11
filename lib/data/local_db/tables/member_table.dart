@@ -1,4 +1,5 @@
-/// Members 表（class-diagram.mermaid · Member）。
+/// Members 表（class-diagram.mermaid · MemberModel）。
+library;
 import 'package:drift/drift.dart';
 
 import '../../models/enums.dart';
@@ -6,7 +7,6 @@ import '../converters/drift_converters.dart';
 
 /// 家庭成员表。
 class Members extends Table {
-  @override
   String get dataClassName => 'MemberRow';
 
   TextColumn get id => text()();

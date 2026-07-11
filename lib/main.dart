@@ -4,6 +4,7 @@
 ///   flutter pub get
 ///   dart run build_runner build --delete-conflicting-outputs
 ///   flutter run
+library;
 import 'package:flutter/widgets.dart';
 import 'package:timezone/data/latest.dart' as tz_data;
 

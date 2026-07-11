@@ -1,10 +1,11 @@
 /// MemoDao（class-diagram.mermaid · MemoDao）。
+library;
 import 'package:drift/drift.dart';
 
 import '../../models/memo.dart';
 import '../tables/memo_table.dart';
 import 'base_dao.dart';
-import '../app_database.dart' show AppDatabase;
+import '../app_database.dart';
 part 'memo_dao.g.dart';
 
 /// 备忘录数据访问。
@@ -15,7 +16,7 @@ class MemoDao extends DatabaseAccessor<AppDatabase>
   MemoDao(super.db);
 
   /// 监听全部未删除备忘录（置顶优先、未完成优先、新近优先）。
-  Stream<List<Memo>> watchAll() =>
+  Stream<List<MemoModel>> watchAll() =>
       (select(memos)
             ..where((t) => t.deletedAt.isNull())
             ..orderBy([
@@ -27,7 +28,7 @@ class MemoDao extends DatabaseAccessor<AppDatabase>
           .map((rows) => rows.map(_toModel).toList());
 
   /// 获取全部未删除备忘录。
-  Future<List<Memo>> getAll() async =>
+  Future<List<MemoModel>> getAll() async =>
       (await (select(memos)
             ..where((t) => t.deletedAt.isNull())
             ..orderBy([
@@ -40,18 +41,18 @@ class MemoDao extends DatabaseAccessor<AppDatabase>
           .toList();
 
   /// 获取全部备忘录（含软删，供同步推送使用）。
-  Future<List<Memo>> getAllForSync() async =>
+  Future<List<MemoModel>> getAllForSync() async =>
       (await select(memos).get()).map(_toModel).toList();
 
   /// 按 id 获取。
-  Future<Memo?> getById(String id) async {
+  Future<MemoModel?> getById(String id) async {
     final row = await (select(memos)..where((t) => t.id.equals(id)))
         .getSingleOrNull();
     return row == null ? null : _toModel(row);
   }
 
   /// 保存（upsert）。
-  Future<void> saveMemo(Memo m) =>
+  Future<void> saveMemo(MemoModel m) =>
       into(memos).insertOnConflictUpdate(_toCompanion(m));
 
   /// 软删。
@@ -59,7 +60,7 @@ class MemoDao extends DatabaseAccessor<AppDatabase>
       (update(memos)..where((t) => t.id.equals(id)))
           .write(MemosCompanion(deletedAt: Value(now)));
 
-  Memo _toModel(MemoRow r) => Memo(
+  MemoModel _toModel(Memo r) => MemoModel(
         id: r.id,
         title: r.title,
         body: r.body,
@@ -73,7 +74,7 @@ class MemoDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  MemosCompanion _toCompanion(Memo m) => MemosCompanion.insert(
+  MemosCompanion _toCompanion(MemoModel m) => MemosCompanion(
         id: Value(m.id),
         title: Value(m.title),
         body: Value(m.body),

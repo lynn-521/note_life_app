@@ -1,33 +1,34 @@
 /// ProductRepository（system_design §3.3）。
-import '../../models/category.dart';
-import '../../models/product.dart';
+library;
+import '../models/category.dart';
+import '../models/product.dart';
 import '../local_db/app_database.dart';
 
 /// 商品 / 分类仓储接口。
 abstract class ProductRepository {
   /// 获取全部商品。
-  Future<List<Product>> getProducts();
+  Future<List<ProductModel>> getProducts();
 
   /// 监听全部商品。
-  Stream<List<Product>> watchProducts();
+  Stream<List<ProductModel>> watchProducts();
 
   /// 按 id 获取商品。
-  Future<Product?> getProduct(String id);
+  Future<ProductModel?> getProduct(String id);
 
   /// 保存商品（upsert）。
-  Future<void> saveProduct(Product product);
+  Future<void> saveProduct(ProductModel product);
 
   /// 软删商品。
   Future<void> deleteProduct(String id);
 
   /// 获取全部分类。
-  Future<List<Category>> getCategories();
+  Future<List<CategoryModel>> getCategories();
 
   /// 监听全部分类。
-  Stream<List<Category>> watchCategories();
+  Stream<List<CategoryModel>> watchCategories();
 
   /// 保存分类（upsert）。
-  Future<void> saveCategory(Category category);
+  Future<void> saveCategory(CategoryModel category);
 }
 
 /// 基于 Drift 的实现（商品 / 分类存于 InventoryDao）。
@@ -39,16 +40,16 @@ class ProductRepositoryImpl implements ProductRepository {
   final AppDatabase db;
 
   @override
-  Future<List<Product>> getProducts() => db.inventoryDao.getAllProducts();
+  Future<List<ProductModel>> getProducts() => db.inventoryDao.getAllProducts();
 
   @override
-  Stream<List<Product>> watchProducts() => db.inventoryDao.watchProducts();
+  Stream<List<ProductModel>> watchProducts() => db.inventoryDao.watchProducts();
 
   @override
-  Future<Product?> getProduct(String id) => db.inventoryDao.getProduct(id);
+  Future<ProductModel?> getProduct(String id) => db.inventoryDao.getProduct(id);
 
   @override
-  Future<void> saveProduct(Product product) =>
+  Future<void> saveProduct(ProductModel product) =>
       db.inventoryDao.saveProduct(product);
 
   @override
@@ -56,13 +57,13 @@ class ProductRepositoryImpl implements ProductRepository {
       db.inventoryDao.softDeleteProduct(id);
 
   @override
-  Future<List<Category>> getCategories() => db.inventoryDao.getAllCategories();
+  Future<List<CategoryModel>> getCategories() => db.inventoryDao.getAllCategories();
 
   @override
-  Stream<List<Category>> watchCategories() =>
+  Stream<List<CategoryModel>> watchCategories() =>
       db.inventoryDao.watchCategories();
 
   @override
-  Future<void> saveCategory(Category category) =>
+  Future<void> saveCategory(CategoryModel category) =>
       db.inventoryDao.saveCategory(category);
 }

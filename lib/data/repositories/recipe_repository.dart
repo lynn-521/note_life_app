@@ -1,33 +1,34 @@
 /// RecipeRepository（class-diagram.mermaid · RecipeRepository）。
-import '../../models/daily_meal.dart';
-import '../../models/recipe.dart';
+library;
+import '../models/daily_meal.dart';
+import '../models/recipe.dart';
 import '../local_db/app_database.dart';
 
 /// 菜谱 / 今日菜单仓储接口。
 abstract class RecipeRepository {
   /// 监听全部菜谱（含食材 / 谁会做）。
-  Stream<List<Recipe>> watchAll();
+  Stream<List<RecipeModel>> watchAll();
 
   /// 获取全部菜谱（含食材 / 谁会做）。
-  Future<List<Recipe>> getAll();
+  Future<List<RecipeModel>> getAll();
 
   /// 按 id 获取菜谱。
-  Future<Recipe?> getById(String id);
+  Future<RecipeModel?> getById(String id);
 
   /// 保存菜谱（含关联）。
-  Future<void> saveRecipe(Recipe recipe);
+  Future<void> saveRecipe(RecipeModel recipe);
 
   /// 软删菜谱。
   Future<void> deleteRecipe(String id);
 
   /// 监听某日菜单。
-  Stream<List<DailyMeal>> watchDailyMeals(DateTime date);
+  Stream<List<DailyMealModel>> watchDailyMeals(DateTime date);
 
   /// 获取某日菜单。
-  Future<List<DailyMeal>> getDailyMeals(DateTime date);
+  Future<List<DailyMealModel>> getDailyMeals(DateTime date);
 
   /// 添加排菜。
-  Future<void> addDailyMeal(DailyMeal meal);
+  Future<void> addDailyMeal(DailyMealModel meal);
 
   /// 移除排菜。
   Future<void> removeDailyMeal(String id);
@@ -42,30 +43,30 @@ class RecipeRepositoryImpl implements RecipeRepository {
   final AppDatabase db;
 
   @override
-  Stream<List<Recipe>> watchAll() => db.recipeDao.watchAllDetailed();
+  Stream<List<RecipeModel>> watchAll() => db.recipeDao.watchAllDetailed();
 
   @override
-  Future<List<Recipe>> getAll() => db.recipeDao.getAll();
+  Future<List<RecipeModel>> getAll() => db.recipeDao.getAll();
 
   @override
-  Future<Recipe?> getById(String id) => db.recipeDao.getById(id);
+  Future<RecipeModel?> getById(String id) => db.recipeDao.getById(id);
 
   @override
-  Future<void> saveRecipe(Recipe recipe) => db.recipeDao.saveRecipe(recipe);
+  Future<void> saveRecipe(RecipeModel recipe) => db.recipeDao.saveRecipe(recipe);
 
   @override
   Future<void> deleteRecipe(String id) => db.recipeDao.softDeleteRecipe(id);
 
   @override
-  Stream<List<DailyMeal>> watchDailyMeals(DateTime date) =>
+  Stream<List<DailyMealModel>> watchDailyMeals(DateTime date) =>
       db.recipeDao.watchDailyMeals(date);
 
   @override
-  Future<List<DailyMeal>> getDailyMeals(DateTime date) =>
+  Future<List<DailyMealModel>> getDailyMeals(DateTime date) =>
       db.recipeDao.getDailyMeals(date);
 
   @override
-  Future<void> addDailyMeal(DailyMeal meal) => db.recipeDao.addDailyMeal(meal);
+  Future<void> addDailyMeal(DailyMealModel meal) => db.recipeDao.addDailyMeal(meal);
 
   @override
   Future<void> removeDailyMeal(String id) =>

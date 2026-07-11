@@ -1,9 +1,9 @@
 /// 仓库模块 Provider（system_design §1.4）。
+library;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/state/async_state.dart';
-import '../../../core/utils/id_generator.dart';
 import '../../../data/models/stock_view.dart';
 import '../../../providers/app_providers.dart';
 

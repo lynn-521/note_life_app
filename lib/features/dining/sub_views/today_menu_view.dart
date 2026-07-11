@@ -1,4 +1,5 @@
 /// 今日菜单（按餐别排菜 + 移除）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,7 +11,6 @@ import '../../../data/models/enums.dart';
 import '../../../data/models/member.dart';
 import '../../../data/models/recipe.dart';
 import '../../../features/shared/app_button.dart';
-import '../../../features/shared/empty_state.dart';
 import '../../../providers/app_providers.dart';
 import '../providers/dining_providers.dart';
 import '../widgets/meal_section.dart';
@@ -29,11 +29,11 @@ class TodayMenuView extends ConsumerWidget {
     final recipesAsync = ref.watch(recipesProvider);
     final membersAsync = ref.watch(membersProvider);
 
-    final recipeMap = <String, Recipe>{
-      for (final r in recipesAsync.valueOrNull ?? const <Recipe>[]) r.id: r
+    final recipeMap = <String, RecipeModel>{
+      for (final r in recipesAsync.valueOrNull ?? const <RecipeModel>[]) r.id: r
     };
-    final membersById = <String, Member>{
-      for (final m in membersAsync.valueOrNull ?? const <Member>[]) m.id: m
+    final membersById = <String, MemberModel>{
+      for (final m in membersAsync.valueOrNull ?? const <MemberModel>[]) m.id: m
     };
 
     return Column(
@@ -60,7 +60,7 @@ class TodayMenuView extends ConsumerWidget {
         Expanded(
           child: mealsAsync.when(
             data: (meals) {
-              final byMeal = <MealType, List<DailyMeal>>{
+              final byMeal = <MealType, List<DailyMealModel>>{
                 for (final t in MealType.values)
                   t: meals.where((m) => m.mealType == t).toList()
               };

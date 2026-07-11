@@ -1,11 +1,11 @@
 /// Drift 存储转换器：枚举 / 列表 / 时间 / Map ↔ 存储类型（system_design §7.3）。
+library;
 import 'dart:convert';
 
 import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/json_converters.dart';
-import '../../../data/models/enums.dart';
 
 /// 枚举 ↔ 字符串。按 `.name` 序列化（与 freezed JSON 一致）。
 class EnumConverter<T extends Enum> extends TypeConverter<T, String> {
@@ -16,7 +16,7 @@ class EnumConverter<T extends Enum> extends TypeConverter<T, String> {
   final List<T> values;
 
   @override
-  T fromSql(String fromDb) => (values as List<Enum>).byName(fromDb);
+  T fromSql(String fromDb) => (values as List<Enum>).byName(fromDb) as T;
 
   @override
   String toSql(T value) => value.name;
@@ -54,7 +54,7 @@ class DriftTimeOfDayListConverter
       jsonEncode(value.map(timeOfDayToJson).toList());
 }
 
-/// `Map<String, dynamic>` ↔ JSON 字符串（ReminderRule.config）。
+/// `Map<String, dynamic>` ↔ JSON 字符串（ReminderRuleModel.config）。
 class MapConverter extends TypeConverter<Map<String, dynamic>, String> {
   /// 构造。
   const MapConverter();

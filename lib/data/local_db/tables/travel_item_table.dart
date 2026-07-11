@@ -1,6 +1,7 @@
-/// TravelItems 表（class-diagram.mermaid · TravelItem）。
+/// TravelItems 表（class-diagram.mermaid · TravelItemModel）。
 ///
 /// 已补同步列 createdAt/updatedAt/version/deletedAt（对齐 backend_design §2.3）。
+library;
 import 'package:drift/drift.dart';
 
 import '../../models/enums.dart';
@@ -8,7 +9,6 @@ import '../converters/drift_converters.dart';
 
 /// 旅游清单项表（行李 / 预算）。
 class TravelItems extends Table {
-  @override
   String get dataClassName => 'TravelItemRow';
 
   TextColumn get id => text()();

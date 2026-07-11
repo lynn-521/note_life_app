@@ -1,4 +1,5 @@
 /// 实体 ID 生成器：uuid v4 + 实体前缀（PRD §7.4 / system_design §7.1）。
+library;
 import 'package:uuid/uuid.dart';
 
 /// 各实体 ID 前缀（与 system_design §7.1 对齐）。
@@ -34,7 +35,7 @@ class IdGenerator {
   /// 生成带前缀的 uuid v4（如 `prd_7f3a...`）。
   static String newId(String prefix) => '$prefix${_uuid.v4()}';
 
-  /// 生成 DoseLog 的稳定 ID（按 用药计划 + 计划时间 确定性生成，便于 upsert）。
+  /// 生成 DoseLogModel 的稳定 ID（按 用药计划 + 计划时间 确定性生成，便于 upsert）。
   static String doseLogId(String medicationId, DateTime scheduledTime) =>
       '${IdPrefix.log}${medicationId}_${scheduledTime.millisecondsSinceEpoch}';
 }

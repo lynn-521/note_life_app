@@ -1,4 +1,5 @@
 /// 徽标组件（DESIGN.md §4 Badge）。圆角浅底深字，杜绝大红大黄块。
+library;
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_theme_extension.dart';

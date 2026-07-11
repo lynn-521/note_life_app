@@ -1,4 +1,5 @@
 /// 旅游行程日卡片。
+library;
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme_extension.dart';
@@ -13,7 +14,7 @@ class TravelDayCard extends StatelessWidget {
   const TravelDayCard({super.key, required this.day, required this.onEdit});
 
   /// 行程日。
-  final TravelDay day;
+  final TravelDayModel day;
 
   /// 编辑回调。
   final VoidCallback onEdit;

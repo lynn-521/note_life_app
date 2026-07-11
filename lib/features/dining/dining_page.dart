@@ -1,9 +1,9 @@
 /// 餐桌页（system_design §T07 · 根视图）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/app_theme_extension.dart';
-import '../../core/theme/text_styles.dart';
 import '../../features/shared/app_chip.dart';
 import '../../features/shared/screen_header.dart';
 import 'sub_views/recipe_library_view.dart';

@@ -14,38 +14,41 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Recipe _$RecipeFromJson(Map<String, dynamic> json) {
+RecipeModel _$RecipeModelFromJson(Map<String, dynamic> json) {
   return _Recipe.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Recipe {
+mixin _$RecipeModel {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get steps => throw _privateConstructorUsedError;
   int get servings => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
   String get authorId => throw _privateConstructorUsedError;
-  List<RecipeIngredient> get ingredients => throw _privateConstructorUsedError;
+  List<RecipeIngredientModel> get ingredients =>
+      throw _privateConstructorUsedError;
   List<String> get cookableBy => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
-  /// Serializes this Recipe to a JSON map.
+  /// Serializes this RecipeModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Recipe
+  /// Create a copy of RecipeModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $RecipeCopyWith<Recipe> get copyWith => throw _privateConstructorUsedError;
+  $RecipeModelCopyWith<RecipeModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RecipeCopyWith<$Res> {
-  factory $RecipeCopyWith(Recipe value, $Res Function(Recipe) then) =
-      _$RecipeCopyWithImpl<$Res, Recipe>;
+abstract class $RecipeModelCopyWith<$Res> {
+  factory $RecipeModelCopyWith(
+          RecipeModel value, $Res Function(RecipeModel) then) =
+      _$RecipeModelCopyWithImpl<$Res, RecipeModel>;
   @useResult
   $Res call(
       {String id,
@@ -54,7 +57,7 @@ abstract class $RecipeCopyWith<$Res> {
       int servings,
       List<String> tags,
       String authorId,
-      List<RecipeIngredient> ingredients,
+      List<RecipeIngredientModel> ingredients,
       List<String> cookableBy,
       DateTime createdAt,
       DateTime updatedAt,
@@ -63,16 +66,16 @@ abstract class $RecipeCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
-    implements $RecipeCopyWith<$Res> {
-  _$RecipeCopyWithImpl(this._value, this._then);
+class _$RecipeModelCopyWithImpl<$Res, $Val extends RecipeModel>
+    implements $RecipeModelCopyWith<$Res> {
+  _$RecipeModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Recipe
+  /// Create a copy of RecipeModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -118,7 +121,7 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
       ingredients: null == ingredients
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<RecipeIngredient>,
+              as List<RecipeIngredientModel>,
       cookableBy: null == cookableBy
           ? _value.cookableBy
           : cookableBy // ignore: cast_nullable_to_non_nullable
@@ -144,7 +147,8 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
 }
 
 /// @nodoc
-abstract class _$$RecipeImplCopyWith<$Res> implements $RecipeCopyWith<$Res> {
+abstract class _$$RecipeImplCopyWith<$Res>
+    implements $RecipeModelCopyWith<$Res> {
   factory _$$RecipeImplCopyWith(
           _$RecipeImpl value, $Res Function(_$RecipeImpl) then) =
       __$$RecipeImplCopyWithImpl<$Res>;
@@ -157,7 +161,7 @@ abstract class _$$RecipeImplCopyWith<$Res> implements $RecipeCopyWith<$Res> {
       int servings,
       List<String> tags,
       String authorId,
-      List<RecipeIngredient> ingredients,
+      List<RecipeIngredientModel> ingredients,
       List<String> cookableBy,
       DateTime createdAt,
       DateTime updatedAt,
@@ -167,13 +171,13 @@ abstract class _$$RecipeImplCopyWith<$Res> implements $RecipeCopyWith<$Res> {
 
 /// @nodoc
 class __$$RecipeImplCopyWithImpl<$Res>
-    extends _$RecipeCopyWithImpl<$Res, _$RecipeImpl>
+    extends _$RecipeModelCopyWithImpl<$Res, _$RecipeImpl>
     implements _$$RecipeImplCopyWith<$Res> {
   __$$RecipeImplCopyWithImpl(
       _$RecipeImpl _value, $Res Function(_$RecipeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Recipe
+  /// Create a copy of RecipeModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -219,7 +223,7 @@ class __$$RecipeImplCopyWithImpl<$Res>
       ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<RecipeIngredient>,
+              as List<RecipeIngredientModel>,
       cookableBy: null == cookableBy
           ? _value._cookableBy
           : cookableBy // ignore: cast_nullable_to_non_nullable
@@ -254,7 +258,8 @@ class _$RecipeImpl implements _Recipe {
       this.servings = 1,
       final List<String> tags = const <String>[],
       required this.authorId,
-      final List<RecipeIngredient> ingredients = const <RecipeIngredient>[],
+      final List<RecipeIngredientModel> ingredients =
+          const <RecipeIngredientModel>[],
       final List<String> cookableBy = const <String>[],
       required this.createdAt,
       required this.updatedAt,
@@ -287,10 +292,10 @@ class _$RecipeImpl implements _Recipe {
 
   @override
   final String authorId;
-  final List<RecipeIngredient> _ingredients;
+  final List<RecipeIngredientModel> _ingredients;
   @override
   @JsonKey()
-  List<RecipeIngredient> get ingredients {
+  List<RecipeIngredientModel> get ingredients {
     if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
@@ -317,7 +322,7 @@ class _$RecipeImpl implements _Recipe {
 
   @override
   String toString() {
-    return 'Recipe(id: $id, name: $name, steps: $steps, servings: $servings, tags: $tags, authorId: $authorId, ingredients: $ingredients, cookableBy: $cookableBy, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
+    return 'RecipeModel(id: $id, name: $name, steps: $steps, servings: $servings, tags: $tags, authorId: $authorId, ingredients: $ingredients, cookableBy: $cookableBy, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
   }
 
   @override
@@ -363,7 +368,7 @@ class _$RecipeImpl implements _Recipe {
       version,
       deletedAt);
 
-  /// Create a copy of Recipe
+  /// Create a copy of RecipeModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -379,7 +384,7 @@ class _$RecipeImpl implements _Recipe {
   }
 }
 
-abstract class _Recipe implements Recipe {
+abstract class _Recipe implements RecipeModel {
   const factory _Recipe(
       {required final String id,
       required final String name,
@@ -387,7 +392,7 @@ abstract class _Recipe implements Recipe {
       final int servings,
       final List<String> tags,
       required final String authorId,
-      final List<RecipeIngredient> ingredients,
+      final List<RecipeIngredientModel> ingredients,
       final List<String> cookableBy,
       required final DateTime createdAt,
       required final DateTime updatedAt,
@@ -409,7 +414,7 @@ abstract class _Recipe implements Recipe {
   @override
   String get authorId;
   @override
-  List<RecipeIngredient> get ingredients;
+  List<RecipeIngredientModel> get ingredients;
   @override
   List<String> get cookableBy;
   @override
@@ -421,7 +426,7 @@ abstract class _Recipe implements Recipe {
   @override
   DateTime? get deletedAt;
 
-  /// Create a copy of Recipe
+  /// Create a copy of RecipeModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

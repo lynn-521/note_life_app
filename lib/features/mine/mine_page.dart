@@ -1,6 +1,7 @@
 /// 我的页（system_design §T?? · 根视图）。
 ///
 /// 家庭成员 / 提醒设置 / 微信绑定（占位）/ 同步状态（占位）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -8,6 +9,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/theme/app_theme_extension.dart';
 import '../../core/theme/text_styles.dart';
+import '../../core/utils/datetime_ext.dart';
 import '../../data/models/enums.dart';
 import '../../data/models/member.dart';
 import '../../features/shared/app_badge.dart';
@@ -66,7 +68,7 @@ class MinePage extends ConsumerWidget {
 
 class _MemberCard extends StatelessWidget {
   const _MemberCard({required this.members});
-  final List<Member> members;
+  final List<MemberModel> members;
 
   @override
   Widget build(BuildContext context) {

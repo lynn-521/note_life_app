@@ -1,11 +1,11 @@
-/// TravelPlans 表（class-diagram.mermaid · TravelPlan）。
+/// TravelPlans 表（class-diagram.mermaid · TravelPlanModel）。
+library;
 import 'package:drift/drift.dart';
 
 import '../converters/drift_converters.dart';
 
 /// 旅游计划书表。
 class TravelPlans extends Table {
-  @override
   String get dataClassName => 'TravelPlanRow';
 
   TextColumn get id => text()();

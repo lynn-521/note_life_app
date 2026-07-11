@@ -1,4 +1,5 @@
 /// 旅游清单项行（勾选 / 认领 / 删除）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -23,10 +24,10 @@ class TravelItemRow extends ConsumerWidget {
   });
 
   /// 清单项。
-  final TravelItem item;
+  final TravelItemModel item;
 
   /// 成员映射。
-  final Map<String, Member> membersById;
+  final Map<String, MemberModel> membersById;
 
   /// 变更后刷新。
   final VoidCallback onChanged;
@@ -132,7 +133,7 @@ class TravelItemRow extends ConsumerWidget {
                 color: theme.surface2,
                 shape: BoxShape.circle,
               ),
-              child: Center(
+              child: const Center(
                 child: Text('🗑', style: TextStyle(fontSize: 14)),
               ),
             ),
@@ -145,7 +146,7 @@ class TravelItemRow extends ConsumerWidget {
   Future<void> _pickAssignee(BuildContext context, WidgetRef ref) async {
     final theme = AppTheme.of(context);
     final members =
-        ref.read(membersProvider).valueOrNull ?? const <Member>[];
+        ref.read(membersProvider).valueOrNull ?? const <MemberModel>[];
     await showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -160,9 +161,9 @@ class TravelItemRow extends ConsumerWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _pickerRow(ref, null, '清除认领', membersById),
+              _pickerRow(context, ref, null, '清除认领', membersById),
               ...members.map(
-                (m) => _pickerRow(ref, m.id, m.name, membersById),
+                (m) => _pickerRow(context, ref, m.id, m.name, membersById),
               ),
             ],
           ),
@@ -171,8 +172,8 @@ class TravelItemRow extends ConsumerWidget {
     );
   }
 
-  Widget _pickerRow(WidgetRef ref, String? id, String name,
-      Map<String, Member> membersById) {
+  Widget _pickerRow(BuildContext context, WidgetRef ref, String? id, String name,
+      Map<String, MemberModel> membersById) {
     final theme = AppTheme.of(context);
     return GestureDetector(
       onTap: () {
@@ -186,7 +187,7 @@ class TravelItemRow extends ConsumerWidget {
           children: [
             if (id != null)
               AvatarDot(
-                color: Color(membersById[id]?.color ?? theme.memberColors.last.value),
+                color: Color(membersById[id]?.color ?? theme.memberColors.last.toARGB32()),
                 label: name.isNotEmpty ? name[0] : '?',
                 size: 26,
               )

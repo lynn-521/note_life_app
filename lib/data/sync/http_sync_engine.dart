@@ -4,31 +4,33 @@
 /// pull：POST /sync/pull?since= 拉回远端变更，按整行 LWW 合并；deletedAt 非空者
 /// 本地应用软删；合并后更新 lastSyncAt。全部请求经 [ApiClient] 自动内/外网切换。
 /// 离线：本地照常落库，联网后下次 syncAll 自然重放（脏判定基于 updatedAt）。
+library;
 import 'dart:convert';
 
-import '../core/constants/app_constants.dart';
-import '../core/network/api_client.dart';
-import '../models/base/sync_entity.dart';
-import '../models/category.dart';
-import '../models/daily_meal.dart';
-import '../models/dose_log.dart';
-import '../models/dose_schedule.dart';
-import '../models/inbound_order.dart';
-import '../models/medication.dart';
-import '../models/memo.dart';
-import '../models/member.dart';
-import '../models/outbound_order.dart';
-import '../models/product.dart';
-import '../models/recipe.dart';
-import '../models/reminder_log.dart';
-import '../models/reminder_rule.dart';
-import '../models/stock_batch.dart';
-import '../models/travel_day.dart';
-import '../models/travel_item.dart';
-import '../models/travel_plan.dart';
-import '../repositories/repository.dart';
-import 'sync_engine.dart';
+import 'package:family_butler/core/constants/app_constants.dart';
+import 'package:family_butler/core/network/api_client.dart';
+import 'package:family_butler/data/models/base/sync_entity.dart';
+import 'package:family_butler/data/models/category.dart';
+import 'package:family_butler/data/models/daily_meal.dart';
+import 'package:family_butler/data/models/dose_log.dart';
+import 'package:family_butler/data/models/dose_schedule.dart';
+import 'package:family_butler/data/models/inbound_order.dart';
+import 'package:family_butler/data/models/medication.dart';
+import 'package:family_butler/data/models/memo.dart';
+import 'package:family_butler/data/models/member.dart';
+import 'package:family_butler/data/models/outbound_order.dart';
+import 'package:family_butler/data/models/product.dart';
+import 'package:family_butler/data/models/recipe.dart';
+import 'package:family_butler/data/models/reminder_log.dart';
+import 'package:family_butler/data/models/reminder_rule.dart';
+import 'package:family_butler/data/models/stock_batch.dart';
+import 'package:family_butler/data/models/travel_day.dart';
+import 'package:family_butler/data/models/travel_item.dart';
+import 'package:family_butler/data/models/travel_plan.dart';
+import 'package:family_butler/data/repositories/repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'sync_engine.dart';
 
 /// 单类同步定义（键名对齐 backend_design §1.7.1）。
 class _EntitySync {
@@ -75,134 +77,139 @@ class HttpSyncEngine implements SyncEngine {
     final db = _repos.db;
     return <_EntitySync>[
       _EntitySync(
-        'members',
-        Member,
-        () async => (await db.memberDao.getAllForSync()) as List<dynamic>,
-        (m) => db.memberDao.save(m as Member),
-        Member.fromJson,
+        key: 'members',
+        modelType: MemberModel,
+        fetchAll: () async => (await db.memberDao.getAllForSync()) as List<dynamic>,
+        upsert: (m) => db.memberDao.save(m as MemberModel),
+        fromJson: MemberModel.fromJson,
       ),
       _EntitySync(
-        'categories',
-        Category,
-        () async =>
+        key: 'categories',
+        modelType: CategoryModel,
+        fetchAll: () async =>
             (await db.inventoryDao.getAllCategoriesForSync()) as List<dynamic>,
-        (m) => db.inventoryDao.saveCategory(m as Category),
-        Category.fromJson,
+        upsert: (m) => db.inventoryDao.saveCategory(m as CategoryModel),
+        fromJson: CategoryModel.fromJson,
       ),
       _EntitySync(
-        'products',
-        Product,
-        () async =>
+        key: 'products',
+        modelType: ProductModel,
+        fetchAll: () async =>
             (await db.inventoryDao.getAllProductsForSync()) as List<dynamic>,
-        (m) => db.inventoryDao.saveProduct(m as Product),
-        Product.fromJson,
+        upsert: (m) => db.inventoryDao.saveProduct(m as ProductModel),
+        fromJson: ProductModel.fromJson,
       ),
       _EntitySync(
-        'stockBatches',
-        StockBatch,
-        () async =>
+        key: 'stockBatches',
+        modelType: StockBatchModel,
+        fetchAll: () async =>
             (await db.inventoryDao.getAllStockBatchesForSync())
                 as List<dynamic>,
-        (m) => db.inventoryDao.upsertStockBatch(m as StockBatch),
-        StockBatch.fromJson,
+        upsert: (m) => db.inventoryDao.upsertStockBatch(m as StockBatchModel),
+        fromJson: StockBatchModel.fromJson,
       ),
       _EntitySync(
-        'inbound',
-        InboundOrder,
-        () async =>
+        key: 'inbound',
+        modelType: InboundOrderModel,
+        fetchAll: () async =>
             (await db.inventoryDao.getAllInboundForSync()) as List<dynamic>,
-        (m) => db.inventoryDao.upsertInbound(m as InboundOrder),
-        InboundOrder.fromJson,
+        upsert: (m) => db.inventoryDao.upsertInbound(m as InboundOrderModel),
+        fromJson: InboundOrderModel.fromJson,
       ),
       _EntitySync(
-        'outbound',
-        OutboundOrder,
-        () async =>
+        key: 'outbound',
+        modelType: OutboundOrderModel,
+        fetchAll: () async =>
             (await db.inventoryDao.getAllOutboundForSync()) as List<dynamic>,
-        (m) => db.inventoryDao.upsertOutbound(m as OutboundOrder),
-        OutboundOrder.fromJson,
+        upsert: (m) => db.inventoryDao.upsertOutbound(m as OutboundOrderModel),
+        fromJson: OutboundOrderModel.fromJson,
       ),
       _EntitySync(
-        'medications',
-        Medication,
-        () async =>
+        key: 'medications',
+        modelType: MedicationModel,
+        fetchAll: () async =>
             (await db.medicationDao.getAllMedicationsForSync()) as List<dynamic>,
-        (m) => db.medicationDao.saveMedication(m as Medication),
-        Medication.fromJson,
+        upsert: (m) => db.medicationDao.saveMedication(m as MedicationModel),
+        fromJson: MedicationModel.fromJson,
       ),
       _EntitySync(
-        'doseSchedules',
-        DoseSchedule,
-        () async =>
+        key: 'doseSchedules',
+        modelType: DoseScheduleModel,
+        fetchAll: () async =>
             (await db.medicationDao.getAllSchedulesForSync()) as List<dynamic>,
-        (m) => db.medicationDao.saveDoseSchedule(m as DoseSchedule),
-        DoseSchedule.fromJson,
+        upsert: (m) => db.medicationDao.saveDoseSchedule(m as DoseScheduleModel),
+        fromJson: DoseScheduleModel.fromJson,
       ),
       _EntitySync(
-        'doseLogs',
-        DoseLog,
-        () async => (await db.medicationDao.getAllLogsForSync()) as List<dynamic>,
-        (m) => db.medicationDao.saveDoseLog(m as DoseLog),
-        DoseLog.fromJson,
+        key: 'doseLogs',
+        modelType: DoseLogModel,
+        fetchAll: () async =>
+            (await db.medicationDao.getAllLogsForSync()) as List<dynamic>,
+        upsert: (m) => db.medicationDao.saveDoseLog(m as DoseLogModel),
+        fromJson: DoseLogModel.fromJson,
       ),
       _EntitySync(
-        'recipes',
-        Recipe,
-        () async => (await db.recipeDao.getAllRecipesForSync()) as List<dynamic>,
-        (m) => db.recipeDao.saveRecipe(m as Recipe),
-        Recipe.fromJson,
+        key: 'recipes',
+        modelType: RecipeModel,
+        fetchAll: () async =>
+            (await db.recipeDao.getAllRecipesForSync()) as List<dynamic>,
+        upsert: (m) => db.recipeDao.saveRecipe(m as RecipeModel),
+        fromJson: RecipeModel.fromJson,
       ),
       _EntitySync(
-        'dailyMeals',
-        DailyMeal,
-        () async =>
+        key: 'dailyMeals',
+        modelType: DailyMealModel,
+        fetchAll: () async =>
             (await db.recipeDao.getAllDailyMealsForSync()) as List<dynamic>,
-        (m) => db.recipeDao.addDailyMeal(m as DailyMeal),
-        DailyMeal.fromJson,
+        upsert: (m) => db.recipeDao.addDailyMeal(m as DailyMealModel),
+        fromJson: DailyMealModel.fromJson,
       ),
       _EntitySync(
-        'memos',
-        Memo,
-        () async => (await db.memoDao.getAllForSync()) as List<dynamic>,
-        (m) => db.memoDao.saveMemo(m as Memo),
-        Memo.fromJson,
+        key: 'memos',
+        modelType: MemoModel,
+        fetchAll: () async => (await db.memoDao.getAllForSync()) as List<dynamic>,
+        upsert: (m) => db.memoDao.saveMemo(m as MemoModel),
+        fromJson: MemoModel.fromJson,
       ),
       _EntitySync(
-        'travelPlans',
-        TravelPlan,
-        () async => (await db.travelDao.getAllPlansForSync()) as List<dynamic>,
-        (m) => db.travelDao.saveTravelPlan(m as TravelPlan),
-        TravelPlan.fromJson,
+        key: 'travelPlans',
+        modelType: TravelPlanModel,
+        fetchAll: () async =>
+            (await db.travelDao.getAllPlansForSync()) as List<dynamic>,
+        upsert: (m) => db.travelDao.saveTravelPlan(m as TravelPlanModel),
+        fromJson: TravelPlanModel.fromJson,
       ),
       _EntitySync(
-        'travelDays',
-        TravelDay,
-        () async => (await db.travelDao.getAllDaysForSync()) as List<dynamic>,
-        (m) => db.travelDao.saveTravelDay(m as TravelDay),
-        TravelDay.fromJson,
+        key: 'travelDays',
+        modelType: TravelDayModel,
+        fetchAll: () async =>
+            (await db.travelDao.getAllDaysForSync()) as List<dynamic>,
+        upsert: (m) => db.travelDao.saveTravelDay(m as TravelDayModel),
+        fromJson: TravelDayModel.fromJson,
       ),
       _EntitySync(
-        'travelItems',
-        TravelItem,
-        () async => (await db.travelDao.getAllItemsForSync()) as List<dynamic>,
-        (m) => db.travelDao.saveTravelItem(m as TravelItem),
-        TravelItem.fromJson,
+        key: 'travelItems',
+        modelType: TravelItemModel,
+        fetchAll: () async =>
+            (await db.travelDao.getAllItemsForSync()) as List<dynamic>,
+        upsert: (m) => db.travelDao.saveTravelItem(m as TravelItemModel),
+        fromJson: TravelItemModel.fromJson,
       ),
       _EntitySync(
-        'reminderRules',
-        ReminderRule,
-        () async =>
+        key: 'reminderRules',
+        modelType: ReminderRuleModel,
+        fetchAll: () async =>
             (await db.reminderDao.getAllRulesForSync()) as List<dynamic>,
-        (m) => db.reminderDao.saveRule(m as ReminderRule),
-        ReminderRule.fromJson,
+        upsert: (m) => db.reminderDao.saveRule(m as ReminderRuleModel),
+        fromJson: ReminderRuleModel.fromJson,
       ),
       _EntitySync(
-        'reminderLogs',
-        ReminderLog,
-        () async =>
+        key: 'reminderLogs',
+        modelType: ReminderLogModel,
+        fetchAll: () async =>
             (await db.reminderDao.getAllLogsForSync()) as List<dynamic>,
-        (m) => db.reminderDao.upsertLog(m as ReminderLog),
-        ReminderLog.fromJson,
+        upsert: (m) => db.reminderDao.upsertLog(m as ReminderLogModel),
+        fromJson: ReminderLogModel.fromJson,
       ),
     ];
   }

@@ -1,4 +1,5 @@
 /// 卡片组件（DESIGN.md §4 Card）。大圆角 + 柔和投影，可选入场弹入动效。
+library;
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_theme_extension.dart';

@@ -1,12 +1,14 @@
 /// 入库表单（手动录入 + 扫码占位）。
 ///
-/// system_design §T05：入库（手动 + 扫码占位）。事件溯源：写 InboundOrder + StockBatch。
+/// system_design §T05：入库（手动 + 扫码占位）。事件溯源：写 InboundOrderModel + StockBatchModel。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_theme_extension.dart';
 import '../../../core/theme/text_styles.dart';
+import '../../../core/utils/datetime_ext.dart';
 import '../../../data/models/product.dart';
 import '../../../providers/app_providers.dart';
 import '../../shared/app_button.dart';
@@ -26,7 +28,7 @@ class InboundFormView extends ConsumerStatefulWidget {
 }
 
 class _InboundFormViewState extends ConsumerState<InboundFormView> {
-  Product? _product;
+  ProductModel? _product;
   final TextEditingController _qtyController = TextEditingController(text: '1');
   final TextEditingController _noteController = TextEditingController();
   DateTime? _expireDate;

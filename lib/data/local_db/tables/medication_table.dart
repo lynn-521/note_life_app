@@ -1,4 +1,5 @@
-/// Medications 表（class-diagram.mermaid · Medication）。
+/// Medications 表（class-diagram.mermaid · MedicationModel）。
+library;
 import 'package:drift/drift.dart';
 
 import '../../models/enums.dart';
@@ -6,7 +7,6 @@ import '../converters/drift_converters.dart';
 
 /// 用药计划表。
 class Medications extends Table {
-  @override
   String get dataClassName => 'MedicationRow';
 
   TextColumn get id => text()();

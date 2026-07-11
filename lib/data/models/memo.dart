@@ -1,4 +1,5 @@
-/// 备忘录实体（class-diagram.mermaid · Memo）。
+/// 备忘录实体（class-diagram.mermaid · MemoModel）。
+library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
@@ -7,8 +8,8 @@ part 'memo.freezed.dart';
 
 /// 备忘录：置顶 / 完成 / 到期（可选）。
 @freezed
-class Memo with _$Memo, SyncEntity {
-  const factory Memo({
+class MemoModel with _$MemoModel, SyncEntity {
+  const factory MemoModel({
     required String id,
     required String title,
     @Default('') String body,
@@ -22,5 +23,5 @@ class Memo with _$Memo, SyncEntity {
     DateTime? deletedAt,
   }) = _Memo;
 
-  factory Memo.fromJson(Map<String, dynamic> json) => _$MemoFromJson(json);
+  factory MemoModel.fromJson(Map<String, dynamic> json) => _$MemoModelFromJson(json);
 }

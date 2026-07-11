@@ -1,4 +1,5 @@
 /// 步进器组件（DESIGN.md §4 Stepper）。数量加减，圆点按钮。
+library;
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_theme_extension.dart';

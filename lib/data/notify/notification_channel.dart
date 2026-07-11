@@ -1,4 +1,5 @@
 /// NotificationChannel 抽象 + SendResult（system_design §3.4 / §1.7）。
+library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../models/enums.dart';

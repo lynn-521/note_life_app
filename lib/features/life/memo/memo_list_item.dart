@@ -1,4 +1,5 @@
 /// 备忘录列表项（完成 / 置顶 / 到期徽标 / 编辑）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,7 +18,7 @@ class MemoListItem extends ConsumerWidget {
   const MemoListItem({super.key, required this.memo});
 
   /// 备忘录。
-  final Memo memo;
+  final MemoModel memo;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -88,7 +89,7 @@ class MemoListItem extends ConsumerWidget {
                 ],
                 if (dueBadge != null) ...[
                   const SizedBox(height: 8),
-                  dueBadge!,
+                  dueBadge,
                 ],
               ],
             ),

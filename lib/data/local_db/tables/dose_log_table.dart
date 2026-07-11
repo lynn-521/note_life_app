@@ -1,7 +1,8 @@
-/// DoseLogs 表（class-diagram.mermaid · DoseLog）。
+/// DoseLogs 表（class-diagram.mermaid · DoseLogModel）。
 ///
-/// 补同步列 createdAt/updatedAt/version/deletedAt，与 App 端 [DoseLog]（已实现
+/// 补同步列 createdAt/updatedAt/version/deletedAt，与 App 端 [DoseLogModel]（已实现
 /// [SyncEntity]）及 backend_design §1.4.1 全表同步列约定保持一致。
+library;
 import 'package:drift/drift.dart';
 
 import '../../models/enums.dart';
@@ -9,7 +10,6 @@ import '../converters/drift_converters.dart';
 
 /// 服药记录表。
 class DoseLogs extends Table {
-  @override
   String get dataClassName => 'DoseLogRow';
 
   TextColumn get id => text()();

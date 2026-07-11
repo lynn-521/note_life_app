@@ -1,4 +1,5 @@
 /// 撒花动效（DESIGN.md §9 服药打卡完成 confetti）。尊重 reduce-motion，克制触发。
+library;
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -10,7 +11,6 @@ void fireConfetti(BuildContext context) {
   final reduce = MediaQuery.of(context).disableAnimations;
   if (reduce) return;
   final overlay = Overlay.of(context);
-  if (overlay == null) return;
   late final OverlayEntry entry;
   entry = OverlayEntry(
     builder: (_) => _ConfettiBurst(onDone: () => entry.remove()),

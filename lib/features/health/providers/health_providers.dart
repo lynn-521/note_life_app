@@ -1,4 +1,5 @@
 /// 健康模块 Provider（system_design §T06）。
+library;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/state/async_state.dart';
@@ -6,7 +7,6 @@ import '../../../core/utils/datetime_ext.dart';
 import '../../../core/utils/id_generator.dart';
 import '../../../data/models/dose_log.dart';
 import '../../../data/models/enums.dart';
-import '../../../data/models/medication.dart';
 import '../../../data/models/stock_view.dart';
 import '../../../providers/app_providers.dart';
 
@@ -66,7 +66,7 @@ class CheckInNotifier extends Notifier<AsyncState<bool>> {
       final logId = IdGenerator.doseLogId(medicationId, scheduledTime);
       final now = DateTime.now();
       final existing = await medRepo.getDoseLogById(logId);
-      final log = DoseLog(
+      final log = DoseLogModel(
         id: logId,
         medicationId: medicationId,
         memberId: memberId,

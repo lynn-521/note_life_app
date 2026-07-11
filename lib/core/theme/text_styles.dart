@@ -1,6 +1,7 @@
 /// 字体阶梯（DESIGN.md §3 Typography）。
 ///
 /// 中文圆体感展示 + 西文/数字圆润无衬线。未内置字体资源时优雅回退到系统圆体。
+library;
 import 'package:flutter/material.dart';
 
 /// 字体栈名称（与 DESIGN.md 对齐；缺失时由 Flutter 回退）。

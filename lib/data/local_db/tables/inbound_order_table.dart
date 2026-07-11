@@ -1,9 +1,9 @@
-/// InboundOrders 表（class-diagram.mermaid · InboundOrder）。
+/// InboundOrders 表（class-diagram.mermaid · InboundOrderModel）。
+library;
 import 'package:drift/drift.dart';
 
 /// 入库单表（事件溯源：append-only）。
 class InboundOrders extends Table {
-  @override
   String get dataClassName => 'InboundOrderRow';
 
   TextColumn get id => text()();

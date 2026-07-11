@@ -1,4 +1,5 @@
 /// 排菜底部弹层：选餐别 + 选菜谱 + 食材反查提示。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,7 +11,6 @@ import '../../../data/models/recipe.dart';
 import '../../../features/shared/app_button.dart';
 import '../../../features/shared/app_card.dart';
 import '../../../features/shared/toast.dart';
-import '../../../providers/app_providers.dart';
 import '../providers/dining_providers.dart';
 
 /// 排菜弹层。
@@ -38,7 +38,7 @@ class _ScheduleSheetState extends ConsumerState<ScheduleSheet> {
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
-    final recipes = ref.watch(recipesProvider).valueOrNull ?? const <Recipe>[];
+    final recipes = ref.watch(recipesProvider).valueOrNull ?? const <RecipeModel>[];
     final submitting = ref.watch(scheduleMealNotifier);
 
     return Container(

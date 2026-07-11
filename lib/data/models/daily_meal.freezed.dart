@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-DailyMeal _$DailyMealFromJson(Map<String, dynamic> json) {
+DailyMealModel _$DailyMealModelFromJson(Map<String, dynamic> json) {
   return _DailyMeal.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DailyMeal {
+mixin _$DailyMealModel {
   String get id => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
   MealType get mealType => throw _privateConstructorUsedError;
@@ -29,20 +29,21 @@ mixin _$DailyMeal {
   int get version => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
-  /// Serializes this DailyMeal to a JSON map.
+  /// Serializes this DailyMealModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of DailyMeal
+  /// Create a copy of DailyMealModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $DailyMealCopyWith<DailyMeal> get copyWith =>
+  $DailyMealModelCopyWith<DailyMealModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DailyMealCopyWith<$Res> {
-  factory $DailyMealCopyWith(DailyMeal value, $Res Function(DailyMeal) then) =
-      _$DailyMealCopyWithImpl<$Res, DailyMeal>;
+abstract class $DailyMealModelCopyWith<$Res> {
+  factory $DailyMealModelCopyWith(
+          DailyMealModel value, $Res Function(DailyMealModel) then) =
+      _$DailyMealModelCopyWithImpl<$Res, DailyMealModel>;
   @useResult
   $Res call(
       {String id,
@@ -56,16 +57,16 @@ abstract class $DailyMealCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DailyMealCopyWithImpl<$Res, $Val extends DailyMeal>
-    implements $DailyMealCopyWith<$Res> {
-  _$DailyMealCopyWithImpl(this._value, this._then);
+class _$DailyMealModelCopyWithImpl<$Res, $Val extends DailyMealModel>
+    implements $DailyMealModelCopyWith<$Res> {
+  _$DailyMealModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DailyMeal
+  /// Create a copy of DailyMealModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -118,7 +119,7 @@ class _$DailyMealCopyWithImpl<$Res, $Val extends DailyMeal>
 
 /// @nodoc
 abstract class _$$DailyMealImplCopyWith<$Res>
-    implements $DailyMealCopyWith<$Res> {
+    implements $DailyMealModelCopyWith<$Res> {
   factory _$$DailyMealImplCopyWith(
           _$DailyMealImpl value, $Res Function(_$DailyMealImpl) then) =
       __$$DailyMealImplCopyWithImpl<$Res>;
@@ -137,13 +138,13 @@ abstract class _$$DailyMealImplCopyWith<$Res>
 
 /// @nodoc
 class __$$DailyMealImplCopyWithImpl<$Res>
-    extends _$DailyMealCopyWithImpl<$Res, _$DailyMealImpl>
+    extends _$DailyMealModelCopyWithImpl<$Res, _$DailyMealImpl>
     implements _$$DailyMealImplCopyWith<$Res> {
   __$$DailyMealImplCopyWithImpl(
       _$DailyMealImpl _value, $Res Function(_$DailyMealImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DailyMeal
+  /// Create a copy of DailyMealModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -230,7 +231,7 @@ class _$DailyMealImpl implements _DailyMeal {
 
   @override
   String toString() {
-    return 'DailyMeal(id: $id, date: $date, mealType: $mealType, recipeId: $recipeId, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
+    return 'DailyMealModel(id: $id, date: $date, mealType: $mealType, recipeId: $recipeId, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
   }
 
   @override
@@ -258,7 +259,7 @@ class _$DailyMealImpl implements _DailyMeal {
   int get hashCode => Object.hash(runtimeType, id, date, mealType, recipeId,
       createdAt, updatedAt, version, deletedAt);
 
-  /// Create a copy of DailyMeal
+  /// Create a copy of DailyMealModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -274,7 +275,7 @@ class _$DailyMealImpl implements _DailyMeal {
   }
 }
 
-abstract class _DailyMeal implements DailyMeal {
+abstract class _DailyMeal implements DailyMealModel {
   const factory _DailyMeal(
       {required final String id,
       required final DateTime date,
@@ -305,7 +306,7 @@ abstract class _DailyMeal implements DailyMeal {
   @override
   DateTime? get deletedAt;
 
-  /// Create a copy of DailyMeal
+  /// Create a copy of DailyMealModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

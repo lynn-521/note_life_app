@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-DoseSchedule _$DoseScheduleFromJson(Map<String, dynamic> json) {
+DoseScheduleModel _$DoseScheduleModelFromJson(Map<String, dynamic> json) {
   return _DoseSchedule.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DoseSchedule {
+mixin _$DoseScheduleModel {
   String get id => throw _privateConstructorUsedError;
   String get medicationId => throw _privateConstructorUsedError;
   String get memberId => throw _privateConstructorUsedError;
@@ -29,21 +29,21 @@ mixin _$DoseSchedule {
   int get version => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
-  /// Serializes this DoseSchedule to a JSON map.
+  /// Serializes this DoseScheduleModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of DoseSchedule
+  /// Create a copy of DoseScheduleModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $DoseScheduleCopyWith<DoseSchedule> get copyWith =>
+  $DoseScheduleModelCopyWith<DoseScheduleModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DoseScheduleCopyWith<$Res> {
-  factory $DoseScheduleCopyWith(
-          DoseSchedule value, $Res Function(DoseSchedule) then) =
-      _$DoseScheduleCopyWithImpl<$Res, DoseSchedule>;
+abstract class $DoseScheduleModelCopyWith<$Res> {
+  factory $DoseScheduleModelCopyWith(
+          DoseScheduleModel value, $Res Function(DoseScheduleModel) then) =
+      _$DoseScheduleModelCopyWithImpl<$Res, DoseScheduleModel>;
   @useResult
   $Res call(
       {String id,
@@ -57,16 +57,16 @@ abstract class $DoseScheduleCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DoseScheduleCopyWithImpl<$Res, $Val extends DoseSchedule>
-    implements $DoseScheduleCopyWith<$Res> {
-  _$DoseScheduleCopyWithImpl(this._value, this._then);
+class _$DoseScheduleModelCopyWithImpl<$Res, $Val extends DoseScheduleModel>
+    implements $DoseScheduleModelCopyWith<$Res> {
+  _$DoseScheduleModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DoseSchedule
+  /// Create a copy of DoseScheduleModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -119,7 +119,7 @@ class _$DoseScheduleCopyWithImpl<$Res, $Val extends DoseSchedule>
 
 /// @nodoc
 abstract class _$$DoseScheduleImplCopyWith<$Res>
-    implements $DoseScheduleCopyWith<$Res> {
+    implements $DoseScheduleModelCopyWith<$Res> {
   factory _$$DoseScheduleImplCopyWith(
           _$DoseScheduleImpl value, $Res Function(_$DoseScheduleImpl) then) =
       __$$DoseScheduleImplCopyWithImpl<$Res>;
@@ -138,13 +138,13 @@ abstract class _$$DoseScheduleImplCopyWith<$Res>
 
 /// @nodoc
 class __$$DoseScheduleImplCopyWithImpl<$Res>
-    extends _$DoseScheduleCopyWithImpl<$Res, _$DoseScheduleImpl>
+    extends _$DoseScheduleModelCopyWithImpl<$Res, _$DoseScheduleImpl>
     implements _$$DoseScheduleImplCopyWith<$Res> {
   __$$DoseScheduleImplCopyWithImpl(
       _$DoseScheduleImpl _value, $Res Function(_$DoseScheduleImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DoseSchedule
+  /// Create a copy of DoseScheduleModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -231,7 +231,7 @@ class _$DoseScheduleImpl implements _DoseSchedule {
 
   @override
   String toString() {
-    return 'DoseSchedule(id: $id, medicationId: $medicationId, memberId: $memberId, scheduledTime: $scheduledTime, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
+    return 'DoseScheduleModel(id: $id, medicationId: $medicationId, memberId: $memberId, scheduledTime: $scheduledTime, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
   }
 
   @override
@@ -260,7 +260,7 @@ class _$DoseScheduleImpl implements _DoseSchedule {
   int get hashCode => Object.hash(runtimeType, id, medicationId, memberId,
       scheduledTime, createdAt, updatedAt, version, deletedAt);
 
-  /// Create a copy of DoseSchedule
+  /// Create a copy of DoseScheduleModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -276,7 +276,7 @@ class _$DoseScheduleImpl implements _DoseSchedule {
   }
 }
 
-abstract class _DoseSchedule implements DoseSchedule {
+abstract class _DoseSchedule implements DoseScheduleModel {
   const factory _DoseSchedule(
       {required final String id,
       required final String medicationId,
@@ -307,7 +307,7 @@ abstract class _DoseSchedule implements DoseSchedule {
   @override
   DateTime? get deletedAt;
 
-  /// Create a copy of DoseSchedule
+  /// Create a copy of DoseScheduleModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

@@ -1,6 +1,7 @@
 /// MedicationDao（class-diagram.mermaid · MedicationDao）。
 ///
-/// 用药计划 / 排程 / 记录。一对多：Member → Medication → DoseSchedule → DoseLog。
+/// 用药计划 / 排程 / 记录。一对多：MemberModel → MedicationModel → DoseScheduleModel → DoseLogModel。
+library;
 import 'package:drift/drift.dart';
 
 import '../../models/dose_log.dart';
@@ -10,7 +11,7 @@ import '../tables/dose_log_table.dart';
 import '../tables/dose_schedule_table.dart';
 import '../tables/medication_table.dart';
 import 'base_dao.dart';
-import '../app_database.dart' show AppDatabase;
+import '../app_database.dart';
 part 'medication_dao.g.dart';
 
 /// 用药数据访问。
@@ -21,14 +22,14 @@ class MedicationDao extends DatabaseAccessor<AppDatabase>
   MedicationDao(super.db);
 
   /// 监听某成员全部未删除用药计划。
-  Stream<List<Medication>> watchByMember(String memberId) =>
+  Stream<List<MedicationModel>> watchByMember(String memberId) =>
       (select(medications)
             ..where((t) => t.memberId.equals(memberId) & t.deletedAt.isNull()))
           .watch()
           .map((rows) => rows.map(_toMedication).toList());
 
   /// 获取某成员全部未删除用药计划。
-  Future<List<Medication>> getByMember(String memberId) async =>
+  Future<List<MedicationModel>> getByMember(String memberId) async =>
       (await (select(medications)
             ..where((t) => t.memberId.equals(memberId) & t.deletedAt.isNull()))
           .get())
@@ -36,7 +37,7 @@ class MedicationDao extends DatabaseAccessor<AppDatabase>
           .toList();
 
   /// 全部启用中的用药计划。
-  Future<List<Medication>> getAllActive() async =>
+  Future<List<MedicationModel>> getAllActive() async =>
       (await (select(medications)
             ..where((t) => t.active.equals(true) & t.deletedAt.isNull()))
           .get())
@@ -44,14 +45,14 @@ class MedicationDao extends DatabaseAccessor<AppDatabase>
           .toList();
 
   /// 按 id 获取用药计划。
-  Future<Medication?> getMedication(String id) async {
+  Future<MedicationModel?> getMedication(String id) async {
     final row = await (select(medications)..where((t) => t.id.equals(id)))
         .getSingleOrNull();
     return row == null ? null : _toMedication(row);
   }
 
   /// 保存用药计划（upsert）。
-  Future<void> saveMedication(Medication m) =>
+  Future<void> saveMedication(MedicationModel m) =>
       into(medications).insertOnConflictUpdate(_toMedicationCompanion(m));
 
   /// 软删用药计划。
@@ -60,11 +61,11 @@ class MedicationDao extends DatabaseAccessor<AppDatabase>
           .write(MedicationsCompanion(deletedAt: Value(now)));
 
   /// 保存服药排程（upsert）。
-  Future<void> saveDoseSchedule(DoseSchedule s) =>
+  Future<void> saveDoseSchedule(DoseScheduleModel s) =>
       into(doseSchedules).insertOnConflictUpdate(_toScheduleCompanion(s));
 
   /// 某用药计划的全部排程。
-  Future<List<DoseSchedule>> getSchedulesForMedication(String medicationId) async =>
+  Future<List<DoseScheduleModel>> getSchedulesForMedication(String medicationId) async =>
       (await (select(doseSchedules)
             ..where((t) => t.medicationId.equals(medicationId)))
           .get())
@@ -72,18 +73,18 @@ class MedicationDao extends DatabaseAccessor<AppDatabase>
           .toList();
 
   /// 保存服药记录（upsert，按稳定 id 幂等）。
-  Future<void> saveDoseLog(DoseLog log) =>
+  Future<void> saveDoseLog(DoseLogModel log) =>
       into(doseLogs).insertOnConflictUpdate(_toLogCompanion(log));
 
   /// 按 id 获取服药记录。
-  Future<DoseLog?> getDoseLogById(String id) async {
+  Future<DoseLogModel?> getDoseLogById(String id) async {
     final row = await (select(doseLogs)..where((t) => t.id.equals(id)))
         .getSingleOrNull();
     return row == null ? null : _toLog(row);
   }
 
   /// 某用药计划全部记录。
-  Future<List<DoseLog>> getLogsForMedication(String medicationId) async =>
+  Future<List<DoseLogModel>> getLogsForMedication(String medicationId) async =>
       (await (select(doseLogs)
             ..where((t) => t.medicationId.equals(medicationId)))
           .get())
@@ -91,18 +92,18 @@ class MedicationDao extends DatabaseAccessor<AppDatabase>
           .toList();
 
   /// 获取全部用药计划（含软删，供同步推送使用）。
-  Future<List<Medication>> getAllMedicationsForSync() async =>
+  Future<List<MedicationModel>> getAllMedicationsForSync() async =>
       (await select(medications).get()).map(_toMedication).toList();
 
   /// 获取全部服药排程（供同步推送使用）。
-  Future<List<DoseSchedule>> getAllSchedulesForSync() async =>
+  Future<List<DoseScheduleModel>> getAllSchedulesForSync() async =>
       (await select(doseSchedules).get()).map(_toSchedule).toList();
 
   /// 获取全部服药记录（供同步推送使用）。
-  Future<List<DoseLog>> getAllLogsForSync() async =>
+  Future<List<DoseLogModel>> getAllLogsForSync() async =>
       (await select(doseLogs).get()).map(_toLog).toList();
 
-  Medication _toMedication(MedicationRow r) => Medication(
+  MedicationModel _toMedication(Medication r) => MedicationModel(
         id: r.id,
         memberId: r.memberId,
         name: r.name,
@@ -119,7 +120,7 @@ class MedicationDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  DoseSchedule _toSchedule(DoseScheduleRow r) => DoseSchedule(
+  DoseScheduleModel _toSchedule(DoseSchedule r) => DoseScheduleModel(
         id: r.id,
         medicationId: r.medicationId,
         memberId: r.memberId,
@@ -130,7 +131,7 @@ class MedicationDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  DoseLog _toLog(DoseLogRow r) => DoseLog(
+  DoseLogModel _toLog(DoseLog r) => DoseLogModel(
         id: r.id,
         medicationId: r.medicationId,
         memberId: r.memberId,
@@ -144,8 +145,8 @@ class MedicationDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  MedicationsCompanion _toMedicationCompanion(Medication m) =>
-      MedicationsCompanion.insert(
+  MedicationsCompanion _toMedicationCompanion(MedicationModel m) =>
+      MedicationsCompanion(
         id: Value(m.id),
         memberId: Value(m.memberId),
         name: Value(m.name),
@@ -162,8 +163,8 @@ class MedicationDao extends DatabaseAccessor<AppDatabase>
         deletedAt: Value(m.deletedAt),
       );
 
-  DoseSchedulesCompanion _toScheduleCompanion(DoseSchedule s) =>
-      DoseSchedulesCompanion.insert(
+  DoseSchedulesCompanion _toScheduleCompanion(DoseScheduleModel s) =>
+      DoseSchedulesCompanion(
         id: Value(s.id),
         medicationId: Value(s.medicationId),
         memberId: Value(s.memberId),
@@ -174,7 +175,7 @@ class MedicationDao extends DatabaseAccessor<AppDatabase>
         deletedAt: Value(s.deletedAt),
       );
 
-  DoseLogsCompanion _toLogCompanion(DoseLog l) => DoseLogsCompanion.insert(
+  DoseLogsCompanion _toLogCompanion(DoseLogModel l) => DoseLogsCompanion(
         id: Value(l.id),
         medicationId: Value(l.medicationId),
         memberId: Value(l.memberId),

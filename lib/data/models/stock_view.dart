@@ -2,6 +2,7 @@
 ///
 /// 由 [InventoryRepository.expiringSoon] / [InventoryRepository.lowStock]
 /// 聚合产生：携带商品、批次、当前库存、剩余天数。
+library;
 import 'enums.dart';
 import 'medication.dart';
 import 'product.dart';
@@ -18,10 +19,10 @@ class StockView {
   });
 
   /// 商品。
-  final Product product;
+  final ProductModel product;
 
   /// 命中批次（临期场景下的具体批次；低库存可能为 null）。
-  final StockBatch? batch;
+  final StockBatchModel? batch;
 
   /// 当前库存（Σ入库 − Σ出库）。
   final num currentStock;
@@ -45,12 +46,12 @@ class DoseToday {
   });
 
   /// 用药计划。
-  final Medication medication;
+  final MedicationModel medication;
 
   /// 计划服药时刻（今天）。
   final DateTime scheduledTime;
 
-  /// 对应 DoseLog 的稳定 id。
+  /// 对应 DoseLogModel 的稳定 id。
   final String logId;
 
   /// 当前打卡状态。

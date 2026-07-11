@@ -1,6 +1,7 @@
-/// DailyMeals 表（class-diagram.mermaid · DailyMeal）。
+/// DailyMeals 表（class-diagram.mermaid · DailyMealModel）。
 ///
 /// 已补同步列 createdAt/updatedAt/version/deletedAt（对齐 backend_design §2.3）。
+library;
 import 'package:drift/drift.dart';
 
 import '../../models/enums.dart';
@@ -8,7 +9,6 @@ import '../converters/drift_converters.dart';
 
 /// 今日菜单表（某日某餐别的排菜）。
 class DailyMeals extends Table {
-  @override
   String get dataClassName => 'DailyMealRow';
 
   TextColumn get id => text()();

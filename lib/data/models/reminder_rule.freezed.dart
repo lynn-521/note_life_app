@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-ReminderRule _$ReminderRuleFromJson(Map<String, dynamic> json) {
+ReminderRuleModel _$ReminderRuleModelFromJson(Map<String, dynamic> json) {
   return _ReminderRule.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ReminderRule {
+mixin _$ReminderRuleModel {
   String get id => throw _privateConstructorUsedError;
   ReminderType get type => throw _privateConstructorUsedError;
   String get sourceRef => throw _privateConstructorUsedError;
@@ -32,21 +32,21 @@ mixin _$ReminderRule {
   int get version => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
-  /// Serializes this ReminderRule to a JSON map.
+  /// Serializes this ReminderRuleModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ReminderRule
+  /// Create a copy of ReminderRuleModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ReminderRuleCopyWith<ReminderRule> get copyWith =>
+  $ReminderRuleModelCopyWith<ReminderRuleModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ReminderRuleCopyWith<$Res> {
-  factory $ReminderRuleCopyWith(
-          ReminderRule value, $Res Function(ReminderRule) then) =
-      _$ReminderRuleCopyWithImpl<$Res, ReminderRule>;
+abstract class $ReminderRuleModelCopyWith<$Res> {
+  factory $ReminderRuleModelCopyWith(
+          ReminderRuleModel value, $Res Function(ReminderRuleModel) then) =
+      _$ReminderRuleModelCopyWithImpl<$Res, ReminderRuleModel>;
   @useResult
   $Res call(
       {String id,
@@ -63,16 +63,16 @@ abstract class $ReminderRuleCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ReminderRuleCopyWithImpl<$Res, $Val extends ReminderRule>
-    implements $ReminderRuleCopyWith<$Res> {
-  _$ReminderRuleCopyWithImpl(this._value, this._then);
+class _$ReminderRuleModelCopyWithImpl<$Res, $Val extends ReminderRuleModel>
+    implements $ReminderRuleModelCopyWith<$Res> {
+  _$ReminderRuleModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ReminderRule
+  /// Create a copy of ReminderRuleModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -140,7 +140,7 @@ class _$ReminderRuleCopyWithImpl<$Res, $Val extends ReminderRule>
 
 /// @nodoc
 abstract class _$$ReminderRuleImplCopyWith<$Res>
-    implements $ReminderRuleCopyWith<$Res> {
+    implements $ReminderRuleModelCopyWith<$Res> {
   factory _$$ReminderRuleImplCopyWith(
           _$ReminderRuleImpl value, $Res Function(_$ReminderRuleImpl) then) =
       __$$ReminderRuleImplCopyWithImpl<$Res>;
@@ -162,13 +162,13 @@ abstract class _$$ReminderRuleImplCopyWith<$Res>
 
 /// @nodoc
 class __$$ReminderRuleImplCopyWithImpl<$Res>
-    extends _$ReminderRuleCopyWithImpl<$Res, _$ReminderRuleImpl>
+    extends _$ReminderRuleModelCopyWithImpl<$Res, _$ReminderRuleImpl>
     implements _$$ReminderRuleImplCopyWith<$Res> {
   __$$ReminderRuleImplCopyWithImpl(
       _$ReminderRuleImpl _value, $Res Function(_$ReminderRuleImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ReminderRule
+  /// Create a copy of ReminderRuleModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -289,7 +289,7 @@ class _$ReminderRuleImpl implements _ReminderRule {
 
   @override
   String toString() {
-    return 'ReminderRule(id: $id, type: $type, sourceRef: $sourceRef, channel: $channel, config: $config, memberId: $memberId, enabled: $enabled, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
+    return 'ReminderRuleModel(id: $id, type: $type, sourceRef: $sourceRef, channel: $channel, config: $config, memberId: $memberId, enabled: $enabled, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
   }
 
   @override
@@ -331,7 +331,7 @@ class _$ReminderRuleImpl implements _ReminderRule {
       version,
       deletedAt);
 
-  /// Create a copy of ReminderRule
+  /// Create a copy of ReminderRuleModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -347,7 +347,7 @@ class _$ReminderRuleImpl implements _ReminderRule {
   }
 }
 
-abstract class _ReminderRule implements ReminderRule {
+abstract class _ReminderRule implements ReminderRuleModel {
   const factory _ReminderRule(
       {required final String id,
       required final ReminderType type,
@@ -387,7 +387,7 @@ abstract class _ReminderRule implements ReminderRule {
   @override
   DateTime? get deletedAt;
 
-  /// Create a copy of ReminderRule
+  /// Create a copy of ReminderRuleModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

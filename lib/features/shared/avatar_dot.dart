@@ -1,4 +1,5 @@
 /// 成员彩色圆点头像（DESIGN.md §4 Avatar Dot）。
+library;
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_theme_extension.dart';
@@ -14,7 +15,7 @@ class AvatarDot extends StatelessWidget {
     this.size,
   });
 
-  /// 头像底色（来自 Member.color / 成员调色板）。
+  /// 头像底色（来自 MemberModel.color / 成员调色板）。
   final Color color;
 
   /// 展示字符（通常为成员昵称首字）。

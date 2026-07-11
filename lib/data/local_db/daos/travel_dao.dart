@@ -1,4 +1,5 @@
 /// TravelDao（class-diagram.mermaid · TravelDao）。
+library;
 import 'package:drift/drift.dart';
 
 import '../../models/travel_day.dart';
@@ -8,7 +9,7 @@ import '../tables/travel_day_table.dart';
 import '../tables/travel_item_table.dart';
 import '../tables/travel_plan_table.dart';
 import 'base_dao.dart';
-import '../app_database.dart' show AppDatabase;
+import '../app_database.dart';
 part 'travel_dao.g.dart';
 
 /// 旅游计划书数据访问。
@@ -19,26 +20,26 @@ class TravelDao extends DatabaseAccessor<AppDatabase>
   TravelDao(super.db);
 
   /// 监听全部未删除计划书。
-  Stream<List<TravelPlan>> watchAll() =>
+  Stream<List<TravelPlanModel>> watchAll() =>
       (select(travelPlans)..where((t) => t.deletedAt.isNull()))
           .watch()
           .map((rows) => rows.map(_toPlan).toList());
 
   /// 获取全部未删除计划书。
-  Future<List<TravelPlan>> getAll() async =>
+  Future<List<TravelPlanModel>> getAll() async =>
       (await (select(travelPlans)..where((t) => t.deletedAt.isNull())).get())
           .map(_toPlan)
           .toList();
 
   /// 按 id 获取。
-  Future<TravelPlan?> getById(String id) async {
+  Future<TravelPlanModel?> getById(String id) async {
     final row = await (select(travelPlans)..where((t) => t.id.equals(id)))
         .getSingleOrNull();
     return row == null ? null : _toPlan(row);
   }
 
   /// 保存计划书（upsert，不含行程/清单子项）。
-  Future<void> saveTravelPlan(TravelPlan p) =>
+  Future<void> saveTravelPlan(TravelPlanModel p) =>
       into(travelPlans).insertOnConflictUpdate(_toPlanCompanion(p));
 
   /// 软删计划书（级联删除子项）。
@@ -52,11 +53,11 @@ class TravelDao extends DatabaseAccessor<AppDatabase>
   }
 
   /// 保存行程日（upsert）。
-  Future<void> saveTravelDay(TravelDay d) =>
+  Future<void> saveTravelDay(TravelDayModel d) =>
       into(travelDays).insertOnConflictUpdate(_toDayCompanion(d));
 
   /// 保存清单项（upsert）。
-  Future<void> saveTravelItem(TravelItem item) =>
+  Future<void> saveTravelItem(TravelItemModel item) =>
       into(travelItems).insertOnConflictUpdate(_toItemCompanion(item));
 
   /// 软删清单项。
@@ -64,7 +65,7 @@ class TravelDao extends DatabaseAccessor<AppDatabase>
       (delete(travelItems)..where((t) => t.id.equals(id))).go();
 
   /// 某计划书行程日（按天序）。
-  Future<List<TravelDay>> getDays(String planId) async =>
+  Future<List<TravelDayModel>> getDays(String planId) async =>
       (await (select(travelDays)
             ..where((t) => t.planId.equals(planId))
             ..orderBy([(t) => OrderingTerm.asc(t.dayIndex)]))
@@ -73,24 +74,24 @@ class TravelDao extends DatabaseAccessor<AppDatabase>
           .toList();
 
   /// 某计划书清单项。
-  Future<List<TravelItem>> getItems(String planId) async =>
+  Future<List<TravelItemModel>> getItems(String planId) async =>
       (await (select(travelItems)..where((t) => t.planId.equals(planId))).get())
           .map(_toItem)
           .toList();
 
   /// 获取全部计划书（含软删，供同步推送使用）。
-  Future<List<TravelPlan>> getAllPlansForSync() async =>
+  Future<List<TravelPlanModel>> getAllPlansForSync() async =>
       (await select(travelPlans).get()).map(_toPlan).toList();
 
   /// 获取全部行程日（含软删，供同步推送使用）。
-  Future<List<TravelDay>> getAllDaysForSync() async =>
+  Future<List<TravelDayModel>> getAllDaysForSync() async =>
       (await select(travelDays).get()).map(_toDay).toList();
 
   /// 获取全部清单项（含软删，供同步推送使用）。
-  Future<List<TravelItem>> getAllItemsForSync() async =>
+  Future<List<TravelItemModel>> getAllItemsForSync() async =>
       (await select(travelItems).get()).map(_toItem).toList();
 
-  TravelPlan _toPlan(TravelPlanRow r) => TravelPlan(
+  TravelPlanModel _toPlan(TravelPlan r) => TravelPlanModel(
         id: r.id,
         title: r.title,
         start: r.start,
@@ -102,7 +103,7 @@ class TravelDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  TravelDay _toDay(TravelDayRow r) => TravelDay(
+  TravelDayModel _toDay(TravelDay r) => TravelDayModel(
         id: r.id,
         planId: r.planId,
         dayIndex: r.dayIndex,
@@ -114,7 +115,7 @@ class TravelDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  TravelItem _toItem(TravelItemRow r) => TravelItem(
+  TravelItemModel _toItem(TravelItem r) => TravelItemModel(
         id: r.id,
         planId: r.planId,
         type: r.type,
@@ -129,8 +130,8 @@ class TravelDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  TravelPlansCompanion _toPlanCompanion(TravelPlan p) =>
-      TravelPlansCompanion.insert(
+  TravelPlansCompanion _toPlanCompanion(TravelPlanModel p) =>
+      TravelPlansCompanion(
         id: Value(p.id),
         title: Value(p.title),
         start: Value(p.start),
@@ -142,7 +143,7 @@ class TravelDao extends DatabaseAccessor<AppDatabase>
         deletedAt: Value(p.deletedAt),
       );
 
-  TravelDaysCompanion _toDayCompanion(TravelDay d) => TravelDaysCompanion.insert(
+  TravelDaysCompanion _toDayCompanion(TravelDayModel d) => TravelDaysCompanion(
         id: Value(d.id),
         planId: Value(d.planId),
         dayIndex: Value(d.dayIndex),
@@ -154,14 +155,14 @@ class TravelDao extends DatabaseAccessor<AppDatabase>
         deletedAt: Value(d.deletedAt),
       );
 
-  TravelItemsCompanion _toItemCompanion(TravelItem i) =>
-      TravelItemsCompanion.insert(
+  TravelItemsCompanion _toItemCompanion(TravelItemModel i) =>
+      TravelItemsCompanion(
         id: Value(i.id),
         planId: Value(i.planId),
         type: Value(i.type),
         name: Value(i.name),
-        qty: Value(i.qty),
-        amount: Value(i.amount),
+        qty: Value(i.qty?.toDouble()),
+        amount: Value(i.amount?.toDouble()),
         done: Value(i.done),
         assignedTo: Value(i.assignedTo),
         createdAt: Value(i.createdAt),

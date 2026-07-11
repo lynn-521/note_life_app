@@ -1,4 +1,5 @@
-/// OutboundOrders 表（class-diagram.mermaid · OutboundOrder）。
+/// OutboundOrders 表（class-diagram.mermaid · OutboundOrderModel）。
+library;
 import 'package:drift/drift.dart';
 
 import '../../models/enums.dart';
@@ -6,7 +7,6 @@ import '../converters/drift_converters.dart';
 
 /// 出库单表（事件溯源：append-only）。
 class OutboundOrders extends Table {
-  @override
   String get dataClassName => 'OutboundOrderRow';
 
   TextColumn get id => text()();

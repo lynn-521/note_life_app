@@ -5,6 +5,7 @@
 /// @TimeOfDayListConverter()
 /// required List<TimeOfDay> times,
 /// ```
+library;
 import 'package:json_annotation/json_annotation.dart';
 import 'package:flutter/material.dart';
 

@@ -1,4 +1,5 @@
 /// 开关组件（DESIGN.md §4 Switch）。开启=主色，圆头滑块。
+library;
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_theme_extension.dart';
@@ -24,12 +25,12 @@ class AppSwitch extends StatelessWidget {
     return Switch(
       value: value,
       onChanged: onChanged,
-      activeColor: theme.switchOnBg,
-      activeTrackColor: theme.switchOnBg.withOpacity(0.4),
+      activeThumbColor: theme.switchOnBg,
+      activeTrackColor: theme.switchOnBg.withValues(alpha: 0.4),
       inactiveThumbColor: theme.surface,
       inactiveTrackColor: theme.borderStrong,
-      trackOutlineColor: MaterialStateProperty.all(Colors.transparent),
-      thumbIcon: MaterialStateProperty.all(null),
+      trackOutlineColor: WidgetStateProperty.all(Colors.transparent),
+      thumbIcon: WidgetStateProperty.all(null),
     );
   }
 }

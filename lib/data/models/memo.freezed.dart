@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Memo _$MemoFromJson(Map<String, dynamic> json) {
+MemoModel _$MemoModelFromJson(Map<String, dynamic> json) {
   return _Memo.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Memo {
+mixin _$MemoModel {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
@@ -32,19 +32,20 @@ mixin _$Memo {
   int get version => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
-  /// Serializes this Memo to a JSON map.
+  /// Serializes this MemoModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of Memo
+  /// Create a copy of MemoModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $MemoCopyWith<Memo> get copyWith => throw _privateConstructorUsedError;
+  $MemoModelCopyWith<MemoModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MemoCopyWith<$Res> {
-  factory $MemoCopyWith(Memo value, $Res Function(Memo) then) =
-      _$MemoCopyWithImpl<$Res, Memo>;
+abstract class $MemoModelCopyWith<$Res> {
+  factory $MemoModelCopyWith(MemoModel value, $Res Function(MemoModel) then) =
+      _$MemoModelCopyWithImpl<$Res, MemoModel>;
   @useResult
   $Res call(
       {String id,
@@ -61,16 +62,16 @@ abstract class $MemoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MemoCopyWithImpl<$Res, $Val extends Memo>
-    implements $MemoCopyWith<$Res> {
-  _$MemoCopyWithImpl(this._value, this._then);
+class _$MemoModelCopyWithImpl<$Res, $Val extends MemoModel>
+    implements $MemoModelCopyWith<$Res> {
+  _$MemoModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Memo
+  /// Create a copy of MemoModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -137,7 +138,7 @@ class _$MemoCopyWithImpl<$Res, $Val extends Memo>
 }
 
 /// @nodoc
-abstract class _$$MemoImplCopyWith<$Res> implements $MemoCopyWith<$Res> {
+abstract class _$$MemoImplCopyWith<$Res> implements $MemoModelCopyWith<$Res> {
   factory _$$MemoImplCopyWith(
           _$MemoImpl value, $Res Function(_$MemoImpl) then) =
       __$$MemoImplCopyWithImpl<$Res>;
@@ -159,12 +160,12 @@ abstract class _$$MemoImplCopyWith<$Res> implements $MemoCopyWith<$Res> {
 
 /// @nodoc
 class __$$MemoImplCopyWithImpl<$Res>
-    extends _$MemoCopyWithImpl<$Res, _$MemoImpl>
+    extends _$MemoModelCopyWithImpl<$Res, _$MemoImpl>
     implements _$$MemoImplCopyWith<$Res> {
   __$$MemoImplCopyWithImpl(_$MemoImpl _value, $Res Function(_$MemoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Memo
+  /// Create a copy of MemoModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -278,7 +279,7 @@ class _$MemoImpl implements _Memo {
 
   @override
   String toString() {
-    return 'Memo(id: $id, title: $title, body: $body, authorId: $authorId, pinned: $pinned, done: $done, dueAt: $dueAt, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
+    return 'MemoModel(id: $id, title: $title, body: $body, authorId: $authorId, pinned: $pinned, done: $done, dueAt: $dueAt, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
   }
 
   @override
@@ -308,7 +309,7 @@ class _$MemoImpl implements _Memo {
   int get hashCode => Object.hash(runtimeType, id, title, body, authorId,
       pinned, done, dueAt, createdAt, updatedAt, version, deletedAt);
 
-  /// Create a copy of Memo
+  /// Create a copy of MemoModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -324,7 +325,7 @@ class _$MemoImpl implements _Memo {
   }
 }
 
-abstract class _Memo implements Memo {
+abstract class _Memo implements MemoModel {
   const factory _Memo(
       {required final String id,
       required final String title,
@@ -363,7 +364,7 @@ abstract class _Memo implements Memo {
   @override
   DateTime? get deletedAt;
 
-  /// Create a copy of Memo
+  /// Create a copy of MemoModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

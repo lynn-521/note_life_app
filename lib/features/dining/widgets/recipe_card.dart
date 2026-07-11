@@ -1,4 +1,5 @@
 /// 菜谱卡片（菜名 / 标签 / 谁会做圆点 / 排菜）。
+library;
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme_extension.dart';
@@ -19,10 +20,10 @@ class RecipeCard extends StatelessWidget {
   });
 
   /// 菜谱。
-  final Recipe recipe;
+  final RecipeModel recipe;
 
-  /// 成员映射（id → Member），用于「谁会做」圆点。
-  final Map<String, Member> membersById;
+  /// 成员映射（id → MemberModel），用于「谁会做」圆点。
+  final Map<String, MemberModel> membersById;
 
   /// 排菜回调。
   final VoidCallback onSchedule;

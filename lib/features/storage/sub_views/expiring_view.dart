@@ -1,4 +1,5 @@
 /// 临期 / 补货总览页（system_design §T05）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -31,7 +32,7 @@ class ExpiringView extends ConsumerWidget {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
                 children: [
-                  _SectionTitle(text: '即将过期（${AppConstants.expiryWarningDays} 天内）'),
+                  const _SectionTitle(text: '即将过期（${AppConstants.expiryWarningDays} 天内）'),
                   expiring.when(
                     data: (list) => list.isEmpty
                         ? const Padding(

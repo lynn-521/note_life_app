@@ -2,10 +2,10 @@
 ///
 /// 优先内网（短超时 1500ms）→ 超时 / 连接失败 / 非 2xx → 自动回退外网（长超时）；
 /// 记忆「当前可用地址」减少探测；[isReachable] 用 GET {baseUrl}/{healthPath} 探测。
+library;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
 import '../../data/models/family_server_config.dart';
 
@@ -135,7 +135,7 @@ class ApiClient {
       req.headers.set('Content-Type', 'application/json');
       req.persistentConnection = false;
       if (body != null) {
-        final bytes = utf8.encode(jsonEncode(body)) as Uint8List;
+        final bytes = utf8.encode(jsonEncode(body));
         req.add(bytes);
       }
       final resp = await req

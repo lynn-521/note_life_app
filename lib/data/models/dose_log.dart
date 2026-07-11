@@ -1,4 +1,5 @@
-/// 服药记录实体（class-diagram.mermaid · DoseLog）。
+/// 服药记录实体（class-diagram.mermaid · DoseLogModel）。
+library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
@@ -11,8 +12,8 @@ part 'dose_log.freezed.dart';
 /// id 由 [core/utils/id_generator.dart] 的 `doseLogId` 确定性生成，
 /// 便于 upsert 与幂等打卡。
 @freezed
-class DoseLog with _$DoseLog, SyncEntity {
-  const factory DoseLog({
+class DoseLogModel with _$DoseLogModel, SyncEntity {
+  const factory DoseLogModel({
     required String id,
     required String medicationId,
     required String memberId,
@@ -26,6 +27,6 @@ class DoseLog with _$DoseLog, SyncEntity {
     DateTime? deletedAt,
   }) = _DoseLog;
 
-  factory DoseLog.fromJson(Map<String, dynamic> json) =>
-      _$DoseLogFromJson(json);
+  factory DoseLogModel.fromJson(Map<String, dynamic> json) =>
+      _$DoseLogModelFromJson(json);
 }

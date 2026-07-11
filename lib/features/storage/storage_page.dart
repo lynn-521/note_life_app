@@ -1,4 +1,5 @@
 /// 仓库页（system_design §T05 · 根视图）。
+library;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

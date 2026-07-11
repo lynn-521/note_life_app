@@ -1,40 +1,41 @@
 /// MedicationRepository（class-diagram.mermaid · MedicationRepository）。
-import '../../models/dose_log.dart';
-import '../../models/dose_schedule.dart';
-import '../../models/medication.dart';
+library;
+import '../models/dose_log.dart';
+import '../models/dose_schedule.dart';
+import '../models/medication.dart';
 import '../local_db/app_database.dart';
 
 /// 用药仓储接口。
 abstract class MedicationRepository {
   /// 打卡（upsert 服药记录，按稳定 id 幂等）。
-  Future<void> checkIn(DoseLog log);
+  Future<void> checkIn(DoseLogModel log);
 
   /// 按 id 获取服药记录。
-  Future<DoseLog?> getDoseLogById(String id);
+  Future<DoseLogModel?> getDoseLogById(String id);
 
   /// 监听某成员用药计划。
-  Stream<List<Medication>> watchByMember(String memberId);
+  Stream<List<MedicationModel>> watchByMember(String memberId);
 
   /// 获取某成员用药计划。
-  Future<List<Medication>> getByMember(String memberId);
+  Future<List<MedicationModel>> getByMember(String memberId);
 
   /// 获取全部启用中的用药计划。
-  Future<List<Medication>> getAllActive();
+  Future<List<MedicationModel>> getAllActive();
 
   /// 按 id 获取用药计划。
-  Future<Medication?> getMedication(String id);
+  Future<MedicationModel?> getMedication(String id);
 
   /// 保存用药计划。
-  Future<void> saveMedication(Medication medication);
+  Future<void> saveMedication(MedicationModel medication);
 
   /// 软删用药计划。
   Future<void> deleteMedication(String id);
 
   /// 保存服药排程。
-  Future<void> saveDoseSchedule(DoseSchedule schedule);
+  Future<void> saveDoseSchedule(DoseScheduleModel schedule);
 
   /// 某用药计划全部记录。
-  Future<List<DoseLog>> getDoseLogsByMedication(String medicationId);
+  Future<List<DoseLogModel>> getDoseLogsByMedication(String medicationId);
 }
 
 /// 基于 Drift 的实现。
@@ -46,29 +47,29 @@ class MedicationRepositoryImpl implements MedicationRepository {
   final AppDatabase db;
 
   @override
-  Future<void> checkIn(DoseLog log) => db.medicationDao.saveDoseLog(log);
+  Future<void> checkIn(DoseLogModel log) => db.medicationDao.saveDoseLog(log);
 
   @override
-  Future<DoseLog?> getDoseLogById(String id) =>
+  Future<DoseLogModel?> getDoseLogById(String id) =>
       db.medicationDao.getDoseLogById(id);
 
   @override
-  Stream<List<Medication>> watchByMember(String memberId) =>
+  Stream<List<MedicationModel>> watchByMember(String memberId) =>
       db.medicationDao.watchByMember(memberId);
 
   @override
-  Future<List<Medication>> getByMember(String memberId) =>
+  Future<List<MedicationModel>> getByMember(String memberId) =>
       db.medicationDao.getByMember(memberId);
 
   @override
-  Future<List<Medication>> getAllActive() => db.medicationDao.getAllActive();
+  Future<List<MedicationModel>> getAllActive() => db.medicationDao.getAllActive();
 
   @override
-  Future<Medication?> getMedication(String id) =>
+  Future<MedicationModel?> getMedication(String id) =>
       db.medicationDao.getMedication(id);
 
   @override
-  Future<void> saveMedication(Medication medication) =>
+  Future<void> saveMedication(MedicationModel medication) =>
       db.medicationDao.saveMedication(medication);
 
   @override
@@ -76,10 +77,10 @@ class MedicationRepositoryImpl implements MedicationRepository {
       db.medicationDao.softDeleteMedication(id);
 
   @override
-  Future<void> saveDoseSchedule(DoseSchedule schedule) =>
+  Future<void> saveDoseSchedule(DoseScheduleModel schedule) =>
       db.medicationDao.saveDoseSchedule(schedule);
 
   @override
-  Future<List<DoseLog>> getDoseLogsByMedication(String medicationId) =>
-      db.medicationDao.getDoseLogsByMedication(medicationId);
+  Future<List<DoseLogModel>> getDoseLogsByMedication(String medicationId) =>
+      db.medicationDao.getLogsForMedication(medicationId);
 }

@@ -1,9 +1,9 @@
 /// 菜谱库浏览（搜索 + 标签筛选 + 谁会做圆点）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_theme_extension.dart';
-import '../../../core/theme/text_styles.dart';
 import '../../../data/models/member.dart';
 import '../../../data/models/recipe.dart';
 import '../../../features/shared/app_chip.dart';
@@ -35,10 +35,10 @@ class _RecipeLibraryViewState extends ConsumerState<RecipeLibraryView> {
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
-    final recipes = ref.watch(recipesProvider).valueOrNull ?? const <Recipe>[];
+    final recipes = ref.watch(recipesProvider).valueOrNull ?? const <RecipeModel>[];
     final tags = ref.watch(allRecipeTagsProvider);
-    final members = ref.watch(membersProvider).valueOrNull ?? const <Member>[];
-    final membersById = <String, Member>{
+    final members = ref.watch(membersProvider).valueOrNull ?? const <MemberModel>[];
+    final membersById = <String, MemberModel>{
       for (final m in members) m.id: m
     };
 

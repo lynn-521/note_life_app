@@ -1,10 +1,12 @@
 /// 单次服药列表项（待服 / 已服 / 跳过）。
+library;
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme_extension.dart';
 import '../../../core/theme/text_styles.dart';
 import '../../../data/models/enums.dart';
 import '../../../data/models/stock_view.dart';
+import '../../../core/utils/datetime_ext.dart';
 import '../../shared/app_badge.dart';
 import '../../shared/app_card.dart';
 

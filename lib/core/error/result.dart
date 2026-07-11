@@ -1,6 +1,7 @@
 /// 统一结果类型 [Result<T>]（system_design §7.5）。
 ///
 /// 用于仓储返回「成功或失败」语义，避免抛异常打断控制流。
+library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'result.freezed.dart';

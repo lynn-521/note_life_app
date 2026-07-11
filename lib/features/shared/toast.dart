@@ -1,4 +1,5 @@
 /// 全局 Toast（DESIGN.md §4 toast）。底部居中，自动消失，尊重 reduce-motion。
+library;
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_theme_extension.dart';
@@ -7,7 +8,6 @@ import '../../core/theme/text_styles.dart';
 /// 显示一条轻提示。基于 Overlay，1.6s 后消失。
 void showAppToast(BuildContext context, String message) {
   final overlay = Overlay.of(context);
-  if (overlay == null) return;
   late final OverlayEntry entry;
   entry = OverlayEntry(
     builder: (_) => _ToastWidget(

@@ -2,6 +2,7 @@
 ///
 /// 首版不接真实后端：push 返回成功空操作，pull 返回空。
 /// TODO(接入): 替换为 CloudBase / Supabase 实时同步，并更新 lastSyncAt。
+library;
 import '../models/base/sync_entity.dart';
 import 'sync_engine.dart';
 

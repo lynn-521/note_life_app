@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-TravelItem _$TravelItemFromJson(Map<String, dynamic> json) {
+TravelItemModel _$TravelItemModelFromJson(Map<String, dynamic> json) {
   return _TravelItem.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TravelItem {
+mixin _$TravelItemModel {
   String get id => throw _privateConstructorUsedError;
   String get planId => throw _privateConstructorUsedError;
   TravelItemType get type => throw _privateConstructorUsedError;
@@ -33,21 +33,21 @@ mixin _$TravelItem {
   int get version => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
-  /// Serializes this TravelItem to a JSON map.
+  /// Serializes this TravelItemModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of TravelItem
+  /// Create a copy of TravelItemModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $TravelItemCopyWith<TravelItem> get copyWith =>
+  $TravelItemModelCopyWith<TravelItemModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TravelItemCopyWith<$Res> {
-  factory $TravelItemCopyWith(
-          TravelItem value, $Res Function(TravelItem) then) =
-      _$TravelItemCopyWithImpl<$Res, TravelItem>;
+abstract class $TravelItemModelCopyWith<$Res> {
+  factory $TravelItemModelCopyWith(
+          TravelItemModel value, $Res Function(TravelItemModel) then) =
+      _$TravelItemModelCopyWithImpl<$Res, TravelItemModel>;
   @useResult
   $Res call(
       {String id,
@@ -65,16 +65,16 @@ abstract class $TravelItemCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TravelItemCopyWithImpl<$Res, $Val extends TravelItem>
-    implements $TravelItemCopyWith<$Res> {
-  _$TravelItemCopyWithImpl(this._value, this._then);
+class _$TravelItemModelCopyWithImpl<$Res, $Val extends TravelItemModel>
+    implements $TravelItemModelCopyWith<$Res> {
+  _$TravelItemModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TravelItem
+  /// Create a copy of TravelItemModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -147,7 +147,7 @@ class _$TravelItemCopyWithImpl<$Res, $Val extends TravelItem>
 
 /// @nodoc
 abstract class _$$TravelItemImplCopyWith<$Res>
-    implements $TravelItemCopyWith<$Res> {
+    implements $TravelItemModelCopyWith<$Res> {
   factory _$$TravelItemImplCopyWith(
           _$TravelItemImpl value, $Res Function(_$TravelItemImpl) then) =
       __$$TravelItemImplCopyWithImpl<$Res>;
@@ -170,13 +170,13 @@ abstract class _$$TravelItemImplCopyWith<$Res>
 
 /// @nodoc
 class __$$TravelItemImplCopyWithImpl<$Res>
-    extends _$TravelItemCopyWithImpl<$Res, _$TravelItemImpl>
+    extends _$TravelItemModelCopyWithImpl<$Res, _$TravelItemImpl>
     implements _$$TravelItemImplCopyWith<$Res> {
   __$$TravelItemImplCopyWithImpl(
       _$TravelItemImpl _value, $Res Function(_$TravelItemImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TravelItem
+  /// Create a copy of TravelItemModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -297,7 +297,7 @@ class _$TravelItemImpl implements _TravelItem {
 
   @override
   String toString() {
-    return 'TravelItem(id: $id, planId: $planId, type: $type, name: $name, qty: $qty, amount: $amount, done: $done, assignedTo: $assignedTo, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
+    return 'TravelItemModel(id: $id, planId: $planId, type: $type, name: $name, qty: $qty, amount: $amount, done: $done, assignedTo: $assignedTo, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
   }
 
   @override
@@ -328,7 +328,7 @@ class _$TravelItemImpl implements _TravelItem {
   int get hashCode => Object.hash(runtimeType, id, planId, type, name, qty,
       amount, done, assignedTo, createdAt, updatedAt, version, deletedAt);
 
-  /// Create a copy of TravelItem
+  /// Create a copy of TravelItemModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -344,7 +344,7 @@ class _$TravelItemImpl implements _TravelItem {
   }
 }
 
-abstract class _TravelItem implements TravelItem {
+abstract class _TravelItem implements TravelItemModel {
   const factory _TravelItem(
       {required final String id,
       required final String planId,
@@ -387,7 +387,7 @@ abstract class _TravelItem implements TravelItem {
   @override
   DateTime? get deletedAt;
 
-  /// Create a copy of TravelItem
+  /// Create a copy of TravelItemModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

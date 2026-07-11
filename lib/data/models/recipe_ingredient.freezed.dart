@@ -14,46 +14,48 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-RecipeIngredient _$RecipeIngredientFromJson(Map<String, dynamic> json) {
+RecipeIngredientModel _$RecipeIngredientModelFromJson(
+    Map<String, dynamic> json) {
   return _RecipeIngredient.fromJson(json);
 }
 
 /// @nodoc
-mixin _$RecipeIngredient {
+mixin _$RecipeIngredientModel {
   String get productId => throw _privateConstructorUsedError;
   num get amount => throw _privateConstructorUsedError;
   String? get unit => throw _privateConstructorUsedError;
 
-  /// Serializes this RecipeIngredient to a JSON map.
+  /// Serializes this RecipeIngredientModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of RecipeIngredient
+  /// Create a copy of RecipeIngredientModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $RecipeIngredientCopyWith<RecipeIngredient> get copyWith =>
+  $RecipeIngredientModelCopyWith<RecipeIngredientModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RecipeIngredientCopyWith<$Res> {
-  factory $RecipeIngredientCopyWith(
-          RecipeIngredient value, $Res Function(RecipeIngredient) then) =
-      _$RecipeIngredientCopyWithImpl<$Res, RecipeIngredient>;
+abstract class $RecipeIngredientModelCopyWith<$Res> {
+  factory $RecipeIngredientModelCopyWith(RecipeIngredientModel value,
+          $Res Function(RecipeIngredientModel) then) =
+      _$RecipeIngredientModelCopyWithImpl<$Res, RecipeIngredientModel>;
   @useResult
   $Res call({String productId, num amount, String? unit});
 }
 
 /// @nodoc
-class _$RecipeIngredientCopyWithImpl<$Res, $Val extends RecipeIngredient>
-    implements $RecipeIngredientCopyWith<$Res> {
-  _$RecipeIngredientCopyWithImpl(this._value, this._then);
+class _$RecipeIngredientModelCopyWithImpl<$Res,
+        $Val extends RecipeIngredientModel>
+    implements $RecipeIngredientModelCopyWith<$Res> {
+  _$RecipeIngredientModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RecipeIngredient
+  /// Create a copy of RecipeIngredientModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -81,7 +83,7 @@ class _$RecipeIngredientCopyWithImpl<$Res, $Val extends RecipeIngredient>
 
 /// @nodoc
 abstract class _$$RecipeIngredientImplCopyWith<$Res>
-    implements $RecipeIngredientCopyWith<$Res> {
+    implements $RecipeIngredientModelCopyWith<$Res> {
   factory _$$RecipeIngredientImplCopyWith(_$RecipeIngredientImpl value,
           $Res Function(_$RecipeIngredientImpl) then) =
       __$$RecipeIngredientImplCopyWithImpl<$Res>;
@@ -92,13 +94,13 @@ abstract class _$$RecipeIngredientImplCopyWith<$Res>
 
 /// @nodoc
 class __$$RecipeIngredientImplCopyWithImpl<$Res>
-    extends _$RecipeIngredientCopyWithImpl<$Res, _$RecipeIngredientImpl>
+    extends _$RecipeIngredientModelCopyWithImpl<$Res, _$RecipeIngredientImpl>
     implements _$$RecipeIngredientImplCopyWith<$Res> {
   __$$RecipeIngredientImplCopyWithImpl(_$RecipeIngredientImpl _value,
       $Res Function(_$RecipeIngredientImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RecipeIngredient
+  /// Create a copy of RecipeIngredientModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -142,7 +144,7 @@ class _$RecipeIngredientImpl implements _RecipeIngredient {
 
   @override
   String toString() {
-    return 'RecipeIngredient(productId: $productId, amount: $amount, unit: $unit)';
+    return 'RecipeIngredientModel(productId: $productId, amount: $amount, unit: $unit)';
   }
 
   @override
@@ -160,7 +162,7 @@ class _$RecipeIngredientImpl implements _RecipeIngredient {
   @override
   int get hashCode => Object.hash(runtimeType, productId, amount, unit);
 
-  /// Create a copy of RecipeIngredient
+  /// Create a copy of RecipeIngredientModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -177,7 +179,7 @@ class _$RecipeIngredientImpl implements _RecipeIngredient {
   }
 }
 
-abstract class _RecipeIngredient implements RecipeIngredient {
+abstract class _RecipeIngredient implements RecipeIngredientModel {
   const factory _RecipeIngredient(
       {required final String productId,
       required final num amount,
@@ -193,7 +195,7 @@ abstract class _RecipeIngredient implements RecipeIngredient {
   @override
   String? get unit;
 
-  /// Create a copy of RecipeIngredient
+  /// Create a copy of RecipeIngredientModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

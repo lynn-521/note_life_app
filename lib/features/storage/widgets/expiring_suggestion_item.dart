@@ -1,4 +1,5 @@
 /// 临期 / 补货建议项（StockView）。
+library;
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_theme_extension.dart';

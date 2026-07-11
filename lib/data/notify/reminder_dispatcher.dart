@@ -1,6 +1,7 @@
 /// ReminderDispatcher（system_design §1.7 / class-diagram.mermaid）。
 ///
-/// 按规则渠道从注册表取 channel → 下发 → 返回 [ReminderLog]（由引擎写入库）。
+/// 按规则渠道从注册表取 channel → 下发 → 返回 [ReminderLogModel]（由引擎写入库）。
+library;
 import '../models/enums.dart';
 import '../models/reminder_log.dart';
 import '../models/reminder_rule.dart';
@@ -15,7 +16,7 @@ class ReminderDispatcher {
   final Map<ChannelType, NotificationChannel> _registry;
 
   /// 按规则下发；目标渠道不可用时回退本地日志渠道。
-  Future<ReminderLog> dispatch(ReminderRule rule) async {
+  Future<ReminderLogModel> dispatch(ReminderRuleModel rule) async {
     final channel =
         _registry[rule.channel] ?? _registry[ChannelType.localLog]!;
     final targets =
@@ -27,7 +28,7 @@ class ReminderDispatcher {
       payload: rule.config,
     );
     final now = DateTime.now();
-    return ReminderLog(
+    return ReminderLogModel(
       id: IdGenerator.newId(IdPrefix.log),
       ruleId: rule.id,
       firedAt: now,
@@ -41,7 +42,7 @@ class ReminderDispatcher {
     );
   }
 
-  String _title(ReminderRule rule) {
+  String _title(ReminderRuleModel rule) {
     switch (rule.type) {
       case ReminderType.expiry:
         return '🥫 临期提醒';
@@ -56,7 +57,7 @@ class ReminderDispatcher {
     }
   }
 
-  String _body(ReminderRule rule) {
+  String _body(ReminderRuleModel rule) {
     switch (rule.type) {
       case ReminderType.expiry:
         return '有商品即将过期，记得尽快食用～';

@@ -1,20 +1,21 @@
 /// MemberRepository（class-diagram.mermaid · MemberRepository）。
-import '../../models/member.dart';
+library;
+import '../models/member.dart';
 import '../local_db/app_database.dart';
 
 /// 家庭成员仓储接口。
 abstract class MemberRepository {
   /// 获取全部未删除成员。
-  Future<List<Member>> getAll();
+  Future<List<MemberModel>> getAll();
 
   /// 监听全部未删除成员。
-  Stream<List<Member>> watchAll();
+  Stream<List<MemberModel>> watchAll();
 
   /// 按 id 获取。
-  Future<Member?> getById(String id);
+  Future<MemberModel?> getById(String id);
 
   /// 保存（upsert）。
-  Future<void> save(Member member);
+  Future<void> save(MemberModel member);
 
   /// 软删。
   Future<void> delete(String id);
@@ -29,16 +30,16 @@ class MemberRepositoryImpl implements MemberRepository {
   final AppDatabase db;
 
   @override
-  Future<List<Member>> getAll() => db.memberDao.getAll();
+  Future<List<MemberModel>> getAll() => db.memberDao.getAll();
 
   @override
-  Stream<List<Member>> watchAll() => db.memberDao.watchAll();
+  Stream<List<MemberModel>> watchAll() => db.memberDao.watchAll();
 
   @override
-  Future<Member?> getById(String id) => db.memberDao.getById(id);
+  Future<MemberModel?> getById(String id) => db.memberDao.getById(id);
 
   @override
-  Future<void> save(Member member) => db.memberDao.save(member);
+  Future<void> save(MemberModel member) => db.memberDao.save(member);
 
   @override
   Future<void> delete(String id) => db.memberDao.softDelete(id);

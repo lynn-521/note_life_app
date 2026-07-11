@@ -1,4 +1,5 @@
-/// 用药计划实体（class-diagram.mermaid · Medication）。
+/// 用药计划实体（class-diagram.mermaid · MedicationModel）。
+library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +11,8 @@ part 'medication.freezed.dart';
 
 /// 用药计划：按成员绑定，含频次与每日服药时间点。
 @freezed
-class Medication with _$Medication, SyncEntity {
-  const factory Medication({
+class MedicationModel with _$MedicationModel, SyncEntity {
+  const factory MedicationModel({
     required String id,
     required String memberId,
     required String name,
@@ -29,6 +30,6 @@ class Medication with _$Medication, SyncEntity {
     DateTime? deletedAt,
   }) = _Medication;
 
-  factory Medication.fromJson(Map<String, dynamic> json) =>
-      _$MedicationFromJson(json);
+  factory MedicationModel.fromJson(Map<String, dynamic> json) =>
+      _$MedicationModelFromJson(json);
 }

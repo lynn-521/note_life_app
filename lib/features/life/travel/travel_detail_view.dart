@@ -1,4 +1,5 @@
 /// 旅游计划书详情（每日行程 / 行李清单 / 预算）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -36,12 +37,12 @@ class TravelDetailView extends ConsumerWidget {
     final plans = ref.watch(travelPlansProvider);
     final days = ref.watch(travelDaysProvider(planId));
     final items = ref.watch(travelItemsProvider(planId));
-    final members = ref.watch(membersProvider).valueOrNull ?? const <Member>[];
-    final membersById = <String, Member>{
+    final members = ref.watch(membersProvider).valueOrNull ?? const <MemberModel>[];
+    final membersById = <String, MemberModel>{
       for (final m in members) m.id: m
     };
 
-    TravelPlan? plan;
+    TravelPlanModel? plan;
     final matched =
         plans.valueOrNull?.where((p) => p.id == planId).toList() ?? [];
     if (matched.isNotEmpty) plan = matched.first;
@@ -65,19 +66,19 @@ class TravelDetailView extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
     AppTheme theme,
-    TravelPlan plan,
-    AsyncValue<List<TravelDay>> days,
-    AsyncValue<List<TravelItem>> items,
-    Map<String, Member> membersById,
+    TravelPlanModel plan,
+    AsyncValue<List<TravelDayModel>> days,
+    AsyncValue<List<TravelItemModel>> items,
+    Map<String, MemberModel> membersById,
   ) {
     final luggage = items.valueOrNull
             ?.where((i) => i.type == TravelItemType.luggage)
             .toList() ??
-        const <TravelItem>[];
+        const <TravelItemModel>[];
     final budget = items.valueOrNull
             ?.where((i) => i.type == TravelItemType.budget)
             .toList() ??
-        const <TravelItem>[];
+        const <TravelItemModel>[];
     final total = budget.fold<num>(0, (s, i) => s + (i.amount ?? 0));
 
     return Column(
@@ -123,7 +124,7 @@ class TravelDetailView extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              _SectionTitle(text: '每日行程'),
+              const _SectionTitle(text: '每日行程'),
               days.when(
                 data: (list) => list.isEmpty
                     ? const Padding(
@@ -155,7 +156,7 @@ class TravelDetailView extends ConsumerWidget {
                 onPressed: () => _addDay(context, ref, plan.id),
               ),
               const SizedBox(height: 16),
-              _SectionTitle(text: '行李清单'),
+              const _SectionTitle(text: '行李清单'),
               luggage.isEmpty
                   ? const Padding(
                       padding: EdgeInsets.symmetric(vertical: 8),
@@ -184,7 +185,7 @@ class TravelDetailView extends ConsumerWidget {
                     _addItem(context, ref, plan.id, TravelItemType.luggage),
               ),
               const SizedBox(height: 16),
-              _SectionTitle(text: '预算项'),
+              const _SectionTitle(text: '预算项'),
               budget.isEmpty
                   ? const Padding(
                       padding: EdgeInsets.symmetric(vertical: 8),
@@ -225,7 +226,7 @@ class TravelDetailView extends ConsumerWidget {
     ref.invalidate(travelItemsProvider(planId));
   }
 
-  void _editPlan(BuildContext context, TravelPlan plan) {
+  void _editPlan(BuildContext context, TravelPlanModel plan) {
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -235,7 +236,7 @@ class TravelDetailView extends ConsumerWidget {
   }
 
   Future<void> _editAgenda(
-      BuildContext context, WidgetRef ref, TravelDay day) async {
+      BuildContext context, WidgetRef ref, TravelDayModel day) async {
     final controller = TextEditingController(text: day.agenda);
     final result = await showModalBottomSheet<String?>(
       context: context,
@@ -257,10 +258,11 @@ class TravelDetailView extends ConsumerWidget {
     final now = DateTime.now();
     final existing =
         await ref.read(repositoriesProvider).travel.getDays(planId);
+    if (!context.mounted) return;
     final next = existing.isEmpty
         ? 1
         : existing.map((d) => d.dayIndex).reduce((a, b) => a > b ? a : b) + 1;
-    final day = TravelDay(
+    final day = TravelDayModel(
       id: IdGenerator.newId(IdPrefix.day),
       planId: planId,
       dayIndex: next,
@@ -280,7 +282,7 @@ class TravelDetailView extends ConsumerWidget {
     );
     controller.dispose();
     if (result != null) {
-      final newDay = TravelDay(
+      final newDay = TravelDayModel(
         id: IdGenerator.newId(IdPrefix.day),
         planId: planId,
         dayIndex: next,
@@ -314,8 +316,8 @@ class _Header extends StatelessWidget {
     required this.onEdit,
     required this.onBack,
   });
-  final TravelPlan plan;
-  final Map<String, Member> membersById;
+  final TravelPlanModel plan;
+  final Map<String, MemberModel> membersById;
   final VoidCallback onEdit;
   final VoidCallback onBack;
 
@@ -328,7 +330,7 @@ class _Header extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(8, 8, 16, 12),
       decoration: BoxDecoration(
-        color: theme.bg.withOpacity(0.88),
+        color: theme.bg.withValues(alpha: 0.88),
         border: Border(bottom: BorderSide(color: theme.border)),
       ),
       child: SafeArea(
@@ -421,7 +423,7 @@ class _AgendaSheet extends StatelessWidget {
     required this.controller,
     this.isNew = false,
   });
-  final TravelDay day;
+  final TravelDayModel day;
   final TextEditingController controller;
   final bool isNew;
 

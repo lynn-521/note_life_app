@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-StockBatch _$StockBatchFromJson(Map<String, dynamic> json) {
+StockBatchModel _$StockBatchModelFromJson(Map<String, dynamic> json) {
   return _StockBatch.fromJson(json);
 }
 
 /// @nodoc
-mixin _$StockBatch {
+mixin _$StockBatchModel {
   String get id => throw _privateConstructorUsedError;
   String get productId => throw _privateConstructorUsedError;
   num get quantity => throw _privateConstructorUsedError;
@@ -31,21 +31,21 @@ mixin _$StockBatch {
   int get version => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
-  /// Serializes this StockBatch to a JSON map.
+  /// Serializes this StockBatchModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of StockBatch
+  /// Create a copy of StockBatchModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $StockBatchCopyWith<StockBatch> get copyWith =>
+  $StockBatchModelCopyWith<StockBatchModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StockBatchCopyWith<$Res> {
-  factory $StockBatchCopyWith(
-          StockBatch value, $Res Function(StockBatch) then) =
-      _$StockBatchCopyWithImpl<$Res, StockBatch>;
+abstract class $StockBatchModelCopyWith<$Res> {
+  factory $StockBatchModelCopyWith(
+          StockBatchModel value, $Res Function(StockBatchModel) then) =
+      _$StockBatchModelCopyWithImpl<$Res, StockBatchModel>;
   @useResult
   $Res call(
       {String id,
@@ -61,16 +61,16 @@ abstract class $StockBatchCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$StockBatchCopyWithImpl<$Res, $Val extends StockBatch>
-    implements $StockBatchCopyWith<$Res> {
-  _$StockBatchCopyWithImpl(this._value, this._then);
+class _$StockBatchModelCopyWithImpl<$Res, $Val extends StockBatchModel>
+    implements $StockBatchModelCopyWith<$Res> {
+  _$StockBatchModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of StockBatch
+  /// Create a copy of StockBatchModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -133,7 +133,7 @@ class _$StockBatchCopyWithImpl<$Res, $Val extends StockBatch>
 
 /// @nodoc
 abstract class _$$StockBatchImplCopyWith<$Res>
-    implements $StockBatchCopyWith<$Res> {
+    implements $StockBatchModelCopyWith<$Res> {
   factory _$$StockBatchImplCopyWith(
           _$StockBatchImpl value, $Res Function(_$StockBatchImpl) then) =
       __$$StockBatchImplCopyWithImpl<$Res>;
@@ -154,13 +154,13 @@ abstract class _$$StockBatchImplCopyWith<$Res>
 
 /// @nodoc
 class __$$StockBatchImplCopyWithImpl<$Res>
-    extends _$StockBatchCopyWithImpl<$Res, _$StockBatchImpl>
+    extends _$StockBatchModelCopyWithImpl<$Res, _$StockBatchImpl>
     implements _$$StockBatchImplCopyWith<$Res> {
   __$$StockBatchImplCopyWithImpl(
       _$StockBatchImpl _value, $Res Function(_$StockBatchImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of StockBatch
+  /// Create a copy of StockBatchModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -263,7 +263,7 @@ class _$StockBatchImpl implements _StockBatch {
 
   @override
   String toString() {
-    return 'StockBatch(id: $id, productId: $productId, quantity: $quantity, expireDate: $expireDate, batchNo: $batchNo, inboundAt: $inboundAt, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
+    return 'StockBatchModel(id: $id, productId: $productId, quantity: $quantity, expireDate: $expireDate, batchNo: $batchNo, inboundAt: $inboundAt, createdAt: $createdAt, updatedAt: $updatedAt, version: $version, deletedAt: $deletedAt)';
   }
 
   @override
@@ -295,7 +295,7 @@ class _$StockBatchImpl implements _StockBatch {
   int get hashCode => Object.hash(runtimeType, id, productId, quantity,
       expireDate, batchNo, inboundAt, createdAt, updatedAt, version, deletedAt);
 
-  /// Create a copy of StockBatch
+  /// Create a copy of StockBatchModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -311,7 +311,7 @@ class _$StockBatchImpl implements _StockBatch {
   }
 }
 
-abstract class _StockBatch implements StockBatch {
+abstract class _StockBatch implements StockBatchModel {
   const factory _StockBatch(
       {required final String id,
       required final String productId,
@@ -348,7 +348,7 @@ abstract class _StockBatch implements StockBatch {
   @override
   DateTime? get deletedAt;
 
-  /// Create a copy of StockBatch
+  /// Create a copy of StockBatchModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

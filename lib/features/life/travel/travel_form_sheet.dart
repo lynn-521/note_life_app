@@ -1,4 +1,5 @@
 /// 旅游计划书编辑弹层（标题 / 日期 / 参与成员）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,7 +21,7 @@ class TravelFormSheet extends ConsumerStatefulWidget {
   const TravelFormSheet({super.key, this.plan});
 
   /// 编辑对象（null 新建）。
-  final TravelPlan? plan;
+  final TravelPlanModel? plan;
 
   @override
   ConsumerState<TravelFormSheet> createState() => _TravelFormSheetState();
@@ -51,7 +52,7 @@ class _TravelFormSheetState extends ConsumerState<TravelFormSheet> {
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme.of(context);
-    final members = ref.watch(membersProvider).valueOrNull ?? const <Member>[];
+    final members = ref.watch(membersProvider).valueOrNull ?? const <MemberModel>[];
     final isEdit = widget.plan != null;
     return Container(
       decoration: BoxDecoration(
@@ -99,7 +100,7 @@ class _TravelFormSheetState extends ConsumerState<TravelFormSheet> {
               spacing: 10,
               runSpacing: 10,
               children: members
-                  .map((m) {
+                  .map<Widget>((m) {
                     final selected = _memberIds.contains(m.id);
                     return GestureDetector(
                       onTap: () => setState(() {
@@ -248,7 +249,7 @@ class _TravelFormSheetState extends ConsumerState<TravelFormSheet> {
       showAppToast(context, '请选择出发与返回日期');
       return;
     }
-    final plan = TravelPlan(
+    final plan = TravelPlanModel(
       id: widget.plan?.id ?? IdGenerator.newId(IdPrefix.travel),
       title: title,
       start: _start!,

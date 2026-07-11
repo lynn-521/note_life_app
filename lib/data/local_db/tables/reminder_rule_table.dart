@@ -1,4 +1,5 @@
-/// ReminderRules 表（class-diagram.mermaid · ReminderRule）。
+/// ReminderRules 表（class-diagram.mermaid · ReminderRuleModel）。
+library;
 import 'package:drift/drift.dart';
 
 import '../../models/enums.dart';
@@ -6,7 +7,6 @@ import '../converters/drift_converters.dart';
 
 /// 提醒规则表。
 class ReminderRules extends Table {
-  @override
   String get dataClassName => 'ReminderRuleRow';
 
   TextColumn get id => text()();

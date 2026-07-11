@@ -1,6 +1,7 @@
-/// 今日菜单实体（class-diagram.mermaid · DailyMeal）。
+/// 今日菜单实体（class-diagram.mermaid · DailyMealModel）。
 ///
 /// 已补 [SyncEntity]（与 App 端其它同步实体一致，对齐 backend_design §2.3 / §四.2）。
+library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
@@ -10,8 +11,8 @@ part 'daily_meal.freezed.dart';
 
 /// 某日某餐别排的菜（关联菜谱）。
 @freezed
-class DailyMeal with _$DailyMeal, SyncEntity {
-  const factory DailyMeal({
+class DailyMealModel with _$DailyMealModel, SyncEntity {
+  const factory DailyMealModel({
     required String id,
     required DateTime date,
     required MealType mealType,
@@ -22,6 +23,6 @@ class DailyMeal with _$DailyMeal, SyncEntity {
     DateTime? deletedAt,
   }) = _DailyMeal;
 
-  factory DailyMeal.fromJson(Map<String, dynamic> json) =>
-      _$DailyMealFromJson(json);
+  factory DailyMealModel.fromJson(Map<String, dynamic> json) =>
+      _$DailyMealModelFromJson(json);
 }

@@ -1,17 +1,17 @@
 /// 健康页（system_design §T06）。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/app_theme_extension.dart';
-import '../../core/theme/design_tokens.dart';
-import '../../core/theme/text_styles.dart';
 import '../../data/models/enums.dart';
 import '../../data/models/member.dart';
+import '../../data/models/stock_view.dart';
 import '../../providers/app_providers.dart';
 import '../shared/confetti.dart';
 import '../shared/empty_state.dart';
 import '../shared/screen_header.dart';
-import 'package:family_butler/providers/health_providers.dart';
+import 'package:family_butler/features/health/providers/health_providers.dart';
 import 'widgets/dose_list_item.dart';
 import 'widgets/medication_progress_ring.dart';
 import 'widgets/member_switch.dart';
@@ -56,7 +56,7 @@ class HealthPage extends ConsumerWidget {
 class _HealthBody extends ConsumerWidget {
   const _HealthBody({required this.member});
 
-  final Member member;
+  final MemberModel member;
 
   Future<void> _onCheckIn(
     WidgetRef ref,
@@ -74,7 +74,6 @@ class _HealthBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = AppTheme.of(context);
     final doses = ref.watch(todayDosesProvider(member.id));
     return doses.when(
       data: (list) {

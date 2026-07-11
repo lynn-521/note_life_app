@@ -1,10 +1,11 @@
 /// MemberDao（class-diagram.mermaid · MemberDao）。
+library;
 import 'package:drift/drift.dart';
 
 import '../../models/member.dart';
 import '../tables/member_table.dart';
 import 'base_dao.dart';
-import '../app_database.dart' show AppDatabase;
+import '../app_database.dart';
 part 'member_dao.g.dart';
 
 /// 家庭成员数据访问。
@@ -15,30 +16,30 @@ class MemberDao extends DatabaseAccessor<AppDatabase>
   MemberDao(super.db);
 
   /// 监听全部未删除成员。
-  Stream<List<Member>> watchAll() =>
+  Stream<List<MemberModel>> watchAll() =>
       (select(members)..where((t) => t.deletedAt.isNull()))
           .watch()
           .map((rows) => rows.map(_toModel).toList());
 
   /// 获取全部未删除成员。
-  Future<List<Member>> getAll() async =>
+  Future<List<MemberModel>> getAll() async =>
       (await (select(members)..where((t) => t.deletedAt.isNull())).get())
           .map(_toModel)
           .toList();
 
   /// 获取全部成员（含软删，供同步推送使用，确保删除能传播到远端）。
-  Future<List<Member>> getAllForSync() async =>
+  Future<List<MemberModel>> getAllForSync() async =>
       (await select(members).get()).map(_toModel).toList();
 
   /// 按 id 获取成员。
-  Future<Member?> getById(String id) async {
+  Future<MemberModel?> getById(String id) async {
     final row = await (select(members)..where((t) => t.id.equals(id)))
         .getSingleOrNull();
     return row == null ? null : _toModel(row);
   }
 
   /// 保存（upsert）。
-  Future<void> save(Member m) =>
+  Future<void> save(MemberModel m) =>
       into(members).insertOnConflictUpdate(_toCompanion(m));
 
   /// 软删。
@@ -46,7 +47,7 @@ class MemberDao extends DatabaseAccessor<AppDatabase>
       (update(members)..where((t) => t.id.equals(id)))
           .write(MembersCompanion(deletedAt: Value(now)));
 
-  MembersCompanion _toCompanion(Member m) => MembersCompanion.insert(
+  MembersCompanion _toCompanion(MemberModel m) => MembersCompanion(
         id: Value(m.id),
         name: Value(m.name),
         avatar: Value(m.avatar),
@@ -59,7 +60,7 @@ class MemberDao extends DatabaseAccessor<AppDatabase>
         deletedAt: Value(m.deletedAt),
       );
 
-  Member _toModel(MemberRow r) => Member(
+  MemberModel _toModel(Member r) => MemberModel(
         id: r.id,
         name: r.name,
         avatar: r.avatar,

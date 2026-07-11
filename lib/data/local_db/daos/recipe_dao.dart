@@ -1,19 +1,19 @@
 /// RecipeDao（class-diagram.mermaid · RecipeDao）。
 ///
 /// 菜谱 + 食材关联 + 谁会做关联 + 今日菜单。
+library;
 import 'package:drift/drift.dart';
 
 import '../../models/daily_meal.dart';
-import '../../models/enums.dart';
 import '../../models/recipe.dart';
-import '../../models/recipe_cookable_by.dart';
 import '../../models/recipe_ingredient.dart';
 import '../tables/daily_meal_table.dart';
 import '../tables/recipe_cookable_by_table.dart';
 import '../tables/recipe_ingredient_table.dart';
 import '../tables/recipe_table.dart';
 import 'base_dao.dart';
-import '../app_database.dart' show AppDatabase;
+import '../app_database.dart';
+import 'package:family_butler/core/utils/datetime_ext.dart';
 part 'recipe_dao.g.dart';
 
 /// 菜谱数据访问。
@@ -29,11 +29,11 @@ class RecipeDao extends DatabaseAccessor<AppDatabase>
   RecipeDao(super.db);
 
   /// 监听全部未删除菜谱（含食材与谁会做）。
-  Stream<List<Recipe>> watchAllDetailed() async* {
+  Stream<List<RecipeModel>> watchAllDetailed() async* {
     await for (final base in (select(recipes)
           ..where((t) => t.deletedAt.isNull()))
         .watch()) {
-      final detailed = <Recipe>[];
+      final detailed = <RecipeModel>[];
       for (final r in base) {
         detailed.add(await _withDetails(r));
       }
@@ -42,10 +42,10 @@ class RecipeDao extends DatabaseAccessor<AppDatabase>
   }
 
   /// 获取全部未删除菜谱（含食材与谁会做）。
-  Future<List<Recipe>> getAll() async {
+  Future<List<RecipeModel>> getAll() async {
     final base = await (select(recipes)..where((t) => t.deletedAt.isNull()))
         .get();
-    final detailed = <Recipe>[];
+    final detailed = <RecipeModel>[];
     for (final r in base) {
       detailed.add(await _withDetails(r));
     }
@@ -53,14 +53,14 @@ class RecipeDao extends DatabaseAccessor<AppDatabase>
   }
 
   /// 按 id 获取菜谱（含食材与谁会做）。
-  Future<Recipe?> getById(String id) async {
+  Future<RecipeModel?> getById(String id) async {
     final row = await (select(recipes)..where((t) => t.id.equals(id)))
         .getSingleOrNull();
     return row == null ? null : _withDetails(row);
   }
 
   /// 保存菜谱（upsert 菜谱 + 替换食材 / 谁会做）。
-  Future<void> saveRecipe(Recipe r) async {
+  Future<void> saveRecipe(RecipeModel r) async {
     await db.transaction(() async {
       await into(recipes).insertOnConflictUpdate(_toRecipeCompanion(r));
       await (delete(recipeIngredients)
@@ -74,7 +74,7 @@ class RecipeDao extends DatabaseAccessor<AppDatabase>
           .go();
       for (final memberId in r.cookableBy) {
         await into(recipeCookableBys)
-            .insert(RecipeCookableBysCompanion.insert(
+            .insert(RecipeCookableBysCompanion(
           recipeId: Value(r.id),
           memberId: Value(memberId),
         ));
@@ -95,7 +95,7 @@ class RecipeDao extends DatabaseAccessor<AppDatabase>
   }
 
   /// 监听某日菜单。
-  Stream<List<DailyMeal>> watchDailyMeals(DateTime date) {
+  Stream<List<DailyMealModel>> watchDailyMeals(DateTime date) {
     final day = date.dateOnly;
     return (select(dailyMeals)
           ..where((t) => t.date.equals(day))
@@ -105,7 +105,7 @@ class RecipeDao extends DatabaseAccessor<AppDatabase>
   }
 
   /// 获取某日菜单。
-  Future<List<DailyMeal>> getDailyMeals(DateTime date) async {
+  Future<List<DailyMealModel>> getDailyMeals(DateTime date) async {
     final day = date.dateOnly;
     return (await (select(dailyMeals)..where((t) => t.date.equals(day))).get())
         .map(_toDailyMeal)
@@ -113,7 +113,7 @@ class RecipeDao extends DatabaseAccessor<AppDatabase>
   }
 
   /// 添加 / 更新排菜（upsert，供同步合并幂等）。
-  Future<void> addDailyMeal(DailyMeal meal) =>
+  Future<void> addDailyMeal(DailyMealModel meal) =>
       into(dailyMeals).insertOnConflictUpdate(_toDailyMealCompanion(meal));
 
   /// 移除排菜。
@@ -121,21 +121,21 @@ class RecipeDao extends DatabaseAccessor<AppDatabase>
       (delete(dailyMeals)..where((t) => t.id.equals(id))).go();
 
   /// 获取全部菜谱（含软删，供同步推送使用）。
-  Future<List<Recipe>> getAllRecipesForSync() async =>
+  Future<List<RecipeModel>> getAllRecipesForSync() async =>
       (await select(recipes).get()).map(_toRecipe).toList();
 
   /// 获取全部每日菜单（含软删，供同步推送使用）。
-  Future<List<DailyMeal>> getAllDailyMealsForSync() async =>
+  Future<List<DailyMealModel>> getAllDailyMealsForSync() async =>
       (await select(dailyMeals).get()).map(_toDailyMeal).toList();
 
-  Future<Recipe> _withDetails(RecipeRow r) async {
+  Future<RecipeModel> _withDetails(Recipe r) async {
     final ingRows = await (select(recipeIngredients)
           ..where((t) => t.recipeId.equals(r.id)))
         .get();
     final cookRows = await (select(recipeCookableBys)
           ..where((t) => t.recipeId.equals(r.id)))
         .get();
-    return Recipe(
+    return RecipeModel(
       id: r.id,
       name: r.name,
       steps: r.steps,
@@ -151,7 +151,7 @@ class RecipeDao extends DatabaseAccessor<AppDatabase>
     );
   }
 
-  Recipe _toRecipe(RecipeRow r) => Recipe(
+  RecipeModel _toRecipe(Recipe r) => RecipeModel(
         id: r.id,
         name: r.name,
         steps: r.steps,
@@ -164,13 +164,13 @@ class RecipeDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  RecipeIngredient _toIngredient(RecipeIngredientRow r) => RecipeIngredient(
+  RecipeIngredientModel _toIngredient(RecipeIngredient r) => RecipeIngredientModel(
         productId: r.productId,
         amount: r.amount,
         unit: r.unit,
       );
 
-  DailyMeal _toDailyMeal(DailyMealRow r) => DailyMeal(
+  DailyMealModel _toDailyMeal(DailyMeal r) => DailyMealModel(
         id: r.id,
         date: r.date,
         mealType: r.mealType,
@@ -181,7 +181,7 @@ class RecipeDao extends DatabaseAccessor<AppDatabase>
         deletedAt: r.deletedAt,
       );
 
-  RecipesCompanion _toRecipeCompanion(Recipe r) => RecipesCompanion.insert(
+  RecipesCompanion _toRecipeCompanion(RecipeModel r) => RecipesCompanion(
         id: Value(r.id),
         name: Value(r.name),
         steps: Value(r.steps),
@@ -195,16 +195,16 @@ class RecipeDao extends DatabaseAccessor<AppDatabase>
       );
 
   RecipeIngredientsCompanion _toIngredientCompanion(
-          String recipeId, RecipeIngredient ing) =>
-      RecipeIngredientsCompanion.insert(
+          String recipeId, RecipeIngredientModel ing) =>
+      RecipeIngredientsCompanion(
         recipeId: Value(recipeId),
         productId: Value(ing.productId),
         amount: Value(ing.amount.toDouble()),
         unit: Value(ing.unit),
       );
 
-  DailyMealsCompanion _toDailyMealCompanion(DailyMeal m) =>
-      DailyMealsCompanion.insert(
+  DailyMealsCompanion _toDailyMealCompanion(DailyMealModel m) =>
+      DailyMealsCompanion(
         id: Value(m.id),
         date: Value(m.date),
         mealType: Value(m.mealType),

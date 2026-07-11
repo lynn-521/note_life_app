@@ -1,4 +1,5 @@
 /// 仓库总览：三卡 + 筛选（全部 / 临期 / 补货）+ 列表。
+library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -29,9 +30,9 @@ class _WarehouseOverviewViewState extends ConsumerState<WarehouseOverviewView> {
     final theme = AppTheme.of(context);
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: const SummaryGrid(),
+        const Padding(
+          padding: EdgeInsets.all(16),
+          child: SummaryGrid(),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

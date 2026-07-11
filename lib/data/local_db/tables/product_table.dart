@@ -1,9 +1,9 @@
-/// Products 表（class-diagram.mermaid · Product）。
+/// Products 表（class-diagram.mermaid · ProductModel）。
+library;
 import 'package:drift/drift.dart';
 
 /// 商品表。
 class Products extends Table {
-  @override
   String get dataClassName => 'ProductRow';
 
   TextColumn get id => text()();

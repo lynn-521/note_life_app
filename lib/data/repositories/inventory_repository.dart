@@ -1,13 +1,14 @@
 /// InventoryRepository（class-diagram.mermaid · InventoryRepository）。
-import '../../models/category.dart';
-import '../../models/enums.dart';
-import '../../models/product.dart';
-import '../../models/stock_view.dart';
+library;
+import '../models/category.dart';
+import '../models/enums.dart';
+import '../models/product.dart';
+import '../models/stock_view.dart';
 import '../local_db/app_database.dart';
 
 /// 库存仓储接口（事件溯源 + 聚合查询）。
 abstract class InventoryRepository {
-  /// 入库（写 InboundOrder + StockBatch）。
+  /// 入库（写 InboundOrderModel + StockBatchModel）。
   Future<void> recordInbound({
     required String productId,
     required num qty,
@@ -17,7 +18,7 @@ abstract class InventoryRepository {
     String? note,
   });
 
-  /// 出库（写 OutboundOrder）。
+  /// 出库（写 OutboundOrderModel）。
   Future<void> recordOutbound({
     required String productId,
     required num qty,
@@ -36,28 +37,28 @@ abstract class InventoryRepository {
   Future<List<StockView>> lowStock();
 
   /// 监听商品。
-  Stream<List<Product>> watchProducts();
+  Stream<List<ProductModel>> watchProducts();
 
   /// 获取商品。
-  Future<List<Product>> getProducts();
+  Future<List<ProductModel>> getProducts();
 
   /// 按 id 获取商品。
-  Future<Product?> getProduct(String id);
+  Future<ProductModel?> getProduct(String id);
 
   /// 保存商品。
-  Future<void> saveProduct(Product product);
+  Future<void> saveProduct(ProductModel product);
 
   /// 软删商品。
   Future<void> deleteProduct(String id);
 
   /// 监听分类。
-  Stream<List<Category>> watchCategories();
+  Stream<List<CategoryModel>> watchCategories();
 
   /// 获取分类。
-  Future<List<Category>> getCategories();
+  Future<List<CategoryModel>> getCategories();
 
   /// 保存分类。
-  Future<void> saveCategory(Category category);
+  Future<void> saveCategory(CategoryModel category);
 }
 
 /// 基于 Drift 的实现。
@@ -114,16 +115,16 @@ class InventoryRepositoryImpl implements InventoryRepository {
   Future<List<StockView>> lowStock() => db.inventoryDao.lowStock();
 
   @override
-  Stream<List<Product>> watchProducts() => db.inventoryDao.watchProducts();
+  Stream<List<ProductModel>> watchProducts() => db.inventoryDao.watchProducts();
 
   @override
-  Future<List<Product>> getProducts() => db.inventoryDao.getAllProducts();
+  Future<List<ProductModel>> getProducts() => db.inventoryDao.getAllProducts();
 
   @override
-  Future<Product?> getProduct(String id) => db.inventoryDao.getProduct(id);
+  Future<ProductModel?> getProduct(String id) => db.inventoryDao.getProduct(id);
 
   @override
-  Future<void> saveProduct(Product product) =>
+  Future<void> saveProduct(ProductModel product) =>
       db.inventoryDao.saveProduct(product);
 
   @override
@@ -131,13 +132,13 @@ class InventoryRepositoryImpl implements InventoryRepository {
       db.inventoryDao.softDeleteProduct(id);
 
   @override
-  Stream<List<Category>> watchCategories() =>
+  Stream<List<CategoryModel>> watchCategories() =>
       db.inventoryDao.watchCategories();
 
   @override
-  Future<List<Category>> getCategories() => db.inventoryDao.getAllCategories();
+  Future<List<CategoryModel>> getCategories() => db.inventoryDao.getAllCategories();
 
   @override
-  Future<void> saveCategory(Category category) =>
+  Future<void> saveCategory(CategoryModel category) =>
       db.inventoryDao.saveCategory(category);
 }

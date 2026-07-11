@@ -14,45 +14,47 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-RecipeCookableBy _$RecipeCookableByFromJson(Map<String, dynamic> json) {
+RecipeCookableByModel _$RecipeCookableByModelFromJson(
+    Map<String, dynamic> json) {
   return _RecipeCookableBy.fromJson(json);
 }
 
 /// @nodoc
-mixin _$RecipeCookableBy {
+mixin _$RecipeCookableByModel {
   String get recipeId => throw _privateConstructorUsedError;
   String get memberId => throw _privateConstructorUsedError;
 
-  /// Serializes this RecipeCookableBy to a JSON map.
+  /// Serializes this RecipeCookableByModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of RecipeCookableBy
+  /// Create a copy of RecipeCookableByModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $RecipeCookableByCopyWith<RecipeCookableBy> get copyWith =>
+  $RecipeCookableByModelCopyWith<RecipeCookableByModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RecipeCookableByCopyWith<$Res> {
-  factory $RecipeCookableByCopyWith(
-          RecipeCookableBy value, $Res Function(RecipeCookableBy) then) =
-      _$RecipeCookableByCopyWithImpl<$Res, RecipeCookableBy>;
+abstract class $RecipeCookableByModelCopyWith<$Res> {
+  factory $RecipeCookableByModelCopyWith(RecipeCookableByModel value,
+          $Res Function(RecipeCookableByModel) then) =
+      _$RecipeCookableByModelCopyWithImpl<$Res, RecipeCookableByModel>;
   @useResult
   $Res call({String recipeId, String memberId});
 }
 
 /// @nodoc
-class _$RecipeCookableByCopyWithImpl<$Res, $Val extends RecipeCookableBy>
-    implements $RecipeCookableByCopyWith<$Res> {
-  _$RecipeCookableByCopyWithImpl(this._value, this._then);
+class _$RecipeCookableByModelCopyWithImpl<$Res,
+        $Val extends RecipeCookableByModel>
+    implements $RecipeCookableByModelCopyWith<$Res> {
+  _$RecipeCookableByModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RecipeCookableBy
+  /// Create a copy of RecipeCookableByModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -75,7 +77,7 @@ class _$RecipeCookableByCopyWithImpl<$Res, $Val extends RecipeCookableBy>
 
 /// @nodoc
 abstract class _$$RecipeCookableByImplCopyWith<$Res>
-    implements $RecipeCookableByCopyWith<$Res> {
+    implements $RecipeCookableByModelCopyWith<$Res> {
   factory _$$RecipeCookableByImplCopyWith(_$RecipeCookableByImpl value,
           $Res Function(_$RecipeCookableByImpl) then) =
       __$$RecipeCookableByImplCopyWithImpl<$Res>;
@@ -86,13 +88,13 @@ abstract class _$$RecipeCookableByImplCopyWith<$Res>
 
 /// @nodoc
 class __$$RecipeCookableByImplCopyWithImpl<$Res>
-    extends _$RecipeCookableByCopyWithImpl<$Res, _$RecipeCookableByImpl>
+    extends _$RecipeCookableByModelCopyWithImpl<$Res, _$RecipeCookableByImpl>
     implements _$$RecipeCookableByImplCopyWith<$Res> {
   __$$RecipeCookableByImplCopyWithImpl(_$RecipeCookableByImpl _value,
       $Res Function(_$RecipeCookableByImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RecipeCookableBy
+  /// Create a copy of RecipeCookableByModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -129,7 +131,7 @@ class _$RecipeCookableByImpl implements _RecipeCookableBy {
 
   @override
   String toString() {
-    return 'RecipeCookableBy(recipeId: $recipeId, memberId: $memberId)';
+    return 'RecipeCookableByModel(recipeId: $recipeId, memberId: $memberId)';
   }
 
   @override
@@ -147,7 +149,7 @@ class _$RecipeCookableByImpl implements _RecipeCookableBy {
   @override
   int get hashCode => Object.hash(runtimeType, recipeId, memberId);
 
-  /// Create a copy of RecipeCookableBy
+  /// Create a copy of RecipeCookableByModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -164,7 +166,7 @@ class _$RecipeCookableByImpl implements _RecipeCookableBy {
   }
 }
 
-abstract class _RecipeCookableBy implements RecipeCookableBy {
+abstract class _RecipeCookableBy implements RecipeCookableByModel {
   const factory _RecipeCookableBy(
       {required final String recipeId,
       required final String memberId}) = _$RecipeCookableByImpl;
@@ -177,7 +179,7 @@ abstract class _RecipeCookableBy implements RecipeCookableBy {
   @override
   String get memberId;
 
-  /// Create a copy of RecipeCookableBy
+  /// Create a copy of RecipeCookableByModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

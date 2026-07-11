@@ -1,8 +1,11 @@
 /// AppDatabase（class-diagram.mermaid · AppDatabase）。
 ///
 /// Drift 数据库：装配全部 19 张表与 7 个 DAO。
+library;
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
+
+import '../models/enums.dart';
 
 import 'daos/inventory_dao.dart';
 import 'daos/medication_dao.dart';
