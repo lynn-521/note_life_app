@@ -23,11 +23,15 @@ mixin _$TravelDayModel {
   String get id => throw _privateConstructorUsedError;
   String get planId => throw _privateConstructorUsedError;
   int get dayIndex => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get date => throw _privateConstructorUsedError;
   String get agenda => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
   /// Serializes this TravelDayModel to a JSON map.
@@ -50,12 +54,12 @@ abstract class $TravelDayModelCopyWith<$Res> {
       {String id,
       String planId,
       int dayIndex,
-      DateTime date,
+      @UtcDateTimeConverter() DateTime date,
       String agenda,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -136,12 +140,12 @@ abstract class _$$TravelDayImplCopyWith<$Res>
       {String id,
       String planId,
       int dayIndex,
-      DateTime date,
+      @UtcDateTimeConverter() DateTime date,
       String agenda,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -215,12 +219,12 @@ class _$TravelDayImpl implements _TravelDay {
       {required this.id,
       required this.planId,
       required this.dayIndex,
-      required this.date,
+      @UtcDateTimeConverter() required this.date,
       this.agenda = '',
-      required this.createdAt,
-      required this.updatedAt,
+      @UtcDateTimeConverter() required this.createdAt,
+      @UtcDateTimeConverter() required this.updatedAt,
       this.version = 1,
-      this.deletedAt});
+      @UtcDateTimeConverter() this.deletedAt});
 
   factory _$TravelDayImpl.fromJson(Map<String, dynamic> json) =>
       _$$TravelDayImplFromJson(json);
@@ -232,18 +236,22 @@ class _$TravelDayImpl implements _TravelDay {
   @override
   final int dayIndex;
   @override
+  @UtcDateTimeConverter()
   final DateTime date;
   @override
   @JsonKey()
   final String agenda;
   @override
+  @UtcDateTimeConverter()
   final DateTime createdAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime updatedAt;
   @override
   @JsonKey()
   final int version;
   @override
+  @UtcDateTimeConverter()
   final DateTime? deletedAt;
 
   @override
@@ -297,12 +305,12 @@ abstract class _TravelDay implements TravelDayModel {
       {required final String id,
       required final String planId,
       required final int dayIndex,
-      required final DateTime date,
+      @UtcDateTimeConverter() required final DateTime date,
       final String agenda,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      @UtcDateTimeConverter() required final DateTime createdAt,
+      @UtcDateTimeConverter() required final DateTime updatedAt,
       final int version,
-      final DateTime? deletedAt}) = _$TravelDayImpl;
+      @UtcDateTimeConverter() final DateTime? deletedAt}) = _$TravelDayImpl;
 
   factory _TravelDay.fromJson(Map<String, dynamic> json) =
       _$TravelDayImpl.fromJson;
@@ -314,16 +322,20 @@ abstract class _TravelDay implements TravelDayModel {
   @override
   int get dayIndex;
   @override
+  @UtcDateTimeConverter()
   DateTime get date;
   @override
   String get agenda;
   @override
+  @UtcDateTimeConverter()
   DateTime get createdAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get updatedAt;
   @override
   int get version;
   @override
+  @UtcDateTimeConverter()
   DateTime? get deletedAt;
 
   /// Create a copy of TravelDayModel

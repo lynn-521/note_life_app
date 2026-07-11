@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
 import 'enums.dart';
+import '../../core/utils/json_converters.dart';
 
 part 'outbound_order.freezed.dart';
 part 'outbound_order.g.dart';
@@ -17,12 +18,12 @@ class OutboundOrderModel with _$OutboundOrderModel, SyncEntity {
     required num qty,
     @Default(OutboundReason.consume) OutboundReason reason,
     required String operatorId,
-    required DateTime at,
+    @UtcDateTimeConverter() required DateTime at,
     String? note,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @UtcDateTimeConverter() required DateTime createdAt,
+    @UtcDateTimeConverter() required DateTime updatedAt,
     @Default(1) int version,
-    DateTime? deletedAt,
+    @UtcDateTimeConverter() DateTime? deletedAt,
   }) = _OutboundOrder;
 
   factory OutboundOrderModel.fromJson(Map<String, dynamic> json) =>

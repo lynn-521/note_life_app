@@ -3,6 +3,7 @@ library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
+import '../../core/utils/json_converters.dart';
 
 part 'stock_batch.freezed.dart';
 part 'stock_batch.g.dart';
@@ -14,13 +15,13 @@ class StockBatchModel with _$StockBatchModel, SyncEntity {
     required String id,
     required String productId,
     required num quantity,
-    DateTime? expireDate,
+    @UtcDateTimeConverter() DateTime? expireDate,
     String? batchNo,
-    required DateTime inboundAt,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @UtcDateTimeConverter() required DateTime inboundAt,
+    @UtcDateTimeConverter() required DateTime createdAt,
+    @UtcDateTimeConverter() required DateTime updatedAt,
     @Default(1) int version,
-    DateTime? deletedAt,
+    @UtcDateTimeConverter() DateTime? deletedAt,
   }) = _StockBatch;
 
   factory StockBatchModel.fromJson(Map<String, dynamic> json) =>

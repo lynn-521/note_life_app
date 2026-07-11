@@ -23,13 +23,18 @@ mixin _$DoseLogModel {
   String get id => throw _privateConstructorUsedError;
   String get medicationId => throw _privateConstructorUsedError;
   String get memberId => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get scheduledTime => throw _privateConstructorUsedError;
   DoseStatus get status => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get takenAt => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
   /// Serializes this DoseLogModel to a JSON map.
@@ -52,14 +57,14 @@ abstract class $DoseLogModelCopyWith<$Res> {
       {String id,
       String medicationId,
       String memberId,
-      DateTime scheduledTime,
+      @UtcDateTimeConverter() DateTime scheduledTime,
       DoseStatus status,
-      DateTime? takenAt,
+      @UtcDateTimeConverter() DateTime? takenAt,
       String? note,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -150,14 +155,14 @@ abstract class _$$DoseLogImplCopyWith<$Res>
       {String id,
       String medicationId,
       String memberId,
-      DateTime scheduledTime,
+      @UtcDateTimeConverter() DateTime scheduledTime,
       DoseStatus status,
-      DateTime? takenAt,
+      @UtcDateTimeConverter() DateTime? takenAt,
       String? note,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -241,14 +246,14 @@ class _$DoseLogImpl implements _DoseLog {
       {required this.id,
       required this.medicationId,
       required this.memberId,
-      required this.scheduledTime,
+      @UtcDateTimeConverter() required this.scheduledTime,
       this.status = DoseStatus.pending,
-      this.takenAt,
+      @UtcDateTimeConverter() this.takenAt,
       this.note,
-      required this.createdAt,
-      required this.updatedAt,
+      @UtcDateTimeConverter() required this.createdAt,
+      @UtcDateTimeConverter() required this.updatedAt,
       this.version = 1,
-      this.deletedAt});
+      @UtcDateTimeConverter() this.deletedAt});
 
   factory _$DoseLogImpl.fromJson(Map<String, dynamic> json) =>
       _$$DoseLogImplFromJson(json);
@@ -260,22 +265,27 @@ class _$DoseLogImpl implements _DoseLog {
   @override
   final String memberId;
   @override
+  @UtcDateTimeConverter()
   final DateTime scheduledTime;
   @override
   @JsonKey()
   final DoseStatus status;
   @override
+  @UtcDateTimeConverter()
   final DateTime? takenAt;
   @override
   final String? note;
   @override
+  @UtcDateTimeConverter()
   final DateTime createdAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime updatedAt;
   @override
   @JsonKey()
   final int version;
   @override
+  @UtcDateTimeConverter()
   final DateTime? deletedAt;
 
   @override
@@ -344,14 +354,14 @@ abstract class _DoseLog implements DoseLogModel {
       {required final String id,
       required final String medicationId,
       required final String memberId,
-      required final DateTime scheduledTime,
+      @UtcDateTimeConverter() required final DateTime scheduledTime,
       final DoseStatus status,
-      final DateTime? takenAt,
+      @UtcDateTimeConverter() final DateTime? takenAt,
       final String? note,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      @UtcDateTimeConverter() required final DateTime createdAt,
+      @UtcDateTimeConverter() required final DateTime updatedAt,
       final int version,
-      final DateTime? deletedAt}) = _$DoseLogImpl;
+      @UtcDateTimeConverter() final DateTime? deletedAt}) = _$DoseLogImpl;
 
   factory _DoseLog.fromJson(Map<String, dynamic> json) = _$DoseLogImpl.fromJson;
 
@@ -362,20 +372,25 @@ abstract class _DoseLog implements DoseLogModel {
   @override
   String get memberId;
   @override
+  @UtcDateTimeConverter()
   DateTime get scheduledTime;
   @override
   DoseStatus get status;
   @override
+  @UtcDateTimeConverter()
   DateTime? get takenAt;
   @override
   String? get note;
   @override
+  @UtcDateTimeConverter()
   DateTime get createdAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get updatedAt;
   @override
   int get version;
   @override
+  @UtcDateTimeConverter()
   DateTime? get deletedAt;
 
   /// Create a copy of DoseLogModel

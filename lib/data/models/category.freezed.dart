@@ -23,9 +23,12 @@ mixin _$CategoryModel {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   CategoryKind get kind => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
   /// Serializes this CategoryModel to a JSON map.
@@ -48,10 +51,10 @@ abstract class $CategoryModelCopyWith<$Res> {
       {String id,
       String name,
       CategoryKind kind,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -122,10 +125,10 @@ abstract class _$$CategoryImplCopyWith<$Res>
       {String id,
       String name,
       CategoryKind kind,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -189,10 +192,10 @@ class _$CategoryImpl implements _Category {
       {required this.id,
       required this.name,
       this.kind = CategoryKind.other,
-      required this.createdAt,
-      required this.updatedAt,
+      @UtcDateTimeConverter() required this.createdAt,
+      @UtcDateTimeConverter() required this.updatedAt,
       this.version = 1,
-      this.deletedAt});
+      @UtcDateTimeConverter() this.deletedAt});
 
   factory _$CategoryImpl.fromJson(Map<String, dynamic> json) =>
       _$$CategoryImplFromJson(json);
@@ -205,13 +208,16 @@ class _$CategoryImpl implements _Category {
   @JsonKey()
   final CategoryKind kind;
   @override
+  @UtcDateTimeConverter()
   final DateTime createdAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime updatedAt;
   @override
   @JsonKey()
   final int version;
   @override
+  @UtcDateTimeConverter()
   final DateTime? deletedAt;
 
   @override
@@ -262,10 +268,10 @@ abstract class _Category implements CategoryModel {
       {required final String id,
       required final String name,
       final CategoryKind kind,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      @UtcDateTimeConverter() required final DateTime createdAt,
+      @UtcDateTimeConverter() required final DateTime updatedAt,
       final int version,
-      final DateTime? deletedAt}) = _$CategoryImpl;
+      @UtcDateTimeConverter() final DateTime? deletedAt}) = _$CategoryImpl;
 
   factory _Category.fromJson(Map<String, dynamic> json) =
       _$CategoryImpl.fromJson;
@@ -277,12 +283,15 @@ abstract class _Category implements CategoryModel {
   @override
   CategoryKind get kind;
   @override
+  @UtcDateTimeConverter()
   DateTime get createdAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get updatedAt;
   @override
   int get version;
   @override
+  @UtcDateTimeConverter()
   DateTime? get deletedAt;
 
   /// Create a copy of CategoryModel

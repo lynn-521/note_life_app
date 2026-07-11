@@ -22,12 +22,17 @@ TravelPlanModel _$TravelPlanModelFromJson(Map<String, dynamic> json) {
 mixin _$TravelPlanModel {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get start => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get end => throw _privateConstructorUsedError;
   List<String> get memberIds => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
   /// Serializes this TravelPlanModel to a JSON map.
@@ -49,13 +54,13 @@ abstract class $TravelPlanModelCopyWith<$Res> {
   $Res call(
       {String id,
       String title,
-      DateTime start,
-      DateTime end,
+      @UtcDateTimeConverter() DateTime start,
+      @UtcDateTimeConverter() DateTime end,
       List<String> memberIds,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -135,13 +140,13 @@ abstract class _$$TravelPlanImplCopyWith<$Res>
   $Res call(
       {String id,
       String title,
-      DateTime start,
-      DateTime end,
+      @UtcDateTimeConverter() DateTime start,
+      @UtcDateTimeConverter() DateTime end,
       List<String> memberIds,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -214,13 +219,13 @@ class _$TravelPlanImpl implements _TravelPlan {
   const _$TravelPlanImpl(
       {required this.id,
       required this.title,
-      required this.start,
-      required this.end,
+      @UtcDateTimeConverter() required this.start,
+      @UtcDateTimeConverter() required this.end,
       final List<String> memberIds = const <String>[],
-      required this.createdAt,
-      required this.updatedAt,
+      @UtcDateTimeConverter() required this.createdAt,
+      @UtcDateTimeConverter() required this.updatedAt,
       this.version = 1,
-      this.deletedAt})
+      @UtcDateTimeConverter() this.deletedAt})
       : _memberIds = memberIds;
 
   factory _$TravelPlanImpl.fromJson(Map<String, dynamic> json) =>
@@ -231,8 +236,10 @@ class _$TravelPlanImpl implements _TravelPlan {
   @override
   final String title;
   @override
+  @UtcDateTimeConverter()
   final DateTime start;
   @override
+  @UtcDateTimeConverter()
   final DateTime end;
   final List<String> _memberIds;
   @override
@@ -244,13 +251,16 @@ class _$TravelPlanImpl implements _TravelPlan {
   }
 
   @override
+  @UtcDateTimeConverter()
   final DateTime createdAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime updatedAt;
   @override
   @JsonKey()
   final int version;
   @override
+  @UtcDateTimeConverter()
   final DateTime? deletedAt;
 
   @override
@@ -312,13 +322,13 @@ abstract class _TravelPlan implements TravelPlanModel {
   const factory _TravelPlan(
       {required final String id,
       required final String title,
-      required final DateTime start,
-      required final DateTime end,
+      @UtcDateTimeConverter() required final DateTime start,
+      @UtcDateTimeConverter() required final DateTime end,
       final List<String> memberIds,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      @UtcDateTimeConverter() required final DateTime createdAt,
+      @UtcDateTimeConverter() required final DateTime updatedAt,
       final int version,
-      final DateTime? deletedAt}) = _$TravelPlanImpl;
+      @UtcDateTimeConverter() final DateTime? deletedAt}) = _$TravelPlanImpl;
 
   factory _TravelPlan.fromJson(Map<String, dynamic> json) =
       _$TravelPlanImpl.fromJson;
@@ -328,18 +338,23 @@ abstract class _TravelPlan implements TravelPlanModel {
   @override
   String get title;
   @override
+  @UtcDateTimeConverter()
   DateTime get start;
   @override
+  @UtcDateTimeConverter()
   DateTime get end;
   @override
   List<String> get memberIds;
   @override
+  @UtcDateTimeConverter()
   DateTime get createdAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get updatedAt;
   @override
   int get version;
   @override
+  @UtcDateTimeConverter()
   DateTime? get deletedAt;
 
   /// Create a copy of TravelPlanModel

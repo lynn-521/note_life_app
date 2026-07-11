@@ -28,12 +28,17 @@ mixin _$MedicationModel {
   Frequency get frequency => throw _privateConstructorUsedError;
   @TimeOfDayListConverter()
   List<TimeOfDay> get times => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get startDate => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get endDate => throw _privateConstructorUsedError;
   bool get active => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
   /// Serializes this MedicationModel to a JSON map.
@@ -60,13 +65,13 @@ abstract class $MedicationModelCopyWith<$Res> {
       String dosage,
       Frequency frequency,
       @TimeOfDayListConverter() List<TimeOfDay> times,
-      DateTime? startDate,
-      DateTime? endDate,
+      @UtcDateTimeConverter() DateTime? startDate,
+      @UtcDateTimeConverter() DateTime? endDate,
       bool active,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -176,13 +181,13 @@ abstract class _$$MedicationImplCopyWith<$Res>
       String dosage,
       Frequency frequency,
       @TimeOfDayListConverter() List<TimeOfDay> times,
-      DateTime? startDate,
-      DateTime? endDate,
+      @UtcDateTimeConverter() DateTime? startDate,
+      @UtcDateTimeConverter() DateTime? endDate,
       bool active,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -285,13 +290,13 @@ class _$MedicationImpl implements _Medication {
       required this.dosage,
       this.frequency = Frequency.dailyN,
       @TimeOfDayListConverter() required final List<TimeOfDay> times,
-      this.startDate,
-      this.endDate,
+      @UtcDateTimeConverter() this.startDate,
+      @UtcDateTimeConverter() this.endDate,
       this.active = true,
-      required this.createdAt,
-      required this.updatedAt,
+      @UtcDateTimeConverter() required this.createdAt,
+      @UtcDateTimeConverter() required this.updatedAt,
       this.version = 1,
-      this.deletedAt})
+      @UtcDateTimeConverter() this.deletedAt})
       : _times = times;
 
   factory _$MedicationImpl.fromJson(Map<String, dynamic> json) =>
@@ -321,20 +326,25 @@ class _$MedicationImpl implements _Medication {
   }
 
   @override
+  @UtcDateTimeConverter()
   final DateTime? startDate;
   @override
+  @UtcDateTimeConverter()
   final DateTime? endDate;
   @override
   @JsonKey()
   final bool active;
   @override
+  @UtcDateTimeConverter()
   final DateTime createdAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime updatedAt;
   @override
   @JsonKey()
   final int version;
   @override
+  @UtcDateTimeConverter()
   final DateTime? deletedAt;
 
   @override
@@ -413,13 +423,13 @@ abstract class _Medication implements MedicationModel {
       required final String dosage,
       final Frequency frequency,
       @TimeOfDayListConverter() required final List<TimeOfDay> times,
-      final DateTime? startDate,
-      final DateTime? endDate,
+      @UtcDateTimeConverter() final DateTime? startDate,
+      @UtcDateTimeConverter() final DateTime? endDate,
       final bool active,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      @UtcDateTimeConverter() required final DateTime createdAt,
+      @UtcDateTimeConverter() required final DateTime updatedAt,
       final int version,
-      final DateTime? deletedAt}) = _$MedicationImpl;
+      @UtcDateTimeConverter() final DateTime? deletedAt}) = _$MedicationImpl;
 
   factory _Medication.fromJson(Map<String, dynamic> json) =
       _$MedicationImpl.fromJson;
@@ -440,18 +450,23 @@ abstract class _Medication implements MedicationModel {
   @TimeOfDayListConverter()
   List<TimeOfDay> get times;
   @override
+  @UtcDateTimeConverter()
   DateTime? get startDate;
   @override
+  @UtcDateTimeConverter()
   DateTime? get endDate;
   @override
   bool get active;
   @override
+  @UtcDateTimeConverter()
   DateTime get createdAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get updatedAt;
   @override
   int get version;
   @override
+  @UtcDateTimeConverter()
   DateTime? get deletedAt;
 
   /// Create a copy of MedicationModel

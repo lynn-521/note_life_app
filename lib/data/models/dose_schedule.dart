@@ -3,6 +3,7 @@ library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
+import '../../core/utils/json_converters.dart';
 
 part 'dose_schedule.freezed.dart';
 part 'dose_schedule.g.dart';
@@ -14,11 +15,11 @@ class DoseScheduleModel with _$DoseScheduleModel, SyncEntity {
     required String id,
     required String medicationId,
     required String memberId,
-    required DateTime scheduledTime,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @UtcDateTimeConverter() required DateTime scheduledTime,
+    @UtcDateTimeConverter() required DateTime createdAt,
+    @UtcDateTimeConverter() required DateTime updatedAt,
     @Default(1) int version,
-    DateTime? deletedAt,
+    @UtcDateTimeConverter() DateTime? deletedAt,
   }) = _DoseSchedule;
 
   factory DoseScheduleModel.fromJson(Map<String, dynamic> json) =>

@@ -5,6 +5,7 @@ library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
+import '../../core/utils/json_converters.dart';
 
 part 'travel_day.freezed.dart';
 part 'travel_day.g.dart';
@@ -16,12 +17,12 @@ class TravelDayModel with _$TravelDayModel, SyncEntity {
     required String id,
     required String planId,
     required int dayIndex,
-    required DateTime date,
+    @UtcDateTimeConverter() required DateTime date,
     @Default('') String agenda,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @UtcDateTimeConverter() required DateTime createdAt,
+    @UtcDateTimeConverter() required DateTime updatedAt,
     @Default(1) int version,
-    DateTime? deletedAt,
+    @UtcDateTimeConverter() DateTime? deletedAt,
   }) = _TravelDay;
 
   factory TravelDayModel.fromJson(Map<String, dynamic> json) =>

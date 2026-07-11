@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
 import 'enums.dart';
+import '../../core/utils/json_converters.dart';
 
 part 'reminder_log.freezed.dart';
 part 'reminder_log.g.dart';
@@ -16,14 +17,14 @@ class ReminderLogModel with _$ReminderLogModel, SyncEntity {
   const factory ReminderLogModel({
     required String id,
     required String ruleId,
-    required DateTime firedAt,
+    @UtcDateTimeConverter() required DateTime firedAt,
     @Default(ChannelType.localLog) ChannelType channel,
     @Default('pending') String status,
     String? payload,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @UtcDateTimeConverter() required DateTime createdAt,
+    @UtcDateTimeConverter() required DateTime updatedAt,
     @Default(1) int version,
-    DateTime? deletedAt,
+    @UtcDateTimeConverter() DateTime? deletedAt,
   }) = _ReminderLog;
 
   factory ReminderLogModel.fromJson(Map<String, dynamic> json) =>

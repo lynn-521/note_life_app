@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
 import 'enums.dart';
+import '../../core/utils/json_converters.dart';
 
 part 'dose_log.freezed.dart';
 part 'dose_log.g.dart';
@@ -18,14 +19,14 @@ class DoseLogModel with _$DoseLogModel, SyncEntity {
     required String id,
     required String medicationId,
     required String memberId,
-    required DateTime scheduledTime,
+    @UtcDateTimeConverter() required DateTime scheduledTime,
     @Default(DoseStatus.pending) DoseStatus status,
-    DateTime? takenAt,
+    @UtcDateTimeConverter() DateTime? takenAt,
     String? note,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @UtcDateTimeConverter() required DateTime createdAt,
+    @UtcDateTimeConverter() required DateTime updatedAt,
     @Default(1) int version,
-    DateTime? deletedAt,
+    @UtcDateTimeConverter() DateTime? deletedAt,
   }) = _DoseLog;
 
   factory DoseLogModel.fromJson(Map<String, dynamic> json) =>

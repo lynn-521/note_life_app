@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
 import 'enums.dart';
+import '../../core/utils/json_converters.dart';
 
 part 'daily_meal.freezed.dart';
 part 'daily_meal.g.dart';
@@ -15,13 +16,13 @@ part 'daily_meal.g.dart';
 class DailyMealModel with _$DailyMealModel, SyncEntity {
   const factory DailyMealModel({
     required String id,
-    required DateTime date,
+    @UtcDateTimeConverter() required DateTime date,
     required MealType mealType,
     required String recipeId,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @UtcDateTimeConverter() required DateTime createdAt,
+    @UtcDateTimeConverter() required DateTime updatedAt,
     @Default(1) int version,
-    DateTime? deletedAt,
+    @UtcDateTimeConverter() DateTime? deletedAt,
   }) = _DailyMeal;
 
   factory DailyMealModel.fromJson(Map<String, dynamic> json) =>

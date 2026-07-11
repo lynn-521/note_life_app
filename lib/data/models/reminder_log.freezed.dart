@@ -22,13 +22,17 @@ ReminderLogModel _$ReminderLogModelFromJson(Map<String, dynamic> json) {
 mixin _$ReminderLogModel {
   String get id => throw _privateConstructorUsedError;
   String get ruleId => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get firedAt => throw _privateConstructorUsedError;
   ChannelType get channel => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String? get payload => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
   /// Serializes this ReminderLogModel to a JSON map.
@@ -50,14 +54,14 @@ abstract class $ReminderLogModelCopyWith<$Res> {
   $Res call(
       {String id,
       String ruleId,
-      DateTime firedAt,
+      @UtcDateTimeConverter() DateTime firedAt,
       ChannelType channel,
       String status,
       String? payload,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -142,14 +146,14 @@ abstract class _$$ReminderLogImplCopyWith<$Res>
   $Res call(
       {String id,
       String ruleId,
-      DateTime firedAt,
+      @UtcDateTimeConverter() DateTime firedAt,
       ChannelType channel,
       String status,
       String? payload,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -227,14 +231,14 @@ class _$ReminderLogImpl implements _ReminderLog {
   const _$ReminderLogImpl(
       {required this.id,
       required this.ruleId,
-      required this.firedAt,
+      @UtcDateTimeConverter() required this.firedAt,
       this.channel = ChannelType.localLog,
       this.status = 'pending',
       this.payload,
-      required this.createdAt,
-      required this.updatedAt,
+      @UtcDateTimeConverter() required this.createdAt,
+      @UtcDateTimeConverter() required this.updatedAt,
       this.version = 1,
-      this.deletedAt});
+      @UtcDateTimeConverter() this.deletedAt});
 
   factory _$ReminderLogImpl.fromJson(Map<String, dynamic> json) =>
       _$$ReminderLogImplFromJson(json);
@@ -244,6 +248,7 @@ class _$ReminderLogImpl implements _ReminderLog {
   @override
   final String ruleId;
   @override
+  @UtcDateTimeConverter()
   final DateTime firedAt;
   @override
   @JsonKey()
@@ -254,13 +259,16 @@ class _$ReminderLogImpl implements _ReminderLog {
   @override
   final String? payload;
   @override
+  @UtcDateTimeConverter()
   final DateTime createdAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime updatedAt;
   @override
   @JsonKey()
   final int version;
   @override
+  @UtcDateTimeConverter()
   final DateTime? deletedAt;
 
   @override
@@ -313,14 +321,14 @@ abstract class _ReminderLog implements ReminderLogModel {
   const factory _ReminderLog(
       {required final String id,
       required final String ruleId,
-      required final DateTime firedAt,
+      @UtcDateTimeConverter() required final DateTime firedAt,
       final ChannelType channel,
       final String status,
       final String? payload,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      @UtcDateTimeConverter() required final DateTime createdAt,
+      @UtcDateTimeConverter() required final DateTime updatedAt,
       final int version,
-      final DateTime? deletedAt}) = _$ReminderLogImpl;
+      @UtcDateTimeConverter() final DateTime? deletedAt}) = _$ReminderLogImpl;
 
   factory _ReminderLog.fromJson(Map<String, dynamic> json) =
       _$ReminderLogImpl.fromJson;
@@ -330,6 +338,7 @@ abstract class _ReminderLog implements ReminderLogModel {
   @override
   String get ruleId;
   @override
+  @UtcDateTimeConverter()
   DateTime get firedAt;
   @override
   ChannelType get channel;
@@ -338,12 +347,15 @@ abstract class _ReminderLog implements ReminderLogModel {
   @override
   String? get payload;
   @override
+  @UtcDateTimeConverter()
   DateTime get createdAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get updatedAt;
   @override
   int get version;
   @override
+  @UtcDateTimeConverter()
   DateTime? get deletedAt;
 
   /// Create a copy of ReminderLogModel

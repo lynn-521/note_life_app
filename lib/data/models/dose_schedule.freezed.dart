@@ -23,10 +23,14 @@ mixin _$DoseScheduleModel {
   String get id => throw _privateConstructorUsedError;
   String get medicationId => throw _privateConstructorUsedError;
   String get memberId => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get scheduledTime => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
   /// Serializes this DoseScheduleModel to a JSON map.
@@ -49,11 +53,11 @@ abstract class $DoseScheduleModelCopyWith<$Res> {
       {String id,
       String medicationId,
       String memberId,
-      DateTime scheduledTime,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime scheduledTime,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -129,11 +133,11 @@ abstract class _$$DoseScheduleImplCopyWith<$Res>
       {String id,
       String medicationId,
       String memberId,
-      DateTime scheduledTime,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime scheduledTime,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -202,11 +206,11 @@ class _$DoseScheduleImpl implements _DoseSchedule {
       {required this.id,
       required this.medicationId,
       required this.memberId,
-      required this.scheduledTime,
-      required this.createdAt,
-      required this.updatedAt,
+      @UtcDateTimeConverter() required this.scheduledTime,
+      @UtcDateTimeConverter() required this.createdAt,
+      @UtcDateTimeConverter() required this.updatedAt,
       this.version = 1,
-      this.deletedAt});
+      @UtcDateTimeConverter() this.deletedAt});
 
   factory _$DoseScheduleImpl.fromJson(Map<String, dynamic> json) =>
       _$$DoseScheduleImplFromJson(json);
@@ -218,15 +222,19 @@ class _$DoseScheduleImpl implements _DoseSchedule {
   @override
   final String memberId;
   @override
+  @UtcDateTimeConverter()
   final DateTime scheduledTime;
   @override
+  @UtcDateTimeConverter()
   final DateTime createdAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime updatedAt;
   @override
   @JsonKey()
   final int version;
   @override
+  @UtcDateTimeConverter()
   final DateTime? deletedAt;
 
   @override
@@ -281,11 +289,11 @@ abstract class _DoseSchedule implements DoseScheduleModel {
       {required final String id,
       required final String medicationId,
       required final String memberId,
-      required final DateTime scheduledTime,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      @UtcDateTimeConverter() required final DateTime scheduledTime,
+      @UtcDateTimeConverter() required final DateTime createdAt,
+      @UtcDateTimeConverter() required final DateTime updatedAt,
       final int version,
-      final DateTime? deletedAt}) = _$DoseScheduleImpl;
+      @UtcDateTimeConverter() final DateTime? deletedAt}) = _$DoseScheduleImpl;
 
   factory _DoseSchedule.fromJson(Map<String, dynamic> json) =
       _$DoseScheduleImpl.fromJson;
@@ -297,14 +305,18 @@ abstract class _DoseSchedule implements DoseScheduleModel {
   @override
   String get memberId;
   @override
+  @UtcDateTimeConverter()
   DateTime get scheduledTime;
   @override
+  @UtcDateTimeConverter()
   DateTime get createdAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get updatedAt;
   @override
   int get version;
   @override
+  @UtcDateTimeConverter()
   DateTime? get deletedAt;
 
   /// Create a copy of DoseScheduleModel

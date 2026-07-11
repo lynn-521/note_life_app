@@ -25,11 +25,15 @@ mixin _$OutboundOrderModel {
   num get qty => throw _privateConstructorUsedError;
   OutboundReason get reason => throw _privateConstructorUsedError;
   String get operatorId => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get at => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime get updatedAt => throw _privateConstructorUsedError;
   int get version => throw _privateConstructorUsedError;
+  @UtcDateTimeConverter()
   DateTime? get deletedAt => throw _privateConstructorUsedError;
 
   /// Serializes this OutboundOrderModel to a JSON map.
@@ -54,12 +58,12 @@ abstract class $OutboundOrderModelCopyWith<$Res> {
       num qty,
       OutboundReason reason,
       String operatorId,
-      DateTime at,
+      @UtcDateTimeConverter() DateTime at,
       String? note,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -152,12 +156,12 @@ abstract class _$$OutboundOrderImplCopyWith<$Res>
       num qty,
       OutboundReason reason,
       String operatorId,
-      DateTime at,
+      @UtcDateTimeConverter() DateTime at,
       String? note,
-      DateTime createdAt,
-      DateTime updatedAt,
+      @UtcDateTimeConverter() DateTime createdAt,
+      @UtcDateTimeConverter() DateTime updatedAt,
       int version,
-      DateTime? deletedAt});
+      @UtcDateTimeConverter() DateTime? deletedAt});
 }
 
 /// @nodoc
@@ -243,12 +247,12 @@ class _$OutboundOrderImpl implements _OutboundOrder {
       required this.qty,
       this.reason = OutboundReason.consume,
       required this.operatorId,
-      required this.at,
+      @UtcDateTimeConverter() required this.at,
       this.note,
-      required this.createdAt,
-      required this.updatedAt,
+      @UtcDateTimeConverter() required this.createdAt,
+      @UtcDateTimeConverter() required this.updatedAt,
       this.version = 1,
-      this.deletedAt});
+      @UtcDateTimeConverter() this.deletedAt});
 
   factory _$OutboundOrderImpl.fromJson(Map<String, dynamic> json) =>
       _$$OutboundOrderImplFromJson(json);
@@ -265,17 +269,21 @@ class _$OutboundOrderImpl implements _OutboundOrder {
   @override
   final String operatorId;
   @override
+  @UtcDateTimeConverter()
   final DateTime at;
   @override
   final String? note;
   @override
+  @UtcDateTimeConverter()
   final DateTime createdAt;
   @override
+  @UtcDateTimeConverter()
   final DateTime updatedAt;
   @override
   @JsonKey()
   final int version;
   @override
+  @UtcDateTimeConverter()
   final DateTime? deletedAt;
 
   @override
@@ -334,12 +342,12 @@ abstract class _OutboundOrder implements OutboundOrderModel {
       required final num qty,
       final OutboundReason reason,
       required final String operatorId,
-      required final DateTime at,
+      @UtcDateTimeConverter() required final DateTime at,
       final String? note,
-      required final DateTime createdAt,
-      required final DateTime updatedAt,
+      @UtcDateTimeConverter() required final DateTime createdAt,
+      @UtcDateTimeConverter() required final DateTime updatedAt,
       final int version,
-      final DateTime? deletedAt}) = _$OutboundOrderImpl;
+      @UtcDateTimeConverter() final DateTime? deletedAt}) = _$OutboundOrderImpl;
 
   factory _OutboundOrder.fromJson(Map<String, dynamic> json) =
       _$OutboundOrderImpl.fromJson;
@@ -355,16 +363,20 @@ abstract class _OutboundOrder implements OutboundOrderModel {
   @override
   String get operatorId;
   @override
+  @UtcDateTimeConverter()
   DateTime get at;
   @override
   String? get note;
   @override
+  @UtcDateTimeConverter()
   DateTime get createdAt;
   @override
+  @UtcDateTimeConverter()
   DateTime get updatedAt;
   @override
   int get version;
   @override
+  @UtcDateTimeConverter()
   DateTime? get deletedAt;
 
   /// Create a copy of OutboundOrderModel

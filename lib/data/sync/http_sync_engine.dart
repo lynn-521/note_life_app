@@ -9,6 +9,7 @@ import 'dart:convert';
 
 import 'package:family_butler/core/constants/app_constants.dart';
 import 'package:family_butler/core/network/api_client.dart';
+import 'package:flutter/foundation.dart';
 import 'package:family_butler/data/models/base/sync_entity.dart';
 import 'package:family_butler/data/models/category.dart';
 import 'package:family_butler/data/models/daily_meal.dart';
@@ -280,7 +281,8 @@ class HttpSyncEngine implements SyncEngine {
       );
     } catch (e) {
       // 离线 / 服务器不可达：本地数据不受影响，下次联网自动重放。
-      print('[Sync] syncAll 失败（已忽略，保留本地数据）: $e');
+      // 用 debugPrint 替代 print：release 构建自动剥离，避免污染用户设备 logcat。
+      debugPrint('[Sync] syncAll 失败（已忽略，保留本地数据）: $e');
       return SyncResult(success: false, syncedAt: DateTime.now());
     }
   }

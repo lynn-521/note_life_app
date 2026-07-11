@@ -3,6 +3,7 @@ library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'base/sync_entity.dart';
+import '../../core/utils/json_converters.dart';
 
 part 'inbound_order.freezed.dart';
 part 'inbound_order.g.dart';
@@ -15,12 +16,12 @@ class InboundOrderModel with _$InboundOrderModel, SyncEntity {
     required String productId,
     required num qty,
     required String operatorId,
-    required DateTime at,
+    @UtcDateTimeConverter() required DateTime at,
     String? note,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    @UtcDateTimeConverter() required DateTime createdAt,
+    @UtcDateTimeConverter() required DateTime updatedAt,
     @Default(1) int version,
-    DateTime? deletedAt,
+    @UtcDateTimeConverter() DateTime? deletedAt,
   }) = _InboundOrder;
 
   factory InboundOrderModel.fromJson(Map<String, dynamic> json) =>
