@@ -1,0 +1,39 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'category.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$CategoryImpl _$$CategoryImplFromJson(Map<String, dynamic> json) =>
+    _$CategoryImpl(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      kind: $enumDecodeNullable(_$CategoryKindEnumMap, json['kind']) ??
+          CategoryKind.other,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      version: (json['version'] as num?)?.toInt() ?? 1,
+      deletedAt: json['deletedAt'] == null
+          ? null
+          : DateTime.parse(json['deletedAt'] as String),
+    );
+
+Map<String, dynamic> _$$CategoryImplToJson(_$CategoryImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'kind': _$CategoryKindEnumMap[instance.kind]!,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
+      'version': instance.version,
+      'deletedAt': instance.deletedAt?.toIso8601String(),
+    };
+
+const _$CategoryKindEnumMap = {
+  CategoryKind.food: 'food',
+  CategoryKind.medicine: 'medicine',
+  CategoryKind.daily: 'daily',
+  CategoryKind.other: 'other',
+};

@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'base/sync_entity.dart';
 
 part 'inbound_order.freezed.dart';
+part 'inbound_order.g.dart';
 
 /// 入库事件（append-only）：每次入库写一条 InboundOrderModel + 一个 StockBatchModel。
 @freezed

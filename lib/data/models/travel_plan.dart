@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'base/sync_entity.dart';
 
 part 'travel_plan.freezed.dart';
+part 'travel_plan.g.dart';
 
 /// 旅游计划书：起止日期 + 参与成员。
 @freezed

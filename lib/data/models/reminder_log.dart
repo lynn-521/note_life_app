@@ -8,6 +8,7 @@ import 'base/sync_entity.dart';
 import 'enums.dart';
 
 part 'reminder_log.freezed.dart';
+part 'reminder_log.g.dart';
 
 /// 提醒下发记录：某规则在某时刻经某渠道下发的状态。
 @freezed

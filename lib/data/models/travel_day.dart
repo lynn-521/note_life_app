@@ -7,6 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'base/sync_entity.dart';
 
 part 'travel_day.freezed.dart';
+part 'travel_day.g.dart';
 
 /// 旅游行程中的某一天（行程安排）。
 @freezed

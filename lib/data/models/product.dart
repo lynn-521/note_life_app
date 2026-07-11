@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'base/sync_entity.dart';
 
 part 'product.freezed.dart';
+part 'product.g.dart';
 
 /// 商品（库内一类物资，如「牛奶」「布洛芬」）。
 ///

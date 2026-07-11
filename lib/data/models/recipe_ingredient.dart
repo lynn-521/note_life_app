@@ -3,6 +3,7 @@ library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'recipe_ingredient.freezed.dart';
+part 'recipe_ingredient.g.dart';
 
 /// 菜谱食材：菜谱与商品的关联（承载用量与单位）。
 @freezed

@@ -30,10 +30,9 @@ dependencies:
   # 路由
   go_router: ^14.1.0
 
-  # 本地通知 + 后台
+  # 本地通知（后台调度后续按需引入兼容 Flutter 3.44 的插件）
   flutter_local_notifications: ^17.0.0
   timezone: ^0.9.3
-  workmanager: ^0.5.2
 
   # 工具
   intl: ^0.20.2

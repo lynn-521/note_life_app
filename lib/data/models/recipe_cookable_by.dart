@@ -3,6 +3,7 @@ library;
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'recipe_cookable_by.freezed.dart';
+part 'recipe_cookable_by.g.dart';
 
 /// 菜谱与成员的多对多关联（谁会做这道菜）。
 @freezed

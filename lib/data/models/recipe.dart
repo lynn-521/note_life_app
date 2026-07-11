@@ -6,6 +6,7 @@ import 'base/sync_entity.dart';
 import 'recipe_ingredient.dart';
 
 part 'recipe.freezed.dart';
+part 'recipe.g.dart';
 
 /// 菜谱：含步骤、份数、标签、食材清单与「谁会做」成员列表。
 @freezed

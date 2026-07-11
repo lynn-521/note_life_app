@@ -8,6 +8,7 @@ import 'base/sync_entity.dart';
 import 'enums.dart';
 
 part 'daily_meal.freezed.dart';
+part 'daily_meal.g.dart';
 
 /// 某日某餐别排的菜（关联菜谱）。
 @freezed

@@ -8,6 +8,7 @@ import 'base/sync_entity.dart';
 import 'enums.dart';
 
 part 'travel_item.freezed.dart';
+part 'travel_item.g.dart';
 
 /// 旅游清单项：行李（数量）或预算（金额），可指派成员认领。
 @freezed

@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'base/sync_entity.dart';
 
 part 'dose_schedule.freezed.dart';
+part 'dose_schedule.g.dart';
 
 /// 服药排程：用药计划展开后的某一具体服药时刻（每日按 times 生成）。
 @freezed

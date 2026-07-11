@@ -6,6 +6,7 @@ import 'base/sync_entity.dart';
 import 'enums.dart';
 
 part 'dose_log.freezed.dart';
+part 'dose_log.g.dart';
 
 /// 服药记录：某用药计划在某时刻的实际打卡（done / skipped / pending）。
 ///

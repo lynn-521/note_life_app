@@ -6,6 +6,7 @@ import 'base/sync_entity.dart';
 import 'enums.dart';
 
 part 'outbound_order.freezed.dart';
+part 'outbound_order.g.dart';
 
 /// 出库事件（append-only）：消耗 / 丢弃等扣减库存。
 @freezed

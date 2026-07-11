@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'base/sync_entity.dart';
 
 part 'stock_batch.freezed.dart';
+part 'stock_batch.g.dart';
 
 /// 入库批次：同一商品一次入库形成一个批次，承载数量与有效期。
 @freezed

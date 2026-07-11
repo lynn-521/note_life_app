@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'base/sync_entity.dart';
 
 part 'memo.freezed.dart';
+part 'memo.g.dart';
 
 /// 备忘录：置顶 / 完成 / 到期（可选）。
 @freezed

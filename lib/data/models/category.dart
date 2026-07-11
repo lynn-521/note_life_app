@@ -6,6 +6,7 @@ import 'base/sync_entity.dart';
 import 'enums.dart';
 
 part 'category.freezed.dart';
+part 'category.g.dart';
 
 /// 商品分类：食品 / 药品 / 日用品 / 其他。
 @freezed

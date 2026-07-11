@@ -17,7 +17,12 @@ mixin SyncEntity {
 
   /// 软删时间；非空表示已删除。
   DateTime? get deletedAt;
+}
 
-  /// 是否已软删。
+/// 是否已软删（派生自 [SyncEntity.deletedAt]）。
+///
+/// 注意：不能放进 [SyncEntity] 接口体，否则 freezed 生成的 impl
+/// 必须实现该派生 getter 却不会自动生成，导致编译失败。改用扩展提供。
+extension SyncEntityIsDeleted on SyncEntity {
   bool get isDeleted => deletedAt != null;
 }

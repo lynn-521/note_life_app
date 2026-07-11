@@ -8,6 +8,7 @@ import 'enums.dart';
 import '../../core/utils/json_converters.dart';
 
 part 'medication.freezed.dart';
+part 'medication.g.dart';
 
 /// 用药计划：按成员绑定，含频次与每日服药时间点。
 @freezed

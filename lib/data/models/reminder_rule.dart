@@ -6,6 +6,7 @@ import 'base/sync_entity.dart';
 import 'enums.dart';
 
 part 'reminder_rule.freezed.dart';
+part 'reminder_rule.g.dart';
 
 /// 提醒规则：类型 + 来源引用 + 渠道 + 配置 + 是否启用。
 @freezed

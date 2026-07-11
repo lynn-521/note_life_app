@@ -6,6 +6,7 @@ import 'base/sync_entity.dart';
 import 'enums.dart';
 
 part 'member.freezed.dart';
+part 'member.g.dart';
 
 /// 家庭成员：爸 / 妈 / 宝 / 奶 / 爷 / 其他。
 ///
