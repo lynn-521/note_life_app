@@ -20,6 +20,7 @@ import 'package:family_butler/data/repositories/repository.dart';
 import 'package:family_butler/data/sync/http_sync_engine.dart';
 import 'package:family_butler/core/network/api_client.dart';
 import 'package:family_butler/data/models/family_server_config.dart';
+import 'package:family_butler/data/network/detect_api.dart';
 
 /// 数据库单例（lazy，dispose 时关闭）。
 final appDatabaseProvider = Provider<AppDatabase>((ref) {
@@ -90,6 +91,16 @@ final syncEngineProvider = Provider<HttpSyncEngine>((ref) {
   final api = ref.watch(apiClientProvider);
   final repos = ref.watch(repositoriesProvider);
   return HttpSyncEngine(apiClient: api, repositories: repos);
+});
+
+/// 拍照入库 detect 客户端（multipart 上传到 /inbound/detect）。
+///
+/// 跟随 [familyServerConfigProvider] 重建；测试可通过 `ProviderScope.overrides`
+/// 注入自定义实现。
+final detectApiProvider = Provider<DetectApi>((ref) {
+  final cfg = ref.watch(familyServerConfigProvider).valueOrNull ??
+      FamilyServerConfig.empty();
+  return DetectApi(cfg);
 });
 
 /// SharedPreferences 单例（本地偏好：提醒开关 / 微信绑定 / 同步时间）。
