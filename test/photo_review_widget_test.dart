@@ -32,7 +32,6 @@ import 'package:family_butler/data/notify/logging_notification_channel.dart';
 import 'package:family_butler/data/notify/notification_channel.dart';
 import 'package:family_butler/data/notify/reminder_dispatcher.dart';
 import 'package:family_butler/data/reminder/local_reminder_engine.dart';
-import 'package:family_butler/data/reminder/reminder_engine.dart';
 import 'package:family_butler/data/models/memo.dart';
 import 'package:family_butler/data/repositories/repository.dart';
 import 'package:family_butler/features/storage/scan/photo_review_page.dart';
@@ -71,9 +70,6 @@ class _FakeReminderEngine implements LocalReminderEngine {
       FlutterLocalNotificationsPlugin();
 
   @override
-  bool get inited => true;
-
-  @override
   Future<void> init() async {}
 
   @override
@@ -94,7 +90,7 @@ Future<File> _writePng(Directory dir) async {
 }
 
 /// 构造 mock detect 结果（3 个 detection，bbox 分布在不同象限）。
-DetectResult _mockDetectResult() => DetectResult(
+DetectResult _mockDetectResult() => const DetectResult(
       imageId: 'img_test',
       detections: <DetectItem>[
         DetectItem(
@@ -102,21 +98,21 @@ DetectResult _mockDetectResult() => DetectResult(
           label: '番茄',
           categoryHint: 'food',
           confidence: 0.92,
-          bbox: const DetectBbox(x: 0.1, y: 0.2, w: 0.2, h: 0.2),
+          bbox: DetectBbox(x: 0.1, y: 0.2, w: 0.2, h: 0.2),
         ),
         DetectItem(
           id: 'det_2',
           label: '生菜',
           categoryHint: 'food',
           confidence: 0.85,
-          bbox: const DetectBbox(x: 0.5, y: 0.3, w: 0.2, h: 0.2),
+          bbox: DetectBbox(x: 0.5, y: 0.3, w: 0.2, h: 0.2),
         ),
         DetectItem(
           id: 'det_3',
           label: '生姜',
           categoryHint: 'food',
           confidence: 0.75,
-          bbox: const DetectBbox(x: 0.3, y: 0.6, w: 0.15, h: 0.15),
+          bbox: DetectBbox(x: 0.3, y: 0.6, w: 0.15, h: 0.15),
         ),
       ],
     );
@@ -184,7 +180,7 @@ void main() {
     }
   });
 
-  Widget _wrap(Widget child) {
+  Widget wrap(Widget child) {
     return ProviderScope(
       overrides: <Override>[
         appDatabaseProvider.overrideWith((ref) {
@@ -209,7 +205,7 @@ void main() {
     final png = await _writePng(tmpDir);
     final result = _mockDetectResult();
     // 注入 imageSize 跳过 ImageStream 解析（test 环境无 platform image decoder）
-    await tester.pumpWidget(_wrap(
+    await tester.pumpWidget(wrap(
       PhotoReviewPage(
         imageFile: png,
         detectResult: result,
@@ -232,7 +228,7 @@ void main() {
       (tester) async {
     final png = await _writePng(tmpDir);
     final result = _mockDetectResult();
-    await tester.pumpWidget(_wrap(
+    await tester.pumpWidget(wrap(
       PhotoReviewPage(
         imageFile: png,
         detectResult: result,
