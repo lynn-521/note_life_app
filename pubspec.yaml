@@ -44,6 +44,11 @@ dependencies:
   # 运行时权限（Android CAMERA / 通知）
   permission_handler: ^11.3.0
 
+  # 拍照入库（image_picker：相机/相册 → /inbound/detect）
+  image_picker: ^1.1.2
+  # 通用 HTTP 客户端（multipart 上传图片到后端 /inbound/detect）
+  http: ^1.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
