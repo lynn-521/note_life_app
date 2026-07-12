@@ -18,19 +18,6 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:family_butler/core/theme/app_theme_extension.dart';
 import 'package:family_butler/features/storage/scan/barcode_scanner_page.dart';
 
-/// 注入 AppTheme 扩展的测试 MaterialApp（扫码页内 `AppTheme.of(context)`
-/// 走 ThemeData.extensions；裸 MaterialApp 会让 `!` 抛 Null check operator）。
-Widget _wrap(Widget child, {String? initialRouteName, Widget? home}) {
-  return MaterialApp(
-    theme: ThemeData(extensions: [AppTheme.light()]),
-    home: home,
-    onGenerateRoute: (settings) => MaterialPageRoute(
-      settings: settings,
-      builder: (ctx) => child,
-    ),
-  );
-}
-
 void main() {
   group('BarcodeScannerPage', () {
     testWidgets('检测到 barcode → Navigator.pop 回传 rawValue', (tester) async {
@@ -70,7 +57,7 @@ void main() {
       expect(scannerFinder, findsOneWidget);
       final scannerWidget = tester.widget<MobileScanner>(scannerFinder);
       scannerWidget.onDetect?.call(
-        BarcodeCapture(
+        const BarcodeCapture(
           barcodes: [Barcode(rawValue: '6901234567890')],
         ),
       );
