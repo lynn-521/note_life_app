@@ -52,6 +52,21 @@ class InventoryDao extends DatabaseAccessor<AppDatabase>
     return row == null ? null : _toProduct(row);
   }
 
+  /// 按条形码精确匹配首个未软删商品。
+  ///
+  /// 命中策略：使用 `barcode.equals(barcode)` 精确匹配 + `deletedAt.isNull()` 过滤；
+  /// - 不区分大小写，扫码头返回的 EAN/UPC 条码本身就是规范化的纯数字串。
+  /// - 一码多商品：仅返回第一条；上游可扩展为"让用户选"。
+  Future<ProductModel?> getProductByBarcode(String barcode) async {
+    if (barcode.isEmpty) return null;
+    final row = await (select(products)
+          ..where((t) =>
+              t.barcode.equals(barcode) & t.deletedAt.isNull())
+          ..limit(1))
+        .getSingleOrNull();
+    return row == null ? null : _toProduct(row);
+  }
+
   Future<void> saveProduct(ProductModel p) =>
       into(products).insertOnConflictUpdate(_toProductCompanion(p));
 

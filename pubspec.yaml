@@ -39,6 +39,11 @@ dependencies:
   shared_preferences: ^2.2.3
   uuid: ^4.4.0
 
+  # 扫码（mobile_scanner 5.x：MobileScanner + onDetect）
+  mobile_scanner: ^5.2.3
+  # 运行时权限（Android CAMERA / 通知）
+  permission_handler: ^11.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
