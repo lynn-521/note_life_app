@@ -15,6 +15,11 @@ abstract class ProductRepository {
   /// 按 id 获取商品。
   Future<ProductModel?> getProduct(String id);
 
+  /// 按条形码查找唯一未软删商品（扫码入库用）。
+  ///
+  /// 返回 `null` 时表示该条码在商品库内尚未登记，应引导用户先新增。
+  Future<ProductModel?> getByBarcode(String barcode);
+
   /// 保存商品（upsert）。
   Future<void> saveProduct(ProductModel product);
 
@@ -47,6 +52,10 @@ class ProductRepositoryImpl implements ProductRepository {
 
   @override
   Future<ProductModel?> getProduct(String id) => db.inventoryDao.getProduct(id);
+
+  @override
+  Future<ProductModel?> getByBarcode(String barcode) =>
+      db.inventoryDao.getProductByBarcode(barcode);
 
   @override
   Future<void> saveProduct(ProductModel product) =>
