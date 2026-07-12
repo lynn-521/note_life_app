@@ -1,6 +1,6 @@
-/// 入库表单（手动录入 + 扫码入库）。
+/// 入库表单（手动录入 + 扫码入库 + 拍照入库）。
 ///
-/// system_design §T05：入库（手动 + 扫码）。事件溯源：写 InboundOrderModel + StockBatchModel。
+/// system_design §T05：入库（手动 + 扫码 + 拍照）。事件溯源：写 InboundOrderModel + StockBatchModel。
 library;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +20,7 @@ import '../../shared/screen_header.dart';
 import '../../shared/toast.dart';
 import '../providers/inventory_providers.dart';
 import '../scan/barcode_scanner_page.dart';
+import '../scan/photo_capture_page.dart';
 
 /// 入库表单页（手动 + 扫码）。
 class InboundFormView extends ConsumerStatefulWidget {
@@ -88,6 +89,18 @@ class _InboundFormViewState extends ConsumerState<InboundFormView> {
     );
     if (barcode == null || barcode.isEmpty || !mounted) return;
     await _handleScannedBarcode(barcode);
+  }
+
+  /// 打开拍照入库页（PhotoCapturePage）→ 自动上传到 /inbound/detect → 命中
+  /// 后由 PhotoReviewPage 完成人工确认 + 批量入库。本方法只负责"打开"，
+  /// 流程完成由 PhotoReviewPage 自行 pop + toast 反馈。
+  Future<void> _openPhotoCapture() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => const PhotoCapturePage(),
+        fullscreenDialog: true,
+      ),
+    );
   }
 
   /// 扫码命中后的分流：找到商品 prefill / 没找到弹"新增" dialog。
@@ -269,6 +282,45 @@ class _InboundFormViewState extends ConsumerState<InboundFormView> {
                           label: '打开扫码',
                           small: true,
                           onPressed: _openScanner,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  AppCard(
+                    onTap: _openPhotoCapture,
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: theme.sunSoft,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Center(
+                              child: Text('🖼️', style: TextStyle(fontSize: 20))),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('拍照入库',
+                                  style: AppTextStyles.sans(15,
+                                          weight: FontWeight.w700)
+                                      .copyWith(color: theme.textPrimary)),
+                              Text('一次识别多件商品 / 人工确认后批量入库',
+                                  style: AppTextStyles.sans(12,
+                                      color: theme.textSecondary)),
+                            ],
+                          ),
+                        ),
+                        AppButton(
+                          kind: AppButtonKind.ghost,
+                          label: '拍照入库',
+                          small: true,
+                          onPressed: _openPhotoCapture,
                         ),
                       ],
                     ),
